@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
 
 #################
 # Clinical Data #
@@ -27,10 +27,21 @@ def fetch_clinical_data(clinical_data_filter, clinical_data_type="SAMPLE", proje
         "clinicalDataType": clinical_data_type,
         "projection": projection
     }
+
     response = requests.post(f"{base_url}/clinical-data/fetch", json=clinical_data_filter, params=params)
+    #if response.status_code == 200:
+    #    data = response.json()
+    #    return pd.DataFrame(data)
+    
     if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
+        if response.text:  # Check if the response body is not empty
+            try:
+                data = response.json()
+                return pd.DataFrame(data)
+            except ValueError as e:
+                print(f"Error decoding the JSON response: {e}")
+        else:
+            print("Response is empty. No data available.")
     else:
         raise Exception(f"Failed to fetch clinical data. Status code: {response.status_code}")
 
@@ -86,6 +97,7 @@ def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_ty
         return pd.DataFrame(response.json())
     else:
         raise Exception(f"Failed to get clinical data in the specified study. Status code: {response.status_code}")
+    
 def fetch_all_clinical_data_in_study(study_id, clinical_data_filter, clinical_data_type="SAMPLE", projection="SUMMARY"):
     """
     Fetch clinical data by patient IDs or sample IDs in a specific study.
