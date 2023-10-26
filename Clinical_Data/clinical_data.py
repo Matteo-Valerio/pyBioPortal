@@ -5,11 +5,29 @@ from config import base_url
 #################
 # Clinical Data #
 #################
-def fetch_clinical_data(clinical_data_filter, clinical_data_type="SAMPLE", projection="SUMMARY"):
+def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"): #clinical_data_filter
     """
     Fetch clinical data by patient IDs or sample IDs (all studies) from BioPortal.
-    :param clinical_data_filter: List of patient or sample identifiers and attribute IDs.
-    :type clinical_data_filter: dict
+    :param attribute_ids: List of attribute IDs
+        e.g. for PATIENT data type ["SEX", "RACE"]
+        e.g. for SAMPLE data type ["ORGAN_SYSTEM", "SUBTYPE"]
+    :type attribute_ids: list of str
+    :param entity_study_ids: List of patient or sample identifiers and study IDs
+        e.g. for PATIENT data type:
+            entity_study_ids = [
+                               {"entity_ids": ["P-0000004", "P-0000950"], 
+                                "study": "msk_met_2021"},
+                               {"entity_ids": ["TCGA-5T-A9QA", "TCGA-A1-A0SB"], 
+                                "study": "brca_tcga"}
+                               ]
+        e.g. for SAMPLE data type:
+            entity_study_ids = [
+                               {"entity_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"], 
+                                "study": "msk_met_2021"},
+                               {"entity_ids": ["TCGA-5T-A9QA-01", "TCGA-A1-A0SB-01"], 
+                                "study": "brca_tcga"}
+                               ]
+    :type entity_study_ids: list of dict    
     :param clinical_data_type: Type of the clinical data.
         - "PATIENT": Clinical data for patients.
         - "SAMPLE": Clinical data for samples (default).
@@ -20,6 +38,10 @@ def fetch_clinical_data(clinical_data_filter, clinical_data_type="SAMPLE", proje
         - "META": Metadata information.
         - "SUMMARY": Summary information (default).
     :type projection: str
+    :param ret_format: Return format of the dataframe.
+        - "LONG": Long dataframe with repeated record for patient/sample.
+        - "WIDE": Wide dataframe with distinct record for patient/sample (default).
+    :type projection: str
     :returns: A DataFrame containing the fetched clinical data.
     :rtype: pandas.DataFrame
     """
@@ -28,16 +50,38 @@ def fetch_clinical_data(clinical_data_filter, clinical_data_type="SAMPLE", proje
         "projection": projection
     }
 
-    response = requests.post(f"{base_url}/clinical-data/fetch", json=clinical_data_filter, params=params)
-    #if response.status_code == 200:
-    #    data = response.json()
-    #    return pd.DataFrame(data)
+    clinical_data_filter = {
+        "attributeIds": attribute_ids,
+        "identifiers": []
+    }
+    
+    for item in entity_study_ids:
+        study_id = item["study"]
+        entity_ids = item["entity_ids"]
+        
+        for entity_id in entity_ids:
+            identifier = {
+                "entityId": entity_id,
+                "studyId": study_id
+            }
+            clinical_data_filter["identifiers"].append(identifier)
+
+    response = requests.post(f"{base_url}/clinical-data/fetch", json=clinical_data_filter, params=params)    
     
     if response.status_code == 200:
-        if response.text:  # Check if the response body is not empty
+        if response.text and response.text != '[]':  # Check if the response body is not empty
             try:
                 data = response.json()
-                return pd.DataFrame(data)
+                df = pd.DataFrame(data)
+                if ret_format == 'WIDE':
+                    cols_to_group = df.columns[:-2]
+                    df = df.pivot(index=cols_to_group, columns='clinicalAttributeId', values='value')              
+                    df.reset_index(inplace=True)
+                # check if all attribute has been retrieved
+                miss_attr = [col for col in attribute_ids if col not in df.columns]
+                if miss_attr != []:
+                    print("Attributes not present: " + ", ".join(map(str, miss_attr)))
+                return df
             except ValueError as e:
                 print(f"Error decoding the JSON response: {e}")
         else:

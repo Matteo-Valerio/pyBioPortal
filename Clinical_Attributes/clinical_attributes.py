@@ -122,7 +122,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
     response = requests.get(f"{base_url}{endpoint}", params=params)
     
     if response.status_code == 200:
-        if response.text:  # Check if the response body is not empty
+        if response.text:  # Check if the response body is not empty            
             try:
                 data = response.json()
                 return pd.DataFrame(data)
@@ -152,7 +152,7 @@ def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
     #    raise Exception(f"Failed to get the specified clinical attribute in the study. Status code: {response.status_code}")
     
     if response.status_code == 200:
-        if response.text:  # Check if the response body is not empty
+        if response.text and response.text != '[]':  # Check if the response body is not empty
             try:
                 data = response.json()
                 return pd.DataFrame(data, index=[0])
