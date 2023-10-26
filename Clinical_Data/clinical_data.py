@@ -5,13 +5,13 @@ from config import base_url
 #################
 # Clinical Data #
 #################
-def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"): #clinical_data_filter
+def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"):
     """
     Fetch clinical data by patient IDs or sample IDs (all studies) from BioPortal.
     :param attribute_ids: List of attribute IDs
         e.g. for PATIENT data type ["SEX", "RACE"]
         e.g. for SAMPLE data type ["ORGAN_SYSTEM", "SUBTYPE"]
-    :type attribute_ids: list of str
+    :type attribute_ids: list[str]
     :param entity_study_ids: List of patient or sample identifiers and study IDs
         e.g. for PATIENT data type:
             entity_study_ids = [
@@ -27,7 +27,7 @@ def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAM
                                {"entity_ids": ["TCGA-5T-A9QA-01", "TCGA-A1-A0SB-01"], 
                                 "study": "brca_tcga"}
                                ]
-    :type entity_study_ids: list of dict    
+    :type entity_study_ids: list[dict]
     :param clinical_data_type: Type of the clinical data.
         - "PATIENT": Clinical data for patients.
         - "SAMPLE": Clinical data for samples (default).
