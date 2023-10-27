@@ -5,7 +5,6 @@ from config import base_url
 ########################
 # Copy Number Segments #
 ########################
-# Puoi utilizzare questa funzione per ottenere dati sui segmenti di copia da BioPortal, specificando i campioni desiderati e il cromosoma (se necessario).
 def fetch_copy_number_segments(sample_identifiers, chromosome=None, projection="SUMMARY"):
     """
     Fetch copy number segments from BioPortal by sample ID.
@@ -27,11 +26,30 @@ def fetch_copy_number_segments(sample_identifiers, chromosome=None, projection="
     :returns: A DataFrame containing the fetched copy number segments.
     :rtype: pandas.DataFrame
     """
-    data = {"sampleIdentifiers": sample_identifiers}
+    endpoint = "/copy-number-segments/fetch"
     params = {"projection": projection}
     if chromosome:
         params["chromosome"] = chromosome
-    response = requests.post(f"{base_url}/copy-number-segments/fetch", json=data, params=params)
+
+    data = {"sampleIdentifiers": sample_identifiers}
+
+    sample_identifiers = {
+        "sampleId": [],
+        "studyId": []
+    }
+    
+    for item in entity_study_ids:
+        study_id = item["study"]
+        entity_ids = item["entity_ids"]
+        
+        for entity_id in entity_ids:
+            identifier = {
+                "entityId": entity_id,
+                "studyId": study_id
+            }
+            sample_identifiers["identifiers"].append(identifier)
+
+    response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
     if response.status_code == 200:
         data = response.json()
         return pd.DataFrame(data)
