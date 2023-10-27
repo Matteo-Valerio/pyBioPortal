@@ -36,6 +36,7 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
     :returns: A DataFrame containing the list of cancer types.
     :rtype: pandas.DataFrame
     """
+    endpoint = "/cancer-types"
     params = {
         "direction": direction,
         "pageNumber": pageNumber,
@@ -44,7 +45,7 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
     }
     if sortBy:
         params["sortBy"] = sortBy
-    response = requests.get(f"{base_url}/cancer-types", params=params)
+    response = requests.get(f"{base_url}{endpoint}", params=params)
     if response.status_code == 200:
         data = response.json()
         return pd.DataFrame(data)
@@ -59,7 +60,8 @@ def get_cancer_type(cancer_type_id):
     :returns: A DataFrame containing information about the specific cancer type.
     :rtype: pandas.DataFrame
     """
-    response = requests.get(f"{base_url}/cancer-types/{cancer_type_id}")
+    endpoint = f"/cancer-types/{cancer_type_id}"
+    response = requests.get(f"{base_url}{endpoint}")
     if response.status_code == 200:
         data = response.json()
         return pd.DataFrame(data, index=[0])

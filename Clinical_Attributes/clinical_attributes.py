@@ -38,6 +38,7 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
     :returns: A DataFrame containing the list of clinical attributes.
     :rtype: pandas.DataFrame
     """
+    endpoint = "/clinical-attributes"
     params = {
         "direction": direction,
         "pageNumber": pageNumber,
@@ -46,7 +47,7 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
     }
     if sortBy:
         params["sortBy"] = sortBy
-    response = requests.get(f"{base_url}/clinical-attributes", params=params)
+    response = requests.get(f"{base_url}{endpoint}", params=params)
     if response.status_code == 200:
         data = response.json()
         return pd.DataFrame(data)
@@ -67,9 +68,10 @@ def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     :returns: A DataFrame containing the fetched clinical attributes.
     :rtype: pandas.DataFrame
     """
+    endpoint = "/clinical-attributes/fetch"
     data = study_ids
     params = {"projection": projection}
-    response = requests.post(f"{base_url}/clinical-attributes/fetch", json=data, params=params)
+    response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
     if response.status_code == 200:
         return pd.DataFrame(response.json())
     else:

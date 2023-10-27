@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
 
 ########################
 # Copy Number Segments #
