@@ -1,20 +1,31 @@
 import requests
 import pandas as pd
 from config import base_url
+from aux_funcs import check_response
 
 ########################
 # Copy Number Segments #
 ########################
-def fetch_copy_number_segments(sample_identifiers, chromosome=None, projection="SUMMARY"):
+def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SUMMARY"):
     """
     Fetch copy number segments from BioPortal by sample ID.
-    :param sample_identifiers: List of sample identifiers.
-    :type sample_identifiers: list of dict
-        Each dictionary should have the following format:
-        {
-            "sampleId": "Sample ID",
-            "studyId": "Study ID"
-        }
+    :param sample_study_ids: List of sample identifiers.
+    :type sample_study_ids: list of dict
+        Each list should have the following format:
+        e.g. for PATIENT data type:
+            entity_study_ids = [
+                               {"entity_ids": ["P-0000004", "P-0000950"], 
+                                "study": "msk_met_2021"},
+                               {"entity_ids": ["TCGA-5T-A9QA", "TCGA-A1-A0SB"], 
+                                "study": "brca_tcga"}
+                               ]
+        e.g. for SAMPLE data type:
+            entity_study_ids = [
+                               {"entity_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"], 
+                                "study": "msk_met_2021"},
+                               {"entity_ids": ["TCGA-5T-A9QA-01", "TCGA-A1-A0SB-01"], 
+                                "study": "brca_tcga"}
+                               ]
     :param chromosome: Chromosome (optional).
     :type chromosome: str
     :param projection: Level of detail of the response.
@@ -31,34 +42,22 @@ def fetch_copy_number_segments(sample_identifiers, chromosome=None, projection="
     if chromosome:
         params["chromosome"] = chromosome
 
-    data = {"sampleIdentifiers": sample_identifiers}
-
-    sample_identifiers = {
-        "sampleId": [],
-        "studyId": []
-    }
+    sample_identifiers = []
     
-    for item in entity_study_ids:
-        study_id = item["study"]
-        entity_ids = item["entity_ids"]
+    for item in sample_study_ids:
+        sample_ids = item["sample_ids"]
+        study_id = item["study_id"]
         
-        for entity_id in entity_ids:
+        for sample_id in sample_ids:
             identifier = {
-                "entityId": entity_id,
+                "sampleId": sample_id,
                 "studyId": study_id
             }
-            sample_identifiers["identifiers"].append(identifier)
+            sample_identifiers.append(identifier)
 
-    response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
-    else:
-        raise Exception(f"Failed to fetch copy number segments. Status code: {response.status_code}")
+    response = requests.post(f"{base_url}{endpoint}", json=sample_identifiers, params=params)
+    return check_response(response, "Failed to fetch copy number segments.")
 
-########################
-# Copy Number Segments #
-########################
 def get_copy_number_segments_in_sample_in_study(study_id, sample_id, chromosome=None, direction="ASC", pageNumber=0, pageSize=20000, projection="SUMMARY", sortBy="chromosome"):
     """
     Get copy number segments in a sample in a study.
@@ -103,8 +102,6 @@ def get_copy_number_segments_in_sample_in_study(study_id, sample_id, chromosome=
         params["chromosome"] = chromosome
     if sortBy:
         params["sortBy"] = sortBy
+
     response = requests.get(f"{base_url}{endpoint}", params=params)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get copy number segments for the sample. Status code: {response.status_code}")
+    return check_response(response, "Failed to get copy number segments for the sample.")
