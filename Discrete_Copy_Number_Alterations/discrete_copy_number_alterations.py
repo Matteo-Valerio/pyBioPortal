@@ -1,12 +1,13 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
+from aux_funcs import check_response
 
 ####################################
 # Discrete Copy Number Alterations #
 ####################################
 
-def get_discrete_copy_numbers_in_molecular_profile(self, molecular_profile_id, sample_list_id, discrete_copy_number_event_type="HOMDEL_AND_AMP", projection="SUMMARY"):
+def get_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, sample_list_id, discrete_copy_number_event_type="HOMDEL_AND_AMP", projection="SUMMARY"):
     """
     Get discrete copy number alterations in a molecular profile by sample list ID.
     :param molecular_profile_id: Molecular Profile ID, e.g., "acc_tcga_gistic".
@@ -37,17 +38,21 @@ def get_discrete_copy_numbers_in_molecular_profile(self, molecular_profile_id, s
         "projection": projection,
         "sampleListId": sample_list_id
     }
-    response = requests.get(f"{self.base_url}{endpoint}", params=params)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get discrete copy numbers in molecular profile. Status code: {response.status_code}")
-def fetch_discrete_copy_numbers_in_molecular_profile(self, molecular_profile_id, sample_list_id, discrete_copy_number_event_type="HOMDEL_AND_AMP", projection="SUMMARY"):
+
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+    return check_response(response, "Failed to get discrete copy numbers in molecular profile.")
+
+
+def fetch_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, entrez_gene_ids=None, sample_ids=None, sample_list_id=None, discrete_copy_number_event_type="HOMDEL_AND_AMP", projection="SUMMARY"):
     """
     Fetch discrete copy number alterations in a molecular profile by sample list ID.
-    :param molecular_profile_id: Molecular Profile ID, e.g., "acc_tcga_gistic".
+    :param molecular_profile_id: Molecular Profile ID, e.g., "brca_tcga_gistic".
     :type molecular_profile_id: str
-    :param sample_list_id: Sample List ID, e.g., "acc_tcga_all".
+    :param entrez_gene_ids: List of Entrez Gene IDs, e.g., ["2023", "4853", "54940"].
+    :type entrez_gene_ids: list of str
+    :param sample_ids: List of Sample IDs, e.g., ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"] and sample_list_id is set to None.
+    :type sample_ids: list of str
+    :param sample_list_id: Sample List ID, e.g., "acc_tcga_all" and sample_ids is set to None.
     :type sample_list_id: str
     :param discrete_copy_number_event_type: Type of the copy number event.
         - "ALL": All events.
@@ -72,14 +77,12 @@ def fetch_discrete_copy_numbers_in_molecular_profile(self, molecular_profile_id,
         "discreteCopyNumberEventType": discrete_copy_number_event_type,
         "projection": projection
     }
-    data = {
-        "discreteCopyNumberFilter": {
-            "sampleIds": [sample_list_id],
-            "geneIds": []
-        }
-    }
-    response = requests.post(f"{self.base_url}{endpoint}", params=params, json=data)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to fetch discrete copy numbers in molecular profile. Status code: {response.status_code}")
+    
+    discreteCopyNumberFilter = {
+            "entrezGeneIds": entrez_gene_ids,
+            "sampleIds": sample_ids,
+            "sampleListId": sample_list_id
+           }
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=discreteCopyNumberFilter)
+    return check_response(response, "Failed to fetch discrete copy numbers in molecular profile.")

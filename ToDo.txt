@@ -1,0 +1,19 @@
+1. Controllare i parametri e i commenti che li descrivono:
+
+per es se un parametro è impostato come valore predefinito su None mettere il check, se invece è presente no
+if chromosome:
+        params["chromosome"] = chromosome
+if sortBy:
+    params["sortBy"] = sortBy --> sarebbe da togliere perchè ha giaà un valore predefinito nella funzione
+
+2. Verificare nei commenti che i parametri che hanno una lista di possibili voci abbiano specificato il valoe di default tutti allo stesso modo per uniformità
+
+:param projection: Level of detail of the response.
+    - "DETAILED": Detailed information.
+    - "ID": Information with only IDs.
+    - "META": Metadata information.
+    - "SUMMARY": Summary information (default).
+:type projection: str, optional, default: "SUMMARY" --> default: "SUMMARY" va tolto è già specificat nella riga precedente
+
+3. Capire come visualizzare i commenti in docstring in modo chiaro producendo della documentazione da mettere su github
+

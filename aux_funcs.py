@@ -36,4 +36,10 @@ def check_response(response, fail_msg):
         else:
             print("Response is empty. No data available.")
     else:
-        raise Exception(f"{fail_msg} Status code: {response.status_code}")
+        error_message = f"{fail_msg} Status code: {response.status_code}"
+    
+        if response.text:
+            error_message += f"\n Error messagge: {response.json()['message']}"
+    
+        raise Exception(error_message)
+        #raise Exception(f"{fail_msg} Status code: {response.status_code}")
