@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
+from aux_funcs import check_response, flatten_dict_columns, flatten_dict_list_columns
 
 ###############
 # Gene Panels #
@@ -32,20 +33,36 @@ def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projec
     :returns: A DataFrame containing the list of gene panels.
     :rtype: pandas.DataFrame
     """
+    endpoint = "/gene-panels"
     params = {
         "direction": direction,
         "pageNumber": pageNumber,
         "pageSize": pageSize,
         "projection": projection
     }
+
     if sortBy:
         params["sortBy"] = sortBy
-    response = requests.get(f"{base_url}/gene-panels", params=params)
-    if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
-    else:
-        raise Exception(f"Failed to get gene panels. Status code: {response.status_code}")
+
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+    return check_response(response, "Failed to get gene panels.")
+
+
+def get_gene_panel(gene_panel_id):
+    """
+    Get a specific gene panel from BioPortal.
+    :param gene_panel_id: Gene Panel ID (e.g., "NSCLC_UNITO_2016_PANEL").
+    :type gene_panel_id: str
+    :returns: A DataFrame containing information about the specific gene panel.
+    :rtype: pandas.DataFrame
+    """
+    endpoint = f"/gene-panels/{gene_panel_id}"
+    
+    response = requests.get(f"{base_url}{endpoint}")
+    df = check_response(response, f"Failed to get gene panel {gene_panel_id}.")
+    return flatten_dict_columns(df)
+    
+
 def fetch_gene_panels(gene_panel_ids, projection="SUMMARY"):
     """
     Fetch gene panels from BioPortal by Gene Panel IDs.
@@ -60,25 +77,12 @@ def fetch_gene_panels(gene_panel_ids, projection="SUMMARY"):
     :returns: A DataFrame containing the fetched gene panels.
     :rtype: pandas.DataFrame
     """
-    data = gene_panel_ids
+    endpoint = "/gene-panels/fetch"
     params = {"projection": projection}
-    response = requests.post(f"{base_url}/gene-panels/fetch", json=data, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
-    else:
-        raise Exception(f"Failed to fetch gene panels. Status code: {response.status_code}")
-def get_gene_panel(gene_panel_id):
-    """
-    Get a specific gene panel from BioPortal.
-    :param gene_panel_id: Gene Panel ID (e.g., "NSCLC_UNITO_2016_PANEL").
-    :type gene_panel_id: str
-    :returns: A DataFrame containing information about the specific gene panel.
-    :rtype: pandas.DataFrame
-    """
-    response = requests.get(f"{base_url}/gene-panels/{gene_panel_id}")
-    if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
-    else:
-        raise Exception(f"Failed to get gene panel {gene_panel_id}. Status code: {response.status_code}")
+    
+    response = requests.post(f"{base_url}{endpoint}", json=gene_panel_ids, params=params)
+    df = check_response(response, "Failed to fetch gene panels.")
+    return flatten_dict_list_columns(df)
+    
+
+

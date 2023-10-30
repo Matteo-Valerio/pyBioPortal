@@ -25,6 +25,7 @@ def process_response(response, ret_format, attribute_ids):
     else:
         print("Response is empty. No data available.")
 
+
 def check_response(response, fail_msg):
     if response.status_code == 200:
         if response.text and response.text != '[]':  # Check if the response body is not empty
@@ -42,3 +43,57 @@ def check_response(response, fail_msg):
             error_message += f"\n Error messagge: {response.json()['message']}"
     
         raise Exception(error_message)
+
+
+def flatten_dict_columns(df):
+    def flatten_dict(d, parent_key=''):
+        items = {}
+        for key, value in d.items():
+            new_key = key if parent_key else key
+            if isinstance(value, dict):
+                items[new_key] = flatten_dict(value)
+            else:
+                items[new_key] = value
+        return items
+
+    new_data = []
+    for _, row in df.iterrows():
+        flattened_dict = {}
+        for column, value in row.items():
+            if isinstance(value, dict):
+                flattened_dict.update(flatten_dict(value, column))
+            else:
+                flattened_dict[column] = value
+        new_data.append(flattened_dict)
+
+    new_df = pd.DataFrame(new_data)
+    return new_df
+
+
+def flatten_dict_list_columns(df):
+    list_columns = []
+
+    # Identifica le colonne che contengono liste di dizionari
+    for column in df.columns:
+        if df[column].apply(lambda x: isinstance(x, list) and all(isinstance(item, dict) for item in x)).all():
+            list_columns.append(column)
+
+    if not list_columns:
+        return df
+        #raise ValueError("Nessuna colonna contenente liste di dizionari trovata.")
+
+    new_data = []
+    for _, row in df.iterrows():
+        flattened_dicts = []
+        for column in list_columns:
+            list_of_dicts = row[column]
+            for d in list_of_dicts:
+                flattened_dict = {k: v for k, v in row.items() if k not in list_columns}
+                flattened_dict.update(d)
+                flattened_dicts.append(flattened_dict)
+        if not flattened_dicts:
+            flattened_dicts = [row.to_dict()]
+        new_data.extend(flattened_dicts)
+
+    new_df = pd.DataFrame(new_data)
+    return new_df
