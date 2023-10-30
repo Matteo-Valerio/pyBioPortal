@@ -50,9 +50,9 @@ def fetch_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, entre
     :type molecular_profile_id: str
     :param entrez_gene_ids: List of Entrez Gene IDs, e.g., ["2023", "4853", "54940"].
     :type entrez_gene_ids: list of str
-    :param sample_ids: List of Sample IDs, e.g., ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"] and sample_list_id is set to None.
+    :param sample_ids: List of Sample IDs, e.g., ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"] and sample_list_id set to None.
     :type sample_ids: list of str
-    :param sample_list_id: Sample List ID, e.g., "acc_tcga_all" and sample_ids is set to None.
+    :param sample_list_id: Sample List ID, e.g., "acc_tcga_all" and sample_ids set to None.
     :type sample_list_id: str
     :param discrete_copy_number_event_type: Type of the copy number event.
         - "ALL": All events.

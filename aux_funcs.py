@@ -42,4 +42,3 @@ def check_response(response, fail_msg):
             error_message += f"\n Error messagge: {response.json()['message']}"
     
         raise Exception(error_message)
-        #raise Exception(f"{fail_msg} Status code: {response.status_code}")

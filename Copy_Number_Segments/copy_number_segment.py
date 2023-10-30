@@ -11,20 +11,20 @@ def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SU
     Fetch copy number segments from BioPortal by sample ID.
     :param sample_study_ids: List of sample identifiers.
     :type sample_study_ids: list of dict
-        Each list should have the following format:
+        Each dict should have the following format:
         e.g. for PATIENT data type:
-            entity_study_ids = [
-                               {"entity_ids": ["P-0000004", "P-0000950"], 
-                                "study": "msk_met_2021"},
-                               {"entity_ids": ["TCGA-5T-A9QA", "TCGA-A1-A0SB"], 
-                                "study": "brca_tcga"}
+            sample_study_ids = [
+                               {"sample_ids": ["P-0000004", "P-0000950"], 
+                                "study_id": "msk_met_2021"},
+                               {"sample_ids": ["TCGA-5T-A9QA", "TCGA-A1-A0SB"], 
+                                "study_id": "brca_tcga"}
                                ]
         e.g. for SAMPLE data type:
-            entity_study_ids = [
-                               {"entity_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"], 
-                                "study": "msk_met_2021"},
-                               {"entity_ids": ["TCGA-5T-A9QA-01", "TCGA-A1-A0SB-01"], 
-                                "study": "brca_tcga"}
+            sample_study_ids = [
+                               {"sample_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"], 
+                                "study_id": "msk_met_2021"},
+                               {"sample_ids": ["TCGA-5T-A9QA-01", "TCGA-A1-A0SB-01"], 
+                                "study_id": "brca_tcga"}
                                ]
     :param chromosome: Chromosome (optional).
     :type chromosome: str

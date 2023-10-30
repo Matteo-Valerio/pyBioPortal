@@ -1,49 +1,72 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
+from aux_funcs import check_response
 
 ###################
 # Gene Panel Data #
 ###################
-# Queste nuove funzioni consentono di ottenere dati relativi ai pannelli genetici da BioPortal. Le docstring contengono dettagli sui parametri, inclusi i possibili valori e il significato dei parametri. Puoi utilizzare queste funzioni per accedere ai dati sui pannelli genetici da BioPortal.
-def fetch_gene_panel_data(gene_panel_data_filter):
+def fetch_gene_panel_data(molecular_profile_ids=None, molecular_prof_sample_ids=None):
     """
     Fetch gene panel data from BioPortal.
-    :param gene_panel_data_filter: Gene panel data filter object.
-    :type gene_panel_data_filter: dict
-        Example format:
-        {
-            "filterProperty1": "value1",
-            "filterProperty2": "value2",
-            ...
-        }
+    :param molecular_profile_ids: List of Molecular Profile IDs, e.g., ["brca_tcga_gistic", "brca_tcga_mutations", "acc_tcga_gistic"].
+    :type molecular_profile_ids: list of str
+    :param molecular_prof_sample_ids: List of Molecular Profile IDs, e.g., ["brca_tcga_gistic", "brca_tcga_mutations", "acc_tcga_gistic"].
+    :type molecular_prof_sample_ids: list of dict
+        Each dict should have the following format:
+            molecular_prof_sample_ids = [
+                                        {"molecular_profile_id": "brca_tcga_gistic",  
+                                         "sample_ids": ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"]},
+                                        {"molecular_profile_id": "brca_tcga_mutations", 
+                                         "sample_ids": ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"]},
+                                        {"molecular_profile_id": "msk_met_2021_mutations", 
+                                         "sample_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"]}
+                                        ]
     :returns: A DataFrame containing the fetched gene panel data.
     :rtype: pandas.DataFrame
     """
-    data = gene_panel_data_filter
-    response = requests.post(f"{base_url}/gene-panel-data/fetch", json=data)
-    if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
-    else:
-        raise Exception(f"Failed to fetch gene panel data. Status code: {response.status_code}")
+    endpoint = "/gene-panel-data/fetch"
 
-###################
-# Gene Panel Data #
-###################
-def get_gene_panel_data(molecular_profile_id, gene_panel_data_filter):
+    gene_panel_data_filter = {}
+
+    if molecular_profile_ids:
+        gene_panel_data_filter['molecularProfileIds'] = molecular_profile_ids
+    
+    if molecular_prof_sample_ids:
+        gene_panel_data_filter['sampleMolecularIdentifiers'] = []
+    
+        for item in molecular_prof_sample_ids:
+            molec_prof_id = item["molecular_profile_id"]
+            sample_ids = item["sample_ids"]
+
+            for sample_id in sample_ids:
+                identifier = {
+                    "molecularProfileId": molec_prof_id,
+                    "sampleId": sample_id
+                }
+                gene_panel_data_filter["sampleMolecularIdentifiers"].append(identifier)
+
+    response = requests.post(f"{base_url}{endpoint}", json=gene_panel_data_filter)
+    return check_response(response, "Failed to fetch gene panel data.")
+
+def get_gene_panel_data(molecular_profile_id, sample_ids=None, sample_list_id=None):
     """
     Get gene panel data for a specific molecular profile.
-    :param molecular_profile_id: Molecular Profile ID, e.g., "nsclc_unito_2016_mutations".
+    :param molecular_profile_id: Molecular Profile ID, e.g., "brca_tcga_mutations".
     :type molecular_profile_id: str
-    :param gene_panel_data_filter: List of Sample IDs/Sample List ID and Entrez Gene IDs.
-    :type gene_panel_data_filter: dict
-    :returns: Gene panel data.
-    :rtype: list[dict]
+    :param sample_ids: List of Sample IDs, e.g., ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"] and sample_list_id set to None. #and Entrez Gene IDs.
+    :type sample_ids: list of str
+    :param sample_list_id: Sample List ID, e.g., "brca_tcga_all" and sample_ids set to None.
+    :type sample_list_id: str
+    :returns: A DataFrame containing the fetched gene panel data.
+    :rtype: pandas.DataFrame
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}/gene-panel-data/fetch"
+
+    gene_panel_data_filter = {
+            "sampleIds": sample_ids,
+            "sampleListId": sample_list_id
+           }
+
     response = requests.post(f"{base_url}{endpoint}", json=gene_panel_data_filter)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get gene panel data. Status code: {response.status_code}")
+    return check_response(response, "Failed to get gene panel data.")
