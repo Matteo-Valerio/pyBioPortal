@@ -149,20 +149,7 @@ def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_ty
         params["attributeId"] = attribute_id
     
     response = requests.get(f"{base_url}{endpoint}", params=params)
-    return check_response(response, "Failed to get clinical data in the specified study.")
-
-    #if response.status_code == 200:
-    #    if response.text and response.text != '[]':  # Check if the response body is not empty
-    #        try:
-    #            data = response.json()
-    #            return pd.DataFrame(data)
-    #        except ValueError as e:
-    #            print(f"Error decoding the JSON response: {e}")
-    #    else:
-    #        print("Response is empty. No data available.")
-    #else:
-    #    raise Exception(f"Failed to get clinical data in the specified study. Status code: {response.status_code}")
-    
+    return check_response(response, "Failed to get clinical data in the specified study.")    
     
 def fetch_all_clinical_data_in_study(study_id, attribute_ids=[], ids=[], clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"):
     """

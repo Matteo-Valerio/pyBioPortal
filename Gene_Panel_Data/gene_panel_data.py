@@ -54,7 +54,7 @@ def get_gene_panel_data(molecular_profile_id, sample_ids=None, sample_list_id=No
     Get gene panel data for a specific molecular profile.
     :param molecular_profile_id: Molecular Profile ID, e.g., "brca_tcga_mutations".
     :type molecular_profile_id: str
-    :param sample_ids: List of Sample IDs, e.g., ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"] and sample_list_id set to None. #and Entrez Gene IDs.
+    :param sample_ids: List of Sample IDs, e.g., ["TCGA-AR-A1AR-01", "TCGA-E2-A1BC-01"] and sample_list_id set to None.
     :type sample_ids: list of str
     :param sample_list_id: Sample List ID, e.g., "brca_tcga_all" and sample_ids set to None.
     :type sample_list_id: str
