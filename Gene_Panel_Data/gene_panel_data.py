@@ -11,7 +11,7 @@ def fetch_gene_panel_data(molecular_profile_ids=None, molecular_prof_sample_ids=
     Fetch gene panel data from BioPortal.
     :param molecular_profile_ids: List of Molecular Profile IDs, e.g., ["brca_tcga_gistic", "brca_tcga_mutations", "acc_tcga_gistic"].
     :type molecular_profile_ids: list of str
-    :param molecular_prof_sample_ids: List of Molecular Profile IDs, e.g., ["brca_tcga_gistic", "brca_tcga_mutations", "acc_tcga_gistic"].
+    :param molecular_prof_sample_ids: List of Molecular Profile ID and Sample IDs pairs.
     :type molecular_prof_sample_ids: list of dict
         Each dict should have the following format:
             molecular_prof_sample_ids = [

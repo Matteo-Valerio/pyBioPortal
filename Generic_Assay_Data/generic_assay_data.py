@@ -44,12 +44,24 @@ def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_
     response = requests.post(f"{base_url}{endpoint}", json=generic_assay_data_filter, params=params)
     return check_response(response, "Failed to fetch generic assay data.")
 
-def fetch_generic_assay_data(generic_assay_data_multiple_study_filter, projection="SUMMARY"):
+def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, projection="SUMMARY"):
     """
-    Fetch generic assay data from multiple molecular profiles in BioPortal.
-    :param generic_assay_data_multiple_study_filter: List of Molecular Profile ID and Sample ID pairs
-        or List of MolecularProfile IDs and Generic Assay IDs.
-    :type generic_assay_data_multiple_study_filter: dict
+    Fetch generic assay data from multiple molecular profiles in BioPortal providing 
+    List of Molecular Profile ID and Sample ID pairs or List of Molecular Profile IDs and Generic Assay IDs.
+    :param generic_assay_stable_ids: List of Generic Assay IDs, e.g. ["TULP4_pS563", "TEP1_pS397"]
+    :type generic_assay_stable_ids: list of str
+    :param molecular_profile_ids: List of Molecular Profile IDs, e.g. ["brca_tcga_phosphoprotein_quantification","brain_cptac_2020_phosphoprotein"]
+    :type molecular_profile_ids: list of str
+    :param sample_molecular_identifiers: List of Molecular Profile ID and Sample IDs pairs. 
+    :type sample_molecular_identifiers: list of dict
+        Each dict should have the following format:
+            molecular_prof_sample_ids = [
+                                        {"molecular_profile_id": "brca_tcga_phosphoprotein_quantification",  
+                                         "sample_ids": ["TCGA-C8-A130-01", "TCGA-C8-A134-01"]},
+                                        {"molecular_profile_id": "brain_cptac_2020_phosphoprotein", 
+                                         "sample_ids": ["7316-101", "7316-109"]}
+                                        ]
+
     :param projection: Level of detail of the response.
         - "DETAILED": Detailed information.
         - "ID": Information with only IDs.
@@ -61,6 +73,29 @@ def fetch_generic_assay_data(generic_assay_data_multiple_study_filter, projectio
     """
     endpoint = "/generic_assay_data/fetch"
     params = {"projection": projection}
+
+    generic_assay_data_multiple_study_filter = {}
+
+    if generic_assay_stable_ids:
+        generic_assay_data_multiple_study_filter['genericAssayStableIds'] = generic_assay_stable_ids
+    
+    if molecular_profile_ids:
+        generic_assay_data_multiple_study_filter['molecularProfileIds'] = molecular_profile_ids
+
+    if sample_molecular_identifiers:
+        generic_assay_data_multiple_study_filter['sampleMolecularIdentifiers'] = []
+
+        for item in sample_molecular_identifiers:
+            molec_prof_id = item["molecular_profile_id"]
+            sample_ids = item["sample_ids"]
+
+            for sample_id in sample_ids:
+                identifier = {
+                    "molecularProfileId": molec_prof_id,
+                    "sampleId": sample_id
+                }
+                generic_assay_data_multiple_study_filter["sampleMolecularIdentifiers"].append(identifier)
+
 
     response = requests.post(f"{base_url}{endpoint}", json=generic_assay_data_multiple_study_filter, params=params)
     return check_response(response, "Failed to fetch generic assay data.")
