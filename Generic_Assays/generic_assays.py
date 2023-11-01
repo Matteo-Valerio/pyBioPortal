@@ -20,9 +20,10 @@ def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_id
         - "META": Metadata information.
         - "SUMMARY": Summary information (default).
     :type projection: str
-    :returns: A list of meta data for the generic assays matching the filter criteria.
-    :rtype: list[dict]
+    :returns: A DataFrame containing meta data for the generic assays matching the filter criteria.
+    :rtype: pandas.DataFrame
     """
+    endpoint = "/generic_assay_meta/fetch"
     params = {"projection": projection}
 
     genericAssayMetaFilter = {}
@@ -33,29 +34,9 @@ def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_id
     if molecular_profile_ids:
         genericAssayMetaFilter['molecularProfileIds'] = molecular_profile_ids
 
-    response = requests.post(f"{base_url}/generic_assay_meta/fetch", params=params, json=genericAssayMetaFilter)
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=genericAssayMetaFilter)
     df = check_response(response, "Failed to fetch meta data for generic assays.")
     return flatten_dict_columns(df)
-
-
-def get_generic_assay_meta_by_id(generic_assay_stable_id, projection="SUMMARY"):
-    """
-    Fetch meta data for a generic assay by its ID.
-    :param generic_assay_stable_id: The stable ID of the generic assay.
-    :type generic_assay_stable_id: str
-    :param projection: Level of detail of the response.
-        - "DETAILED": Detailed information.
-        - "ID": Information with only IDs.
-        - "META": Metadata information.
-        - "SUMMARY": Summary information (default).
-    :type projection: str
-    :returns: A DataFrame containing the fetched meta data for the generic assay.
-    :rtype: pandas.DataFrame
-    """
-    params = {"projection": projection}
-
-    response = requests.get(f"{base_url}/generic-assay-meta/generic-assay/{generic_assay_stable_id}", params=params)
-    return check_response(response, "Failed to fetch meta data for the generic assay.")
 
 def get_generic_assay_meta_by_molecular_profile_id(molecular_profile_id, projection="SUMMARY"):
     """
@@ -71,8 +52,30 @@ def get_generic_assay_meta_by_molecular_profile_id(molecular_profile_id, project
     :returns: A DataFrame containing the fetched meta data for the generic assay in the specified molecular profile.
     :rtype: pandas.DataFrame
     """
+    endpoint = f"/generic-assay-meta/{molecular_profile_id}"
     params = {"projection": projection}
 
-    response = requests.get(f"{base_url}/generic-assay-meta/{molecular_profile_id}", params=params)
-    return check_response(response, "Failed to fetch meta data for the generic assay.")
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+    df = check_response(response, "Failed to fetch meta data for the generic assay.")
+    return flatten_dict_columns(df)
 
+def get_generic_assay_meta_by_id(generic_assay_stable_id, projection="SUMMARY"):
+    """
+    Fetch meta data for a generic assay by its ID.
+    :param generic_assay_stable_id: The stable ID of the generic assay.
+    :type generic_assay_stable_id: str
+    :param projection: Level of detail of the response.
+        - "DETAILED": Detailed information.
+        - "ID": Information with only IDs.
+        - "META": Metadata information.
+        - "SUMMARY": Summary information (default).
+    :type projection: str
+    :returns: A DataFrame containing the fetched meta data for the generic assay.
+    :rtype: pandas.DataFrame
+    """
+    endpoint = f"/generic-assay-meta/generic-assay/{generic_assay_stable_id}"
+    params = {"projection": projection}
+
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+    df = check_response(response, "Failed to fetch meta data for the generic assay.")
+    return flatten_dict_columns(df)
