@@ -31,7 +31,10 @@ def check_response(response, fail_msg):
         if response.text and response.text != '[]':  # Check if the response body is not empty
             try:
                 data = response.json()
-                return pd.DataFrame(data)
+                if isinstance(data, list):
+                    return pd.DataFrame(data)
+                if isinstance(data, dict): # per il caso con un dizionario che avrebbe un dataframe con una sola riga
+                    return pd.DataFrame({key: [value] for key, value in data.items()})
             except ValueError as e:
                 print(f"Error decoding the JSON response: {e}")
         else:

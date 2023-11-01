@@ -6,7 +6,6 @@ from aux_funcs import check_response, flatten_dict_columns
 ##################
 # Generic Assays #
 ##################
-
 def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_ids=None, projection="SUMMARY"):
     """
     Fetch meta data for generic assays based on List of Molecular Profile ID or List of Stable ID.
