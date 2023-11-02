@@ -1,37 +1,65 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
+from aux_funcs import check_response
 
 ##################
 # Molecular Data #
 ##################
-def fetch_molecular_data(self, molecular_data_filter, projection="SUMMARY"):
+def fetch_molecular_data(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, projection="SUMMARY"):
     """
     Fetch molecular data.
-    :param molecular_data_filter: List of Molecular Profile ID and Sample ID pairs or
-                                  List of MolecularProfile IDs and Entrez Gene IDs.
-    :type molecular_data_filter: list[dict]
+    :param entrez_gene_ids: List of Entrez Gene IDs, e.g., ["672", "675"]
+    :type entrez_gene_ids: list of str
+    :param molecular_profile_ids: List of MolecularProfile IDs, e.g., ["brca_tcga_mrna", "acc_tcga_rna_seq_v2_mrna"]
+    :type molecular_profile_ids: list of str
+    :param sample_molecular_identifiers: List of Molecular Profile ID and Sample ID pairs.
+    :type sample_molecular_identifiers: list of dict
+        Each dict should have the following format:
+            sample_molecular_identifiers = [
+                                           {"molecular_profile_id": "brca_tcga_mrna", 
+                                            "sample_ids": ["TCGA-AR-A1AR-01","TCGA-BH-A1EO-01"]},
+                                           {"molecular_profile_id": "acc_tcga_rna_seq_v2_mrna", 
+                                            "sample_ids": ["TCGA-OR-A5J1-01","TCGA-OR-A5J2"]}
+                                           ]
     :param projection: Level of detail of the response.
         - "DETAILED": Detailed information.
         - "ID": Information with only IDs.
         - "META": Metadata information.
         - "SUMMARY": Summary information (default).
     :type projection: str
-    :returns: Molecular data.
-    :rtype: list[dict]
+    :returns: A DataFrame containing molecular data.
+    :rtype: pandas.DataFrame
     """
     endpoint = "/molecular-data/fetch"
     params = {"projection": projection}
-    response = requests.post(f"{self.base_url}{endpoint}", json=molecular_data_filter, params=params)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to fetch molecular data. Status code: {response.status_code}")
+
+    molecular_data_filter = {}
+
+    if entrez_gene_ids:
+        molecular_data_filter['entrezGeneIds'] = entrez_gene_ids
+    
+    if molecular_profile_ids:
+        molecular_data_filter['molecularProfileIds'] = molecular_profile_ids
+
+    if sample_molecular_identifiers:
+        molecular_data_filter['sampleMolecularIdentifiers'] = []
+
+        for item in sample_molecular_identifiers:
+            molec_prof_id = item["molecular_profile_id"]
+            sample_ids = item["sample_ids"]
+
+            for sample_id in sample_ids:
+                identifier = {
+                    "molecularProfileId": molec_prof_id,
+                    "sampleId": sample_id
+                }
+                molecular_data_filter["sampleMolecularIdentifiers"].append(identifier)
+
+    response = requests.post(f"{base_url}{endpoint}", json=molecular_data_filter, params=params)
+    return check_response(response, "Failed to fetch molecular data.")
         
-##################
-# Molecular Data #
-##################
-def get_all_molecular_data_in_molecular_profile(self, molecular_profile_id, sample_list_id, entrez_gene_id, projection="SUMMARY"):
+def get_all_molecular_data_in_molecular_profile(molecular_profile_id, sample_list_id, entrez_gene_id, projection="SUMMARY"):
     """
     Get all molecular data in a molecular profile for a specific gene.
     :param molecular_profile_id: Molecular Profile ID, e.g., "acc_tcga_rna_seq_v2_mrna".
@@ -46,8 +74,8 @@ def get_all_molecular_data_in_molecular_profile(self, molecular_profile_id, samp
         - "META": Metadata information.
         - "SUMMARY": Summary information (default).
     :type projection: str, optional, default: "SUMMARY"
-    :returns: List of molecular data for the specified gene.
-    :rtype: list[dict]
+    :returns: A DataFrame containing molecular data for the specified gene.
+    :rtype: pandas.DataFrame
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}/molecular-data"
     params = {
@@ -55,13 +83,11 @@ def get_all_molecular_data_in_molecular_profile(self, molecular_profile_id, samp
         "projection": projection,
         "sampleListId": sample_list_id
     }
-    response = requests.get(f"{self.base_url}{endpoint}", params=params)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get molecular data in molecular profile. Status code: {response.status_code}")
 
-def fetch_all_molecular_data_in_molecular_profile(self, molecular_profile_id, molecular_data_filter, projection="SUMMARY"):
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+    return check_response(response, "Failed to get molecular data in molecular profile.")
+
+def fetch_all_molecular_data_in_molecular_profile(molecular_profile_id, entrez_gene_ids = None, sample_ids = None, sample_list_id = None, projection="SUMMARY"):
     """
     Fetch molecular data in a molecular profile for a list of genes.
     :param molecular_profile_id: Molecular Profile ID, e.g., "acc_tcga_rna_seq_v2_mrna".
@@ -74,12 +100,24 @@ def fetch_all_molecular_data_in_molecular_profile(self, molecular_profile_id, mo
         - "META": Metadata information.
         - "SUMMARY": Summary information (default).
     :type projection: str, optional, default: "SUMMARY"
-    :returns: List of molecular data for the specified genes.
-    :rtype: list[dict]
+    :returns: A DataFrame containing molecular data for the specified genes.
+    :rtype: pandas.DataFrame
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}/molecular-data/fetch"
-    response = requests.post(f"{self.base_url}{endpoint}", json=molecular_data_filter)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to fetch molecular data in molecular profile. Status code: {response.status_code}")
+    params = {
+        "projection": projection,
+    }
+
+    molecular_data_filter = {}
+
+    if entrez_gene_ids:
+        molecular_data_filter['entrezGeneIds'] = entrez_gene_ids
+    
+    if sample_ids:
+        molecular_data_filter['sampleIds'] = sample_ids
+
+    if sample_list_id:
+        molecular_data_filter['sampleListId'] = sample_list_id
+
+    response = requests.post(f"{base_url}{endpoint}", json=molecular_data_filter, params=params)
+    return check_response(response, "Failed to fetch molecular data in molecular profile.")
