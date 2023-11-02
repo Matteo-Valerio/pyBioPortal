@@ -62,9 +62,9 @@ def get_molecular_profile(molecular_profile_id):
 def fetch_molecular_profiles(molecular_profile_ids = None, study_ids = None, projection="SUMMARY"):
     """
     Fetch molecular profiles.
-    :param molecular_profile_ids: List of Molecular Profile IDs, e.g.,
+    :param molecular_profile_ids: List of Molecular Profile IDs, e.g., ["brca_tcga_mrna", "acc_tcga_rna_seq_v2_mrna"]
     :type molecular_profile_ids: list of str
-    :param study_ids: List of Study IDs, e.g., .
+    :param study_ids: List of Study IDs, e.g., .["brca_tcga", "acc_tcga"]
     :type study_ids: list of str
     :param projection: Level of detail of the response.
         - "DETAILED": Detailed information.
@@ -108,9 +108,9 @@ def get_all_molecular_profiles_in_study(study_id, direction="ASC", pageNumber=0,
         - "META": Metadata information.
         - "SUMMARY": Summary information (default).
     :type projection: str, optional, default: "SUMMARY"
-    :param sortBy: Name of the property that the result list is sorted by.
+    :param sortBy: Name of the property that the result dataframe is sorted by.
         Possible values:
-        - "datatype"
+        - "datatype" (default)
         - "description"
         - "molecularAlterationType"
         - "molecularProfileId"
