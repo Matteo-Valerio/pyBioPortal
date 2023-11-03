@@ -32,7 +32,11 @@ def check_response(response, fail_msg):
             try:
                 data = response.json()
                 if isinstance(data, list):
-                    return pd.DataFrame(data)
+                    df = pd.DataFrame(data)
+                    df = flatten_dict_columns(df)
+                    df = flatten_dict_list_columns(df)
+                    return df
+                    #return pd.DataFrame(data)
                 if isinstance(data, dict): # per il caso con un dizionario che avrebbe un dataframe con una sola riga
                     return pd.DataFrame({key: [value] for key, value in data.items()})
             except ValueError as e:
@@ -52,7 +56,7 @@ def flatten_dict_columns(df):
     def flatten_dict(d, parent_key=''):
         items = {}
         for key, value in d.items():
-            new_key = key if parent_key else key
+            new_key = parent_key + '_' + key if parent_key else key
             if isinstance(value, dict):
                 items[new_key] = flatten_dict(value)
             else:
