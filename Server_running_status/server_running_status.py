@@ -1,18 +1,17 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
+from aux_funcs import check_response
 
 #########################
 # Server running status #
 #########################
-def get_server_status(self):
+def get_server_status():
     """
     Get the running status of the server.
-    :returns: The status of the server.
-    :rtype: dict
+    :returns: A DataFrame containing the status of the server.
+    :rtype: pandas.DataFrame
     """
-    response = requests.get(f"{self.base_url}/health")
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get server status. Status code: {response.status_code}")
+    endpoint = "/health"
+    response = requests.get(f"{base_url}{endpoint}")
+    return check_response(response, "Failed to get server status.")
