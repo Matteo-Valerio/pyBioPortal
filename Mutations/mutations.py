@@ -159,7 +159,7 @@ def fetch_mutations_in_multiple_molecular_profiles(entrez_gene_ids=None, molecul
                                           "sample_ids": ["TCGA-A2-A4S0-01","TCGA-E2-A1L9-01"]},
                                          {"molecular_profile_id": "acc_tcga_mutations", 
                                           "sample_ids": ["TCGA-OR-A5LE-01"]}
-                                         ])  
+                                         ]  
     :param projection: Level of detail of the response.
         - "DETAILED": Detailed information.
         - "ID": Information with only IDs.

@@ -46,11 +46,24 @@ def get_samples_by_keyword(keyword=None, direction="ASC", pageNumber=0, pageSize
     response = requests.get(f"{base_url}{endpoint}", params=params)
     return check_response(response, "Failed to get samples by keyword.")
     
-def fetch_samples(sample_ids, projection="SUMMARY"):
+def fetch_samples(sample_identifiers=None, sample_list_ids=None, unique_sample_keys=None, projection="SUMMARY"):
     """
     Fetch samples by ID.
-    :param sample_ids: List of sample identifiers.
-    :type sample_ids: list[str]
+    :param sample_identifiers: List of Sample ID / Study ID pairs.
+    :type sample_identifiers: list of dict
+        Each dict should have the following format:
+            sample_identifiers=[
+                               {"sample_ids": ['TCGA-AR-A1AR-01','TCGA-BH-A1EO-01','TCGA-BH-A1ES-01'], 
+                                "study_id": "brca_tcga"},
+                               {"sample_ids": ['TCGA-A2-A0T2-01','TCGA-A2-A04P-01'], 
+                                "study_id": "brca_tcga_pub"}
+                               ]
+    :param sample_list_ids: List of Sample List IDs, e.g. ['brca_tcga_cna', 'brca_tcga_mrna', 'brca_tcga_pub_cna'].
+    :type sample_list_ids: list of str
+    :param unique_sample_keys: List of Unique Sample Keys, e.g. ['VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ',
+                                                                 'VENHQS1CNi1BMElRLTAxOmJyY2FfdGNnYV9wdWI',
+                                                                 'VENHQS1CSC1BMUZELTAxOmJyY2FfdGNnYQ'].
+    :type unique_sample_keys: list of str
     :param projection: Level of detail of the response.
         - "DETAILED": Detailed information.
         - "ID": Information with only IDs.
@@ -65,7 +78,29 @@ def fetch_samples(sample_ids, projection="SUMMARY"):
         "projection": projection
     }
 
-    response = requests.post(f"{base_url}{endpoint}", json=sample_ids, params=params)
+    sample_filter = {}
+
+    if sample_identifiers:
+        sample_filter['sampleIdentifiers'] = []
+
+        for item in sample_identifiers:
+            sample_ids = item["sample_ids"]
+            study_id = item["study_id"]
+
+            for sample_id in sample_ids:
+                identifier = {
+                    "sampleId": sample_id,
+                    "studyId": study_id
+                }
+                sample_filter["sampleIdentifiers"].append(identifier)
+
+    if sample_list_ids:
+        sample_filter['sampleListIds'] = sample_list_ids
+    
+    if unique_sample_keys:
+        sample_filter['uniqueSampleKeys'] = unique_sample_keys
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_filter)
     return check_response(response, "Failed to fetch samples by ID.")
 
 def get_all_samples_of_patient_in_study(study_id, patient_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="sampleId"):

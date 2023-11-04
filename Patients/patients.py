@@ -48,8 +48,18 @@ def get_all_patients(projection="SUMMARY", direction="ASC", keyword=None, pageNu
 def fetch_patients(patient_identifiers=None, unique_patient_keys=None, projection="SUMMARY"):
     """
     Fetch patients.
-    :param patient_filter: List of patient identifiers.
-    :type patient_filter: dict
+    :param patient_identifiers: List of Patient ID / Study ID pairs.
+    :type patient_identifiers: list of dict
+        Each dict should have the following format:
+            patient_identifiers=[
+                                {"patient_ids": ['TCGA-3C-AAAU','TCGA-3C-AALI'], 
+                                 "study_id": "brca_tcga"},
+                                {"patient_ids": ['TCGA-A1-A0SB','TCGA-A1-A0SD'], 
+                                 "study_id": "brca_tcga_pub"}
+                                ]
+    :param unique_patient_keys: List of Unique Patient Keys, e.g. ['VENHQS0zQy1BQUFVOmJyY2FfdGNnYQ', 
+                                                                  'VENHQS1BMS1BMFNEOmJyY2FfdGNnYV9wdWI'].
+    :type unique_patient_keys: list of str
     :param projection: Level of detail of the response.
         - "DETAILED": Detailed information.
         - "ID": Information with only IDs.
