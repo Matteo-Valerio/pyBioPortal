@@ -1,0 +1,241 @@
+{
+  "alterationFilter": {
+    "copyNumberAlterationEventTypes": {
+      "additionalProp1": true,
+      "additionalProp2": true,
+      "additionalProp3": true
+    },
+    "includeDriver": true,
+    "includeGermline": true,
+    "includeSomatic": true,
+    "includeUnknownOncogenicity": true,
+    "includeUnknownStatus": true,
+    "includeUnknownTier": true,
+    "includeVUS": true,
+    "mutationEventTypes": {
+      "additionalProp1": true,
+      "additionalProp2": true,
+      "additionalProp3": true
+    },
+    "structuralVariants": true,
+    "tiersBooleanMap": {
+      "additionalProp1": true,
+      "additionalProp2": true,
+      "additionalProp3": true
+    }
+  },
+  "caseLists": [
+    [
+      "string"
+    ]
+  ],
+  "clinicalDataFilters": [
+    {
+      "attributeId": "string",
+      "values": [
+        {
+          "end": 0,
+          "start": 0,
+          "value": "string"
+        }
+      ]
+    }
+  ],
+  "clinicalEventFilters": [
+    {
+      "values": [
+        {
+          "end": 0,
+          "start": 0,
+          "value": "string"
+        }
+      ]
+    }
+  ],
+  "customDataFilters": [
+    {
+      "attributeId": "string",
+      "values": [
+        {
+          "end": 0,
+          "start": 0,
+          "value": "string"
+        }
+      ]
+    }
+  ],
+  "geneFilters": [
+    {
+      "geneQueries": [
+        [
+          {
+            "alterations": [
+              "AMP"
+            ],
+            "entrezGeneId": 0,
+            "hugoGeneSymbol": "string",
+            "includeDriver": true,
+            "includeGermline": true,
+            "includeSomatic": true,
+            "includeUnknownOncogenicity": true,
+            "includeUnknownStatus": true,
+            "includeUnknownTier": true,
+            "includeVUS": true,
+            "tiersBooleanMap": {
+              "additionalProp1": true,
+              "additionalProp2": true,
+              "additionalProp3": true
+            }
+          }
+        ]
+      ],
+      "molecularProfileIds": [
+        "string"
+      ]
+    }
+  ],
+  "genericAssayDataFilters": [
+    {
+      "profileType": "string",
+      "stableId": "string",
+      "values": [
+        {
+          "end": 0,
+          "start": 0,
+          "value": "string"
+        }
+      ]
+    }
+  ],
+  "genomicDataFilters": [
+    {
+      "hugoGeneSymbol": "string",
+      "profileType": "string",
+      "values": [
+        {
+          "end": 0,
+          "start": 0,
+          "value": "string"
+        }
+      ]
+    }
+  ],
+  "genomicProfiles": [
+    [
+      "string"
+    ]
+  ],
+  "patientTreatmentFilters": {
+    "filters": [
+      {
+        "filters": [
+          {
+            "treatment": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "patientTreatmentGroupFilters": {
+    "filters": [
+      {
+        "filters": [
+          {
+            "treatment": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "patientTreatmentTargetFilters": {
+    "filters": [
+      {
+        "filters": [
+          {
+            "treatment": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "sampleIdentifiers": [
+    {
+      "sampleId": "string",
+      "studyId": "string"
+    }
+  ],
+  "sampleTreatmentFilters": {
+    "filters": [
+      {
+        "filters": [
+          {
+            "time": "Post",
+            "treatment": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "sampleTreatmentGroupFilters": {
+    "filters": [
+      {
+        "filters": [
+          {
+            "time": "Post",
+            "treatment": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "sampleTreatmentTargetFilters": {
+    "filters": [
+      {
+        "filters": [
+          {
+            "time": "Post",
+            "treatment": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "structuralVariantFilters": [
+    {
+      "molecularProfileIds": [
+        "string"
+      ],
+      "structVarQueries": [
+        [
+          {
+            "gene1Query": {
+              "entrezId": 0,
+              "hugoSymbol": "string",
+              "specialValue": "ANY_GENE"
+            },
+            "gene2Query": {
+              "entrezId": 0,
+              "hugoSymbol": "string",
+              "specialValue": "ANY_GENE"
+            },
+            "includeDriver": true,
+            "includeGermline": true,
+            "includeSomatic": true,
+            "includeUnknownOncogenicity": true,
+            "includeUnknownStatus": true,
+            "includeUnknownTier": true,
+            "includeVUS": true,
+            "tiersBooleanMap": {
+              "additionalProp1": true,
+              "additionalProp2": true,
+              "additionalProp3": true
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "studyIds": [
+    "string"
+  ]
+}

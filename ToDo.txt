@@ -17,3 +17,15 @@ if sortBy:
 
 3. Capire come visualizzare i commenti in docstring in modo chiaro producendo della documentazione da mettere su github
 
+4. Nota: quando si applicano dei filtri con delle liste di dizionari in cui alcuni parametri possono essere applicati
+         in modo comibinato, se qualcuno di essi non viene impostato verrano generati degli errori che indicano la
+         mancanza di parametri o la presenza di parametri in più del necessario, riportando dei messaggi di errore come questo:
+         Error messagge: interceptedStudyViewFilter must be true --> nel filtro c'è qualcosa che manca o è di troppo per
+                                                                     risolevere il problema bisogna ragionare in modo logico
+
+5. verificare che nella chiamata della funzione requests.post i parametri siano passati sempre in questo ordine:
+   f"{base_url}{endpoint}", params=params, json=study_view_filter
+
+6. Nella descrizione del package specificare che i metodi fetch... sono relativi alle richieste post mentre i metodi get...
+   sono relativi alle richieste get.                                                                        
+

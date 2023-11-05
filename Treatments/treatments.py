@@ -1,11 +1,12 @@
 import requests
 import pandas as pd
-from pyBioGate.config import base_url
+from config import base_url
+from aux_funcs import check_response
 
 ##############
 # Treatments #
 ##############
-def should_display_patient_level_treatments(self, study_ids, tier="Agent"):
+def should_display_patient_level_treatments(study_ids, tier="Agent"):
     """
     Check if patient level treatments should be displayed.
     :param study_ids: List of Study IDs.
@@ -13,20 +14,18 @@ def should_display_patient_level_treatments(self, study_ids, tier="Agent"):
     :param tier: Tier for treatment (default: "Agent").
     :type tier: str
     :values tier: "Agent" - Display treatments by agent.
-                 "AgentClass" - Display treatments by agent class.
-                 "AgentTarget" - Display treatments by agent target.
+                  "AgentClass" - Display treatments by agent class.
+                  "AgentTarget" - Display treatments by agent target.
     :return: True if patient level treatments should be displayed, False otherwise.
     :rtype: bool
     """
     endpoint = "/treatments/display-patient"
     params = {"tier": tier}
-    data = {"studyIds": study_ids}
-    response = requests.post(f"{self.base_url}{endpoint}", params=params, json=data)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to check if patient level treatments should be displayed. Status code: {response.status_code}")
-def should_display_sample_level_treatments(self, study_ids, tier="Agent"):
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+    return response.json()
+    
+def should_display_sample_level_treatments(study_ids, tier="Agent"):
     """
     Check if sample level treatments should be displayed.
     :param study_ids: List of Study IDs.
@@ -41,51 +40,48 @@ def should_display_sample_level_treatments(self, study_ids, tier="Agent"):
     """
     endpoint = "/treatments/display-sample"
     params = {"tier": tier}
-    data = {"studyIds": study_ids}
-    response = requests.post(f"{self.base_url}{endpoint}", params=params, json=data)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to check if sample level treatments should be displayed. Status code: {response.status_code}")
-def get_all_patient_level_treatments(self, study_view_filter, tier="Agent"):
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+    return response.json()
+    
+def fetch_all_patient_level_treatments(study_view_filter, tier="Agent"):
     """
-    Get all patient level treatments.
+    Fetch all patient level treatments.
     :param study_view_filter: Study view filter.
     :type study_view_filter: dict
+        For the structure of the dictionary see the json file 
+        StudyViewFilter_Dictionary_Structure on GitHub
     :param tier: Tier for treatment (default: "Agent").
     :type tier: str
     :values tier: "Agent" - Display treatments by agent.
                  "AgentClass" - Display treatments by agent class.
                  "AgentTarget" - Display treatments by agent target.
-    :return: List of patient treatment rows.
-    :rtype: list of dict
+    :return: A DataFrame containing patient treatment rows.
+    :rtype: pandas.DataFrame
     """
     endpoint = "/treatments/patient"
     params = {"tier": tier}
-    data = {"studyViewFilter": study_view_filter}
-    response = requests.post(f"{self.base_url}{endpoint}", params=params, json=data)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get all patient level treatments. Status code: {response.status_code}")
-def get_all_sample_level_treatments(self, study_view_filter, tier="Agent"):
+    
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter)
+    return check_response(response, "Failed to get all patient level treatments.")
+    
+def fetch_all_sample_level_treatments(study_view_filter, tier="Agent"):
     """
-    Get all sample level treatments.
+    Fetch all sample level treatments.
     :param study_view_filter: Study view filter.
-    :type study_view_filter: dict
+    :type study_view_filter: dict 
+        For the structure of the dictionary see the json file 
+        StudyViewFilter_Dictionary_Structure on GitHub
     :param tier: Tier for treatment (default: "Agent").
     :type tier: str
     :values tier: "Agent" - Display treatments by agent.
                  "AgentClass" - Display treatments by agent class.
                  "AgentTarget" - Display treatments by agent target.
-    :return: List of sample treatment rows.
-    :rtype: list of dict
+    :return: A DataFrame containing sample treatment rows.
+    :rtype: pandas.DataFrame
     """
     endpoint = "/treatments/sample"
     params = {"tier": tier}
-    data = {"studyViewFilter": study_view_filter}
-    response = requests.post(f"{self.base_url}{endpoint}", params=params, json=data)
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        raise Exception(f"Failed to get all sample level treatments. Status code: {response.status_code}")
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter)
+    return check_response(response, "Failed to get all sample level treatments.")
