@@ -1,31 +1,7 @@
 import requests
 import pandas as pd
-from config import base_url
-from aux_funcs import check_response
-
-# Auxiliary function
-def process_response(response, ret_format, attribute_ids):
-    if response.text and response.text != '[]':  # Check if the response body is not empty
-        try:
-            data = response.json()
-            df = pd.DataFrame(data)
-            if ret_format == 'WIDE':
-                cols_to_group = df.columns[:-2]
-                df = df.pivot(index=cols_to_group, columns='clinicalAttributeId', values='value')              
-                df.reset_index(inplace=True)
-                # check if all attributes has been retrieved
-                miss_attr = [col for col in attribute_ids if col not in df.columns]
-                if miss_attr != []:
-                    print("Attributes not present: " + ", ".join(map(str, miss_attr)))
-            else:
-                miss_attr = [attr for attr in attribute_ids if attr not in set(df.clinicalAttributeId)]
-                if miss_attr != []:
-                    print("Attributes not present: " + ", ".join(map(str, miss_attr)))
-            return df
-        except ValueError as e:
-            print(f"Error decoding the JSON response: {e}")
-    else:
-        print("Response is empty. No data available.")
+from .config import base_url
+from .aux_funcs import check_response, process_response
 
 #################
 # Clinical Data #
@@ -93,12 +69,8 @@ def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAM
             }
             clinical_data_filter["identifiers"].append(identifier)
 
-    response = requests.post(f"{base_url}{endpoint}", json=clinical_data_filter, params=params)    
-    
-    if response.status_code == 200:
-        return process_response(response, ret_format, attribute_ids)
-    else:
-        raise Exception(f"Failed to fetch clinical data. Status code: {response.status_code}")
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=clinical_data_filter,)
+    return process_response(response, ret_format, attribute_ids, "Failed to fetch clinical data.")
 
 #################
 # Clinical Data #
@@ -145,6 +117,7 @@ def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_ty
         "projection": projection,
         "sortBy": sortBy
     }
+
     if attribute_id:
         params["attributeId"] = attribute_id
     
@@ -156,9 +129,9 @@ def fetch_all_clinical_data_in_study(study_id, attribute_ids=[], ids=[], clinica
     Fetch clinical data by patient IDs or sample IDs in a specific study.
     :param study_id: Study ID, e.g., "acc_tcga".
     :type study_id: str
-    :param attribute_ids: List of patient or sample IDs.
+    :param attribute_ids: List of attribute IDs.
     :type attribute_ids: list[str]
-    :param ids: List of attribute IDs.
+    :param ids: List of patient or sample IDs.
     :type ids: list[str]
     :param clinical_data_type: Type of clinical data.
         - "PATIENT": Clinical data for patients.
@@ -183,24 +156,17 @@ def fetch_all_clinical_data_in_study(study_id, attribute_ids=[], ids=[], clinica
         "projection": projection
     }
     
-    clinical_data_filter = {
-        "attributeIds": attribute_ids,
-        "ids": ids
-    }
+    clinical_data_filter = {}
 
-    if attribute_ids == [] or ids == []:
-        print('attribute_ids or ids list is empty')
-        return
+    if attribute_ids:
+        clinical_data_filter["attributeIds"] = attribute_ids
+    
+    if ids:
+        clinical_data_filter["ids"] = ids
     
     response = requests.post(f"{base_url}{endpoint}", params=params, json=clinical_data_filter)
-    if response.status_code == 200:
-        return process_response(response, ret_format, attribute_ids)
-    else:
-        raise Exception(f"Failed to fetch clinical data in the specified study. Status code: {response.status_code}")
-
-#################
-# Clinical Data #
-#################
+    return process_response(response, ret_format, attribute_ids, "Failed to fetch clinical data in the specified study.")
+    
 def get_all_clinical_data_of_patient_in_study(study_id, patient_id, attributeId=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="clinicalAttributeId"):
     """
     Get all clinical data of a patient in a study.
@@ -244,22 +210,7 @@ def get_all_clinical_data_of_patient_in_study(study_id, patient_id, attributeId=
     response = requests.get(f"{base_url}{endpoint}", params=params)
     return check_response(response, "Failed to get clinical data of the specified patient in the study.")
 
-    #if response.status_code == 200:
-    #    if response.text and response.text != '[]':  # Check if the response body is not empty
-    #        try:
-    #            data = response.json()
-    #            return pd.DataFrame(data)
-    #        except ValueError as e:
-    #            print(f"Error decoding the JSON response: {e}")
-    #    else:
-    #        print("Response is empty. No data available.")
-    #else:
-    #    raise Exception(f"Failed to get clinical data of the specified patient in the study. Status code: {response.status_code}")
-
-#################
-# Clinical Data #
-#################
-def get_all_clinical_data_of_sample_in_study(study_id, sample_id, attributeId=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="clinicalAttributeId"):
+def get_all_clinical_data_of_sample_in_study(study_id, sample_id, attribute_id=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="clinicalAttributeId"):
     """
     Get all clinical data of a sample in a study.
     :param study_id: Study ID, e.g., "acc_tcga".
@@ -296,22 +247,12 @@ def get_all_clinical_data_of_sample_in_study(study_id, sample_id, attributeId=No
         "pageSize": pageSize,
         "projection": projection,
     }
-    if attributeId:
-        params["attributeId"] = attributeId
+
+    if attribute_id:
+        params["attributeId"] = attribute_id
+        
     if sortBy:
         params["sortBy"] = sortBy
 
     response = requests.get(f"{base_url}{endpoint}", params=params)
     return check_response(response, "Failed to get clinical data for the sample.")
-
-    #if response.status_code == 200:
-    #    if response.text and response.text != '[]':  # Check if the response body is not empty
-    #        try:
-    #            data = response.json()
-    #            return pd.DataFrame(data)
-    #        except ValueError as e:
-    #            print(f"Error decoding the JSON response: {e}")
-    #    else:
-    #        print("Response is empty. No data available.")
-    #else:
-    #    raise Exception(f"Failed to get clinical data for the sample. Status code: {response.status_code}")

@@ -11,8 +11,8 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
     Get all cancer types from BioPortal. \n
     :param direction: Direction of the sort. \n
         Possible values: \n
-            - "ASC": Ascending order (default).
-            - "DESC": Descending order.
+            - "ASC": Ascending (default).
+            - "DESC": Descending.
     :type direction: str \n
     :param pageNumber: Page number of the result list. \n
             - Minimum value is 0.
@@ -53,11 +53,11 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
 
 def get_cancer_type(cancer_type_id):
     """
-    Get a specific cancer type from BioPortal.
-    :param cancer_type_id: Cancer Type ID (e.g., "acc").
-    :type cancer_type_id: str
-    :returns: A DataFrame containing information about the specific cancer type.
-    :rtype: pandas.DataFrame
+    Get a specific cancer type from BioPortal. \n
+    :param cancer_type_id: Cancer Type ID (e.g., "acc"). \n
+    :type cancer_type_id: str \n
+    :returns: A DataFrame containing information about the specific cancer type. \n
+    :rtype: pandas.DataFrame \n
     """
     endpoint = f"/cancer-types/{cancer_type_id}"
     response = requests.get(f"{base_url}{endpoint}")
