@@ -1,6 +1,6 @@
 import requests
 from .config import base_url
-from .aux_funcs import process_response, flatten_dict_columns, check_response, flatten_dict_list_columns
+from .aux_funcs import process_response
 
 ###############
 # Gene Panels #
