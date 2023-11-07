@@ -44,10 +44,9 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
         "direction": direction,
         "pageNumber": pageNumber,
         "pageSize": pageSize,
-        "projection": projection
+        "projection": projection,
+        "sortBy": sortBy
     }
-    if sortBy:
-        params["sortBy"] = sortBy
 
     response = requests.get(f"{base_url}{endpoint}", params=params)
     return process_response(response, "Failed to get clinical attributes.")
@@ -99,7 +98,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
     :type projection: str \n
     :param sortBy: Name of the property that the result list is sorted by. \n
         Possible values: \n
-            - "clinicalAttributeId"
+            - "clinicalAttributeId" (default)
             - "datatype"
             - "description"
             - "displayName"

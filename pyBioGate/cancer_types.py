@@ -42,10 +42,9 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
         "direction": direction,
         "pageNumber": pageNumber,
         "pageSize": pageSize,
-        "projection": projection
+        "projection": projection,
+        "sortBy": sortBy
     }
-    if sortBy:
-        params["sortBy"] = sortBy
     
     response = requests.get(f"{base_url}{endpoint}", params=params)
     return process_response(response, "Failed to get cancer types.")
