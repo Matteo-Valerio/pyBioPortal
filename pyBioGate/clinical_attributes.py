@@ -1,7 +1,6 @@
 import requests
-import pandas as pd
 from .config import base_url
-from .aux_funcs import check_response
+from .aux_funcs import process_response
 
 #######################
 # Clinical Attributes #
@@ -51,7 +50,7 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
         params["sortBy"] = sortBy
 
     response = requests.get(f"{base_url}{endpoint}", params=params)
-    return check_response(response, "Failed to get clinical attributes.")
+    return process_response(response, "Failed to get clinical attributes.")
     
 def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     """
@@ -73,7 +72,7 @@ def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     params = {"projection": projection}
 
     response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
-    return check_response(response, "Failed to fetch clinical attributes.")
+    return process_response(response, "Failed to fetch clinical attributes.")
 
 def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="clinicalAttributeId"):
     """
@@ -121,7 +120,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
     }
 
     response = requests.get(f"{base_url}{endpoint}", params=params)
-    return check_response(response, "Failed to get clinical attributes in the specified study.")
+    return process_response(response, "Failed to get clinical attributes in the specified study.")
     
 def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
     """
@@ -135,4 +134,4 @@ def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
     """
     endpoint = f"/studies/{study_id}/clinical-attributes/{clinical_attribute_id}"
     response = requests.get(f"{base_url}{endpoint}")
-    return check_response(response, "Failed to get the specified clinical attribute in the study.")
+    return process_response(response, "Failed to get the specified clinical attribute in the study.")
