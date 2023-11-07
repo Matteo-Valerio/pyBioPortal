@@ -13,8 +13,11 @@ def process_response(response, fail_msg, ret_format=None, attribute_ids=None):
                         df = flatten_dict_columns(df)
                         df = flatten_dict_list_columns(df)
                         return df
-                    if isinstance(data, dict): # per il caso con un dizionario che avrebbe un dataframe con una sola riga
-                        return pd.DataFrame({key: [value] for key, value in data.items()})
+                    if isinstance(data, dict): # in case of response dataframe with only 1 row to expand
+                        df = pd.DataFrame({key: [value] for key, value in data.items()})
+                        df = flatten_dict_columns(df)
+                        df = flatten_dict_list_columns(df)
+                        return df 
                 else:
                     df = pd.DataFrame(data)
                     if ret_format == 'WIDE':
@@ -86,7 +89,6 @@ def check_response(response, fail_msg):
                     df = flatten_dict_columns(df)
                     df = flatten_dict_list_columns(df)
                     return df
-                    #return pd.DataFrame(data)
                 if isinstance(data, dict): # per il caso con un dizionario che avrebbe un dataframe con una sola riga
                     return pd.DataFrame({key: [value] for key, value in data.items()})
             except ValueError as e:
