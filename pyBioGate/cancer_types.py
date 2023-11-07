@@ -1,5 +1,4 @@
 import requests
-import pandas as pd
 from .config import base_url
 from .aux_funcs import process_response
 
