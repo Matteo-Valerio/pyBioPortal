@@ -2,7 +2,49 @@
 
 import pandas as pd
 
-def process_response(response, ret_format, attribute_ids, fail_msg):
+def process_response(response, fail_msg, ret_format=None, attribute_ids=None):
+    if response.status_code == 200:
+        if response.text and response.text != '[]':  # Check if the response body is not empty
+            try:
+                data = response.json()
+                if ret_format is None and attribute_ids is None:
+                    if isinstance(data, list):
+                        df = pd.DataFrame(data)
+                        df = flatten_dict_columns(df)
+                        df = flatten_dict_list_columns(df)
+                        return df
+                    if isinstance(data, dict): # per il caso con un dizionario che avrebbe un dataframe con una sola riga
+                        return pd.DataFrame({key: [value] for key, value in data.items()})
+                else:
+                    df = pd.DataFrame(data)
+                    if ret_format == 'WIDE':
+                        cols_to_group = df.columns[:-2]
+                        df = df.pivot(index=cols_to_group, columns='clinicalAttributeId', values='value')              
+                        df.reset_index(inplace=True)
+                        # check if all attributes has been retrieved
+                        miss_attr = [col for col in attribute_ids if col not in df.columns]
+                        if miss_attr != []:
+                            print("Attributes not present: " + ", ".join(map(str, miss_attr)))
+                    elif ret_format == 'LONG':
+                        miss_attr = [attr for attr in attribute_ids if attr not in set(df.clinicalAttributeId)]
+                        if miss_attr != []:
+                            print("Attributes not present: " + ", ".join(map(str, miss_attr)))
+                    else: 
+                        raise Exception("Error: ret_format must be 'LONG' or 'WIDE'")
+                    return df
+            except ValueError as e:
+                print(f"Error decoding the JSON response: {e}")
+        else:
+            print("Response is empty. No data available.")
+    else:
+        error_message = f"{fail_msg} Status code: {response.status_code}"
+    
+        if response.text:
+            error_message += f"\n Error messagge: {response.json()['message']}"
+    
+        raise Exception(error_message)
+
+def process_response1(response, ret_format, attribute_ids, fail_msg):
     if response.status_code == 200:
         if response.text and response.text != '[]':  # Check if the response body is not empty
             try:
