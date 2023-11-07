@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 from .config import base_url
-from .aux_funcs import check_response
+from .aux_funcs import process_response
 
 ################
 # Cancer Types #
@@ -49,7 +49,7 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
         params["sortBy"] = sortBy
     
     response = requests.get(f"{base_url}{endpoint}", params=params)
-    return check_response(response, "Failed to get cancer types.")
+    return process_response(response, "Failed to get cancer types.")
 
 def get_cancer_type(cancer_type_id):
     """
@@ -61,4 +61,4 @@ def get_cancer_type(cancer_type_id):
     """
     endpoint = f"/cancer-types/{cancer_type_id}"
     response = requests.get(f"{base_url}{endpoint}")
-    return check_response(response, f"Failed to get cancer type {cancer_type_id}.")
+    return process_response(response, f"Failed to get cancer type {cancer_type_id}.")
