@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyBioGate.treatments &#8212; pyBioGate Documentation 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyBioGate.treatments</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">base_url</span>
+<span class="kn">from</span> <span class="nn">.aux_funcs</span> <span class="kn">import</span> <span class="n">process_response</span>
+
+<span class="c1">##############</span>
+<span class="c1"># Treatments #</span>
+<span class="c1">##############</span>
+<div class="viewcode-block" id="fetch_status_display_patient_trts">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.treatments.fetch_status_display_patient_trts">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_status_display_patient_trts</span><span class="p">(</span><span class="n">study_ids</span><span class="p">,</span> <span class="n">tier</span><span class="o">=</span><span class="s2">&quot;Agent&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if patient level treatments should be displayed. \n</span>
+<span class="sd">    :param study_ids: List of Study IDs. \n</span>
+<span class="sd">    :type study_ids: list of str \n</span>
+<span class="sd">    :param tier: Tier for treatment. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;Agent&quot;: Display treatments by agent (default).</span>
+<span class="sd">            - &quot;AgentClass&quot;: Display treatments by agent class.</span>
+<span class="sd">            - &quot;AgentTarget&quot;: Display treatments by agent target.</span>
+<span class="sd">    :type tier: str \n</span>
+<span class="sd">    :return: True if patient level treatments should be displayed, False otherwise. \n</span>
+<span class="sd">    :rtype: bool \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/treatments/display-patient&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tier&quot;</span><span class="p">:</span> <span class="n">tier</span><span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">study_ids</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="fetch_status_display_sample_trts">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.treatments.fetch_status_display_sample_trts">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_status_display_sample_trts</span><span class="p">(</span><span class="n">study_ids</span><span class="p">,</span> <span class="n">tier</span><span class="o">=</span><span class="s2">&quot;Agent&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if sample level treatments should be displayed. \n</span>
+<span class="sd">    :param study_ids: List of Study IDs. \n</span>
+<span class="sd">    :type study_ids: list of str \n</span>
+<span class="sd">    :param tier: Tier for treatment. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;Agent&quot;: Display treatments by agent (default).</span>
+<span class="sd">            - &quot;AgentClass&quot;: Display treatments by agent class.</span>
+<span class="sd">            - &quot;AgentTarget&quot;: Display treatments by agent target.</span>
+<span class="sd">    :type tier: str \n</span>
+<span class="sd">    :return: True if sample level treatments should be displayed, False otherwise. \n</span>
+<span class="sd">    :rtype: bool \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/treatments/display-sample&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tier&quot;</span><span class="p">:</span> <span class="n">tier</span><span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">study_ids</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="fetch_all_patient_level_treatments">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.treatments.fetch_all_patient_level_treatments">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_all_patient_level_treatments</span><span class="p">(</span><span class="n">study_view_filter</span><span class="p">,</span> <span class="n">tier</span><span class="o">=</span><span class="s2">&quot;Agent&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch all patient level treatments. \n</span>
+<span class="sd">    :param study_view_filter: Study view filter. \n</span>
+<span class="sd">    :type study_view_filter: dict \n</span>
+<span class="sd">        For the structure of the dictionary see the json file </span>
+<span class="sd">        StudyViewFilter_Dictionary_Structure on GitHub \n</span>
+<span class="sd">    :param tier: Tier for treatment. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;Agent&quot;: Display treatments by agent (default).</span>
+<span class="sd">            - &quot;AgentClass&quot;: Display treatments by agent class.</span>
+<span class="sd">            - &quot;AgentTarget&quot;: Display treatments by agent target.</span>
+<span class="sd">    :type tier: str \n</span>
+<span class="sd">    :return: A DataFrame containing patient treatment rows. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/treatments/patient&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tier&quot;</span><span class="p">:</span> <span class="n">tier</span><span class="p">}</span>
+    
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">study_view_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get all patient level treatments.&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="fetch_all_sample_level_treatments">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.treatments.fetch_all_sample_level_treatments">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_all_sample_level_treatments</span><span class="p">(</span><span class="n">study_view_filter</span><span class="p">,</span> <span class="n">tier</span><span class="o">=</span><span class="s2">&quot;Agent&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch all sample level treatments. \n</span>
+<span class="sd">    :param study_view_filter: Study view filter. \n</span>
+<span class="sd">    :type study_view_filter: dict  \n</span>
+<span class="sd">        For the structure of the dictionary see the json file </span>
+<span class="sd">        StudyViewFilter_Dictionary_Structure on GitHub \n</span>
+<span class="sd">    :param tier: Tier for treatment. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;Agent&quot;: Display treatments by agent (default).</span>
+<span class="sd">            - &quot;AgentClass&quot;: Display treatments by agent class.</span>
+<span class="sd">            - &quot;AgentTarget&quot;: Display treatments by agent target.</span>
+<span class="sd">    :type tier: str \n</span>
+<span class="sd">    :return: A DataFrame containing sample treatment rows. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/treatments/sample&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tier&quot;</span><span class="p">:</span> <span class="n">tier</span><span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">study_view_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get all sample level treatments.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyBioGate Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyBioGate</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Matteo Valerio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

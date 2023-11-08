@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyBioGate.mutations &#8212; pyBioGate Documentation 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyBioGate.mutations</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">base_url</span>
+<span class="kn">from</span> <span class="nn">.aux_funcs</span> <span class="kn">import</span> <span class="n">process_response</span>
+
+<span class="c1">#############</span>
+<span class="c1"># Mutations #</span>
+<span class="c1">#############</span>
+<div class="viewcode-block" id="get_muts_in_mol_prof_by_sample_list_id">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.mutations.get_muts_in_mol_prof_by_sample_list_id">[docs]</a>
+<span class="k">def</span> <span class="nf">get_muts_in_mol_prof_by_sample_list_id</span><span class="p">(</span><span class="n">molecular_profile_id</span><span class="p">,</span> <span class="n">sample_list_id</span><span class="p">,</span> <span class="n">entrez_gene_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                           <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get mutations in a molecular profile by Sample List ID. \n</span>
+<span class="sd">    :param molecular_profile_id: Molecular Profile ID (e.g., &quot;acc_tcga_mutations&quot;). \n</span>
+<span class="sd">    :type molecular_profile_id: str \n</span>
+<span class="sd">    :param sample_list_id: Sample List ID (e.g., &quot;acc_tcga_all&quot;). \n</span>
+<span class="sd">    :type sample_list_id: str \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param entrez_gene_id: Entrez Gene ID (e.g., &quot;1&quot;). \n</span>
+<span class="sd">    :type entrez_gene_id: str \n</span>
+<span class="sd">    :param direction: Direction of the sort. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending.</span>
+<span class="sd">    :type direction: str \n</span>
+<span class="sd">    :param pageNumber: Page number of the result list. \n</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int \n</span>
+<span class="sd">    :param pageSize: Page size of the result list. \n</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int \n</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;aminoAcidChange&quot;</span>
+<span class="sd">            - &quot;center&quot;</span>
+<span class="sd">            - &quot;endPosition&quot;</span>
+<span class="sd">            - &quot;entrezGeneId&quot;</span>
+<span class="sd">            - &quot;keyword&quot;</span>
+<span class="sd">            - &quot;mutationStatus&quot;</span>
+<span class="sd">            - &quot;mutationType&quot;</span>
+<span class="sd">            - &quot;ncbiBuild&quot;</span>
+<span class="sd">            - &quot;normalAltCount&quot;</span>
+<span class="sd">            - &quot;normalRefCount&quot;</span>
+<span class="sd">            - &quot;proteinChange&quot;</span>
+<span class="sd">            - &quot;proteinPosEnd&quot;</span>
+<span class="sd">            - &quot;proteinPosStart&quot;</span>
+<span class="sd">            - &quot;referenceAllele&quot;</span>
+<span class="sd">            - &quot;refseqMrnaId&quot;</span>
+<span class="sd">            - &quot;startPosition&quot;</span>
+<span class="sd">            - &quot;tumorAltCount&quot;</span>
+<span class="sd">            - &quot;tumorRefCount&quot;</span>
+<span class="sd">            - &quot;validationStatus&quot;</span>
+<span class="sd">            - &quot;variantAllele&quot;</span>
+<span class="sd">            - &quot;variantType&quot;</span>
+<span class="sd">    :type sortBy: str \n</span>
+<span class="sd">    :returns: A DataFrame containing mutations in the molecular profile. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/molecular-profiles/</span><span class="si">{</span><span class="n">molecular_profile_id</span><span class="si">}</span><span class="s2">/mutations&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;entrezGeneId&quot;</span><span class="p">:</span> <span class="n">entrez_gene_id</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;sampleListId&quot;</span><span class="p">:</span> <span class="n">sample_list_id</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get mutations in molecular profile.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_muts_in_mol_prof">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.mutations.fetch_muts_in_mol_prof">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_muts_in_mol_prof</span><span class="p">(</span><span class="n">molecular_profile_id</span><span class="p">,</span> <span class="n">entrez_gene_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_list_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                           <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch mutations in a molecular profile. \n</span>
+<span class="sd">    :param molecular_profile_id: Molecular Profile ID (e.g., &quot;brca_tcga_mutations&quot;). \n</span>
+<span class="sd">    :type molecular_profile_id: str \n</span>
+<span class="sd">    :param entrez_gene_ids: List ID and Entrez Gene IDs (e.g., [&quot;TCGA-AR-A1AR-01&quot;,&quot;TCGA-BH-A1EO-01&quot;]). \n</span>
+<span class="sd">    :type entrez_gene_ids: List of str \n</span>
+<span class="sd">    :param sample_ids: List of Sample IDs (e.g., [&quot;1005&quot;, &quot;1020&quot;]). \n</span>
+<span class="sd">    :type sample_ids: List of str \n</span>
+<span class="sd">    :param sample_list_id: Sample List ID (e.g., &quot;brca_tcga_all&quot;). \n</span>
+<span class="sd">    :type sample_list_id: str \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param direction: Direction of the sort. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending.</span>
+<span class="sd">    :type direction: str \n</span>
+<span class="sd">    :param pageNumber: Page number of the result list. \n</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int \n</span>
+<span class="sd">    :param pageSize: Page size of the result list. \n</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int \n</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;aminoAcidChange&quot;</span>
+<span class="sd">            - &quot;center&quot;</span>
+<span class="sd">            - &quot;endPosition&quot;</span>
+<span class="sd">            - &quot;entrezGeneId&quot;</span>
+<span class="sd">            - &quot;keyword&quot;</span>
+<span class="sd">            - &quot;mutationStatus&quot;</span>
+<span class="sd">            - &quot;mutationType&quot;</span>
+<span class="sd">            - &quot;ncbiBuild&quot;</span>
+<span class="sd">            - &quot;normalAltCount&quot;</span>
+<span class="sd">            - &quot;normalRefCount&quot;</span>
+<span class="sd">            - &quot;proteinChange&quot;</span>
+<span class="sd">            - &quot;proteinPosEnd&quot;</span>
+<span class="sd">            - &quot;proteinPosStart&quot;</span>
+<span class="sd">            - &quot;referenceAllele&quot;</span>
+<span class="sd">            - &quot;refseqMrnaId&quot;</span>
+<span class="sd">            - &quot;startPosition&quot;</span>
+<span class="sd">            - &quot;tumorAltCount&quot;</span>
+<span class="sd">            - &quot;tumorRefCount&quot;</span>
+<span class="sd">            - &quot;validationStatus&quot;</span>
+<span class="sd">            - &quot;variantAllele&quot;</span>
+<span class="sd">            - &quot;variantType&quot;</span>
+<span class="sd">    :type sortBy: str \n</span>
+<span class="sd">    :returns: A DataFrame containing mutations in the molecular profile. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/molecular-profiles/</span><span class="si">{</span><span class="n">molecular_profile_id</span><span class="si">}</span><span class="s2">/mutations/fetch&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="n">mutation_filter</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">entrez_gene_ids</span><span class="p">:</span>
+        <span class="n">mutation_filter</span><span class="p">[</span><span class="s1">&#39;entrezGeneIds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">entrez_gene_ids</span>
+
+    <span class="k">if</span> <span class="n">sample_ids</span><span class="p">:</span>
+        <span class="n">mutation_filter</span><span class="p">[</span><span class="s1">&#39;sampleIds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_ids</span>
+
+    <span class="k">if</span> <span class="n">sample_list_id</span><span class="p">:</span>
+        <span class="n">mutation_filter</span><span class="p">[</span><span class="s1">&#39;sampleListId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_list_id</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">mutation_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to fetch mutations in molecular profile.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_muts_in_multiple_mol_profs">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.mutations.fetch_muts_in_multiple_mol_profs">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_muts_in_multiple_mol_profs</span><span class="p">(</span><span class="n">entrez_gene_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">molecular_profile_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_molecular_identifiers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                     <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch mutations in multiple molecular profiles by sample IDs.</span>
+<span class="sd">    :param entrez_gene_ids: List of Entrez Gene IDs (e.g. [&quot;672&quot;,&quot;675&quot;]).</span>
+<span class="sd">    :type entrez_gene_ids: list of str</span>
+<span class="sd">    :param molecular_profile_ids: List of Molecular Profile IDs (e.g. [&quot;brca_tcga_mutations&quot;, &quot;acc_tcga_mutations&quot;]).</span>
+<span class="sd">    :type molecular_profile_ids: list of str</span>
+<span class="sd">    :param sample_molecular_identifiers: List of Molecular Profile ID / Sample ID pairs.</span>
+<span class="sd">    :type sample_molecular_identifiers: list of dict</span>
+<span class="sd">        Each dict should have the following format:</span>
+<span class="sd">            sample_molecular_identifiers=[</span>
+<span class="sd">                                         {&quot;molecular_profile_id&quot;: &quot;brca_tcga_mutations&quot;, </span>
+<span class="sd">                                          &quot;sample_ids&quot;: [&quot;TCGA-A2-A4S0-01&quot;,&quot;TCGA-E2-A1L9-01&quot;]},</span>
+<span class="sd">                                         {&quot;molecular_profile_id&quot;: &quot;acc_tcga_mutations&quot;, </span>
+<span class="sd">                                          &quot;sample_ids&quot;: [&quot;TCGA-OR-A5LE-01&quot;]}</span>
+<span class="sd">                                         ]  </span>
+<span class="sd">    :param projection: Level of detail of the response.</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str</span>
+<span class="sd">    :param direction: Direction of the sort.</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending.</span>
+<span class="sd">    :type direction: str</span>
+<span class="sd">    :param pageNumber: Page number of the result list.</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int</span>
+<span class="sd">    :param pageSize: Page size of the result list.</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by.</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;aminoAcidChange&quot;</span>
+<span class="sd">            - &quot;center&quot;</span>
+<span class="sd">            - &quot;endPosition&quot;</span>
+<span class="sd">            - &quot;entrezGeneId&quot;</span>
+<span class="sd">            - &quot;keyword&quot;</span>
+<span class="sd">            - &quot;mutationStatus&quot;</span>
+<span class="sd">            - &quot;mutationType&quot;</span>
+<span class="sd">            - &quot;ncbiBuild&quot;</span>
+<span class="sd">            - &quot;normalAltCount&quot;</span>
+<span class="sd">            - &quot;normalRefCount&quot;</span>
+<span class="sd">            - &quot;proteinChange&quot;</span>
+<span class="sd">            - &quot;proteinPosEnd&quot;</span>
+<span class="sd">            - &quot;proteinPosStart&quot;</span>
+<span class="sd">            - &quot;referenceAllele&quot;</span>
+<span class="sd">            - &quot;refseqMrnaId&quot;</span>
+<span class="sd">            - &quot;startPosition&quot;</span>
+<span class="sd">            - &quot;tumorAltCount&quot;</span>
+<span class="sd">            - &quot;tumorRefCount&quot;</span>
+<span class="sd">            - &quot;validationStatus&quot;</span>
+<span class="sd">            - &quot;variantAllele&quot;</span>
+<span class="sd">            - &quot;variantType&quot;</span>
+<span class="sd">    :type sortBy: str \n</span>
+<span class="sd">    :returns: A DataFrame containing mutations in the specified molecular profiles. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/mutations/fetch&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="n">mutation_multiple_study_filter</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">entrez_gene_ids</span><span class="p">:</span>
+        <span class="n">mutation_multiple_study_filter</span><span class="p">[</span><span class="s1">&#39;entrezGeneIds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">entrez_gene_ids</span>
+    
+    <span class="k">if</span> <span class="n">molecular_profile_ids</span><span class="p">:</span>
+        <span class="n">mutation_multiple_study_filter</span><span class="p">[</span><span class="s1">&#39;molecularProfileIds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecular_profile_ids</span>
+
+    <span class="k">if</span> <span class="n">sample_molecular_identifiers</span><span class="p">:</span>
+        <span class="n">mutation_multiple_study_filter</span><span class="p">[</span><span class="s1">&#39;sampleMolecularIdentifiers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sample_molecular_identifiers</span><span class="p">:</span>
+            <span class="n">molec_prof_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">]</span>
+            <span class="n">sample_ids</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;sample_ids&quot;</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">sample_id</span> <span class="ow">in</span> <span class="n">sample_ids</span><span class="p">:</span>
+                <span class="n">identifier</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;molecularProfileId&quot;</span><span class="p">:</span> <span class="n">molec_prof_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sampleId&quot;</span><span class="p">:</span> <span class="n">sample_id</span>
+                <span class="p">}</span>
+                <span class="n">mutation_multiple_study_filter</span><span class="p">[</span><span class="s2">&quot;sampleMolecularIdentifiers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">mutation_multiple_study_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to fetch mutations in multiple molecular profiles.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyBioGate Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyBioGate</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Matteo Valerio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

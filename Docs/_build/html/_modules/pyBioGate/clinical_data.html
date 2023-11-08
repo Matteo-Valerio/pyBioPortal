@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyBioGate.clinical_data &#8212; pyBioGate Documentation 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyBioGate.clinical_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">base_url</span>
+<span class="kn">from</span> <span class="nn">.aux_funcs</span> <span class="kn">import</span> <span class="n">process_response</span>
+
+<span class="c1">#################</span>
+<span class="c1"># Clinical Data #</span>
+<span class="c1">#################</span>
+<div class="viewcode-block" id="fetch_clinical_data">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.clinical_data.fetch_clinical_data">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_clinical_data</span><span class="p">(</span><span class="n">attribute_ids</span><span class="p">,</span> <span class="n">entity_study_ids</span><span class="p">,</span> <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;SAMPLE&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;WIDE&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch clinical data by patient IDs or sample IDs (all studies) from BioPortal. \n</span>
+<span class="sd">    :param attribute_ids: List of attribute IDs. \n</span>
+<span class="sd">            - e.g. for PATIENT data type: \n</span>
+<span class="sd">                    [&quot;SEX&quot;, &quot;RACE&quot;] \n</span>
+<span class="sd">            - e.g. for SAMPLE data type: \n</span>
+<span class="sd">                    [&quot;ORGAN_SYSTEM&quot;, &quot;SUBTYPE&quot;] \n</span>
+<span class="sd">    :type attribute_ids: list of str \n</span>
+<span class="sd">    :param entity_study_ids: List of patient or sample identifiers and study IDs. \n</span>
+<span class="sd">        Each list should have the following format: \n</span>
+<span class="sd">            - e.g. for PATIENT data type: \n</span>
+<span class="sd">                 entity_study_ids = [</span>
+<span class="sd">                                    {&quot;entity_ids&quot;: [&quot;P-0000004&quot;, &quot;P-0000950&quot;], </span>
+<span class="sd">                                     &quot;study&quot;: &quot;msk_met_2021&quot;},</span>
+<span class="sd">                                    {&quot;entity_ids&quot;: [&quot;TCGA-5T-A9QA&quot;, &quot;TCGA-A1-A0SB&quot;], </span>
+<span class="sd">                                     &quot;study&quot;: &quot;brca_tcga&quot;}</span>
+<span class="sd">                                    ] \n</span>
+<span class="sd">             -e.g. for SAMPLE data type: \n</span>
+<span class="sd">                 entity_study_ids = [</span>
+<span class="sd">                                    {&quot;entity_ids&quot;: [&quot;P-0000004-T01-IM3&quot;, &quot;P-0000950-T01-IM3&quot;], </span>
+<span class="sd">                                     &quot;study&quot;: &quot;msk_met_2021&quot;},</span>
+<span class="sd">                                    {&quot;entity_ids&quot;: [&quot;TCGA-5T-A9QA-01&quot;, &quot;TCGA-A1-A0SB-01&quot;], </span>
+<span class="sd">                                     &quot;study&quot;: &quot;brca_tcga&quot;}</span>
+<span class="sd">                                    ] \n</span>
+<span class="sd">    :type entity_study_ids: list of dict \n</span>
+<span class="sd">    :param clinical_data_type: Type of the clinical data. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;PATIENT&quot;: Clinical data for patients.</span>
+<span class="sd">            - &quot;SAMPLE&quot;: Clinical data for samples (default).</span>
+<span class="sd">    :type clinical_data_type: str \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param ret_format: Return format of the dataframe. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;LONG&quot;: Long dataframe with repeated record for patient/sample.</span>
+<span class="sd">            - &quot;WIDE&quot;: Wide dataframe with distinct record for patient/sample (default).</span>
+<span class="sd">    :type ret_format: str \n</span>
+<span class="sd">    :returns: A DataFrame containing the fetched clinical data. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/clinical-data/fetch&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;clinicalDataType&quot;</span><span class="p">:</span> <span class="n">clinical_data_type</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span>
+    <span class="p">}</span>
+
+    <span class="n">clinical_data_filter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attributeIds&quot;</span><span class="p">:</span> <span class="n">attribute_ids</span><span class="p">,</span>
+        <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">entity_study_ids</span><span class="p">:</span>
+        <span class="n">study_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;study&quot;</span><span class="p">]</span>
+        <span class="n">entity_ids</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;entity_ids&quot;</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">entity_id</span> <span class="ow">in</span> <span class="n">entity_ids</span><span class="p">:</span>
+            <span class="n">identifier</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;entityId&quot;</span><span class="p">:</span> <span class="n">entity_id</span><span class="p">,</span>
+                <span class="s2">&quot;studyId&quot;</span><span class="p">:</span> <span class="n">study_id</span>
+            <span class="p">}</span>
+            <span class="n">clinical_data_filter</span><span class="p">[</span><span class="s2">&quot;identifiers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">clinical_data_filter</span><span class="p">,)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to fetch clinical data.&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="p">,</span> <span class="n">attribute_ids</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_all_clinical_data_in_study">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.clinical_data.get_all_clinical_data_in_study">[docs]</a>
+<span class="k">def</span> <span class="nf">get_all_clinical_data_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">,</span> <span class="n">attribute_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;SAMPLE&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> 
+                                   <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all clinical data in a study.</span>
+<span class="sd">    :param study_id: Study ID (e.g., &quot;acc_tcga&quot;). \n</span>
+<span class="sd">    :type study_id: str \n</span>
+<span class="sd">    :param attribute_id: Attribute ID (e.g., &quot;CANCER_TYPE&quot;). \n</span>
+<span class="sd">    :type attribute_id: str \n</span>
+<span class="sd">    :param clinical_data_type: Type of clinical data. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;PATIENT&quot;: Clinical data for patients.</span>
+<span class="sd">            - &quot;SAMPLE&quot;: Clinical data for samples (default).</span>
+<span class="sd">    :type clinical_data_type: str \n</span>
+<span class="sd">    :param direction: Direction of the sort. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending.</span>
+<span class="sd">    :type direction: str \n</span>
+<span class="sd">    :param pageNumber: Page number of the result list. \n</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int \n</span>
+<span class="sd">    :param pageSize: Page size of the result list. \n</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;clinicalAttributeId&quot;</span>
+<span class="sd">            - &quot;value&quot;</span>
+<span class="sd">    :type sortBy: str, optional, default: &quot;clinicalAttributeId&quot; \n</span>
+<span class="sd">    :returns: A DataFrame containing clinical data in the specified study. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/studies/</span><span class="si">{</span><span class="n">study_id</span><span class="si">}</span><span class="s2">/clinical-data&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;clinicalDataType&quot;</span><span class="p">:</span> <span class="n">clinical_data_type</span><span class="p">,</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">attribute_id</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributeId&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attribute_id</span>
+    
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get clinical data in the specified study.&quot;</span><span class="p">)</span>    </div>
+
+    
+<div class="viewcode-block" id="fetch_all_clinical_data_in_study">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.clinical_data.fetch_all_clinical_data_in_study">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_all_clinical_data_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">,</span> <span class="n">attribute_ids</span><span class="o">=</span><span class="p">[],</span> <span class="n">ids</span><span class="o">=</span><span class="p">[],</span> <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;SAMPLE&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;WIDE&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch clinical data by patient IDs or sample IDs in a specific study. \n</span>
+<span class="sd">    :param study_id: Study ID (e.g., &quot;acc_tcga&quot;). \n</span>
+<span class="sd">    :type study_id: str \n</span>
+<span class="sd">    :param attribute_ids: List of attribute IDs. \n</span>
+<span class="sd">    :type attribute_ids: list of str \n</span>
+<span class="sd">    :param ids: List of patient or sample IDs. \n</span>
+<span class="sd">    :type ids: list of str \n</span>
+<span class="sd">    :param clinical_data_type: Type of clinical data. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;PATIENT&quot;: Clinical data for patients.</span>
+<span class="sd">            - &quot;SAMPLE&quot;: Clinical data for samples (default).</span>
+<span class="sd">    :type clinical_data_type: str \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param ret_format: Return format of the dataframe. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;LONG&quot;: Long dataframe with repeated record for patient/sample.</span>
+<span class="sd">            - &quot;WIDE&quot;: Wide dataframe with distinct record for patient/sample (default).</span>
+<span class="sd">    :type ret_format: str \n</span>
+<span class="sd">    :returns: A DataFrame containing clinical data in the specified study based on the provided filter. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/studies/</span><span class="si">{</span><span class="n">study_id</span><span class="si">}</span><span class="s2">/clinical-data/fetch&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;clinicalDataType&quot;</span><span class="p">:</span> <span class="n">clinical_data_type</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span>
+    <span class="p">}</span>
+    
+    <span class="n">clinical_data_filter</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">attribute_ids</span><span class="p">:</span>
+        <span class="n">clinical_data_filter</span><span class="p">[</span><span class="s2">&quot;attributeIds&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attribute_ids</span>
+    
+    <span class="k">if</span> <span class="n">ids</span><span class="p">:</span>
+        <span class="n">clinical_data_filter</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ids</span>
+    
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">clinical_data_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to fetch clinical data in the specified study.&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="p">,</span> <span class="n">attribute_ids</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="get_all_clinical_data_of_patient_in_study">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.clinical_data.get_all_clinical_data_of_patient_in_study">[docs]</a>
+<span class="k">def</span> <span class="nf">get_all_clinical_data_of_patient_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">,</span> <span class="n">patient_id</span><span class="p">,</span> <span class="n">attributeId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> 
+                                              <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all clinical data of a patient in a study. \n</span>
+<span class="sd">    :param study_id: Study ID (e.g., &quot;acc_tcga&quot;). \n</span>
+<span class="sd">    :type study_id: str \n</span>
+<span class="sd">    :param patient_id: Patient ID (e.g., &quot;TCGA-OR-A5J2&quot;). \n</span>
+<span class="sd">    :type patient_id: str \n</span>
+<span class="sd">    :param attributeId: Attribute ID (e.g., &quot;AGE&quot;). \n</span>
+<span class="sd">    :type attributeId: str \n</span>
+<span class="sd">    :param direction: Direction of the sort. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending.</span>
+<span class="sd">    :type direction: str \n</span>
+<span class="sd">    :param pageNumber: Page number of the result list. \n</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int \n</span>
+<span class="sd">    :param pageSize: Page size of the result list. \n</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;clinicalAttributeId&quot;</span>
+<span class="sd">            - &quot;value&quot;</span>
+<span class="sd">    :type sortBy: str \n</span>
+<span class="sd">    :returns: A DataFrame containing clinical data of the specified patient in the study. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/studies/</span><span class="si">{</span><span class="n">study_id</span><span class="si">}</span><span class="s2">/patients/</span><span class="si">{</span><span class="n">patient_id</span><span class="si">}</span><span class="s2">/clinical-data&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attributeId&quot;</span><span class="p">:</span> <span class="n">attributeId</span><span class="p">,</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get clinical data of the specified patient in the study.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_all_clinical_data_of_sample_in_study">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.clinical_data.get_all_clinical_data_of_sample_in_study">[docs]</a>
+<span class="k">def</span> <span class="nf">get_all_clinical_data_of_sample_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">attribute_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                                             <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all clinical data of a sample in a study. \n</span>
+<span class="sd">    :param study_id: Study ID (e.g., &quot;acc_tcga&quot;). \n</span>
+<span class="sd">    :type study_id: str \n</span>
+<span class="sd">    :param sample_id: Sample ID (e.g., &quot;TCGA-OR-A5J2-01&quot;). \n</span>
+<span class="sd">    :type sample_id: str \n</span>
+<span class="sd">    :param attributeId: Attribute ID (e.g., &quot;CANCER_TYPE&quot;). \n</span>
+<span class="sd">    :type attributeId: str \n</span>
+<span class="sd">    :param direction: Direction of the sort. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending.</span>
+<span class="sd">    :type direction: str \n</span>
+<span class="sd">    :param pageNumber: Page number of the result list. \n</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int \n</span>
+<span class="sd">    :param pageSize: Page size of the result list. \n</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;clinicalAttributeId&quot;</span>
+<span class="sd">            - &quot;value&quot;</span>
+<span class="sd">    :type sortBy: str \n</span>
+<span class="sd">    :returns: A DataFrame containing clinical data for the specified sample in the study. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame  \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/studies/</span><span class="si">{</span><span class="n">study_id</span><span class="si">}</span><span class="s2">/samples/</span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">/clinical-data&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attributeId&quot;</span><span class="p">:</span> <span class="n">attribute_id</span><span class="p">,</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get clinical data for the sample.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyBioGate Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyBioGate</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Matteo Valerio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

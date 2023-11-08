@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyBioGate.gene_panels &#8212; pyBioGate Documentation 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyBioGate.gene_panels</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">base_url</span>
+<span class="kn">from</span> <span class="nn">.aux_funcs</span> <span class="kn">import</span> <span class="n">process_response</span>
+
+<span class="c1">###############</span>
+<span class="c1"># Gene Panels #</span>
+<span class="c1">###############</span>
+<div class="viewcode-block" id="get_all_gene_panels">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.gene_panels.get_all_gene_panels">[docs]</a>
+<span class="k">def</span> <span class="nf">get_all_gene_panels</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span> <span class="n">pageNumber</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">,</span> <span class="n">sortBy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all gene panels from BioPortal. \n</span>
+<span class="sd">    :param direction: Direction of the sort. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;ASC&quot;: Ascending (default).</span>
+<span class="sd">            - &quot;DESC&quot;: Descending</span>
+<span class="sd">    :type direction: str \n</span>
+<span class="sd">    :param pageNumber: Page number of the result list. \n</span>
+<span class="sd">            - Minimum value is 0.</span>
+<span class="sd">    :type pageNumber: int \n</span>
+<span class="sd">    :param pageSize: Page size of the result list. \n</span>
+<span class="sd">            - Minimum value is 1, maximum value is 10000000.</span>
+<span class="sd">    :type pageSize: int \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :param sortBy: Name of the property that the result list is sorted by. \n</span>
+<span class="sd">    :type sortBy: str \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;description&quot;: Sort by description.</span>
+<span class="sd">            - &quot;genePanelId&quot;: Sort by gene panel ID.</span>
+<span class="sd">    :returns: A DataFrame containing the list of gene panels. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/gene-panels&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
+        <span class="s2">&quot;pageNumber&quot;</span><span class="p">:</span> <span class="n">pageNumber</span><span class="p">,</span>
+        <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="n">pageSize</span><span class="p">,</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">,</span>
+        <span class="s2">&quot;sortBy&quot;</span><span class="p">:</span> <span class="n">sortBy</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get gene panels.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_gene_panel">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.gene_panels.get_gene_panel">[docs]</a>
+<span class="k">def</span> <span class="nf">get_gene_panel</span><span class="p">(</span><span class="n">gene_panel_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get a specific gene panel from BioPortal. \n</span>
+<span class="sd">    :param gene_panel_id: Gene Panel ID (e.g., &quot;NSCLC_UNITO_2016_PANEL&quot;). \n</span>
+<span class="sd">    :type gene_panel_id: str \n</span>
+<span class="sd">    :returns: A DataFrame containing information about the specific gene panel. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/gene-panels/</span><span class="si">{</span><span class="n">gene_panel_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get gene panels.&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># df = process_response(response, f&quot;Failed to get gene panel {gene_panel_id}.&quot;)</span>
+    <span class="c1"># return flatten_dict_columns(df)</span>
+    
+
+<div class="viewcode-block" id="fetch_gene_panels">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.gene_panels.fetch_gene_panels">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_gene_panels</span><span class="p">(</span><span class="n">gene_panel_ids</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;SUMMARY&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch gene panels from BioPortal by Gene Panel IDs. \n</span>
+<span class="sd">    :param gene_panel_ids: List of Gene Panel IDs. \n</span>
+<span class="sd">    :type gene_panel_ids: list of str \n</span>
+<span class="sd">    :param projection: Level of detail of the response. \n</span>
+<span class="sd">        Possible values: \n</span>
+<span class="sd">            - &quot;DETAILED&quot;: Detailed information.</span>
+<span class="sd">            - &quot;ID&quot;: Information with only IDs.</span>
+<span class="sd">            - &quot;META&quot;: Metadata information.</span>
+<span class="sd">            - &quot;SUMMARY&quot;: Summary information (default).</span>
+<span class="sd">    :type projection: str \n</span>
+<span class="sd">    :returns: A DataFrame containing the fetched gene panels. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/gene-panels/fetch&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">projection</span><span class="p">}</span>
+    
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">gene_panel_ids</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to get gene panels.&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># df = check_response(response, &quot;Failed to fetch gene panels.&quot;)</span>
+    <span class="c1"># return flatten_dict_list_columns(df)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyBioGate Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyBioGate</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Matteo Valerio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

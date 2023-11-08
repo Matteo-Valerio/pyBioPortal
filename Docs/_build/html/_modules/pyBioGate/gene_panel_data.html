@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyBioGate.gene_panel_data &#8212; pyBioGate Documentation 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyBioGate.gene_panel_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">base_url</span>
+<span class="kn">from</span> <span class="nn">.aux_funcs</span> <span class="kn">import</span> <span class="n">process_response</span>
+
+<span class="c1">###################</span>
+<span class="c1"># Gene Panel Data #</span>
+<span class="c1">###################</span>
+<div class="viewcode-block" id="fetch_gene_panel_data">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.gene_panel_data.fetch_gene_panel_data">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_gene_panel_data</span><span class="p">(</span><span class="n">molecular_profile_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">molecular_prof_sample_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch gene panel data from BioPortal. \n</span>
+<span class="sd">    :param molecular_profile_ids: List of Molecular Profile IDs (e.g., [&quot;brca_tcga_gistic&quot;, &quot;brca_tcga_mutations&quot;, &quot;acc_tcga_gistic&quot;]). \n</span>
+<span class="sd">    :type molecular_profile_ids: list of str \n</span>
+<span class="sd">    :param molecular_prof_sample_ids: List of Molecular Profile ID and Sample IDs pairs. \n</span>
+<span class="sd">    :type molecular_prof_sample_ids: list of dict \n</span>
+<span class="sd">        Each dict should have the following format: \n</span>
+<span class="sd">            molecular_prof_sample_ids = [</span>
+<span class="sd">                                        {&quot;molecular_profile_id&quot;: &quot;brca_tcga_gistic&quot;,  </span>
+<span class="sd">                                         &quot;sample_ids&quot;: [&quot;TCGA-AR-A1AR-01&quot;, &quot;TCGA-E2-A1BC-01&quot;]},</span>
+<span class="sd">                                        {&quot;molecular_profile_id&quot;: &quot;brca_tcga_mutations&quot;, </span>
+<span class="sd">                                         &quot;sample_ids&quot;: [&quot;TCGA-AR-A1AR-01&quot;, &quot;TCGA-E2-A1BC-01&quot;]},</span>
+<span class="sd">                                        {&quot;molecular_profile_id&quot;: &quot;msk_met_2021_mutations&quot;, </span>
+<span class="sd">                                         &quot;sample_ids&quot;: [&quot;P-0000004-T01-IM3&quot;, &quot;P-0000950-T01-IM3&quot;]}</span>
+<span class="sd">                                        ]</span>
+<span class="sd">    :returns: A DataFrame containing the fetched gene panel data. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/gene-panel-data/fetch&quot;</span>
+
+    <span class="n">gene_panel_data_filter</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">molecular_profile_ids</span><span class="p">:</span>
+        <span class="n">gene_panel_data_filter</span><span class="p">[</span><span class="s1">&#39;molecularProfileIds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecular_profile_ids</span>
+    
+    <span class="k">if</span> <span class="n">molecular_prof_sample_ids</span><span class="p">:</span>
+        <span class="n">gene_panel_data_filter</span><span class="p">[</span><span class="s1">&#39;sampleMolecularIdentifiers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">molecular_prof_sample_ids</span><span class="p">:</span>
+            <span class="n">molec_prof_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">]</span>
+            <span class="n">sample_ids</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;sample_ids&quot;</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">sample_id</span> <span class="ow">in</span> <span class="n">sample_ids</span><span class="p">:</span>
+                <span class="n">identifier</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;molecularProfileId&quot;</span><span class="p">:</span> <span class="n">molec_prof_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sampleId&quot;</span><span class="p">:</span> <span class="n">sample_id</span>
+                <span class="p">}</span>
+                <span class="n">gene_panel_data_filter</span><span class="p">[</span><span class="s2">&quot;sampleMolecularIdentifiers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">gene_panel_data_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to fetch gene panel data.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_gene_panel_data_in_molecular_profile">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.gene_panel_data.fetch_gene_panel_data_in_molecular_profile">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_gene_panel_data_in_molecular_profile</span><span class="p">(</span><span class="n">molecular_profile_id</span><span class="p">,</span> <span class="n">sample_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_list_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get gene panel data for a specific molecular profile. \n</span>
+<span class="sd">    :param molecular_profile_id: Molecular Profile ID (e.g., &quot;brca_tcga_mutations&quot;). \n</span>
+<span class="sd">    :type molecular_profile_id: str \n</span>
+<span class="sd">    :param sample_ids: List of Sample IDs (e.g., [&quot;TCGA-AR-A1AR-01&quot;, &quot;TCGA-E2-A1BC-01&quot;] and sample_list_id set to None). \n</span>
+<span class="sd">    :type sample_ids: list of str \n</span>
+<span class="sd">    :param sample_list_id: Sample List ID (e.g., &quot;brca_tcga_all&quot; and sample_ids set to None). \n</span>
+<span class="sd">    :type sample_list_id: str \n</span>
+<span class="sd">    :returns: A DataFrame containing the fetched gene panel data. \n</span>
+<span class="sd">    :rtype: pandas.DataFrame \n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/molecular-profiles/</span><span class="si">{</span><span class="n">molecular_profile_id</span><span class="si">}</span><span class="s2">/gene-panel-data/fetch&quot;</span>
+
+    <span class="n">gene_panel_data_filter</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;sampleIds&quot;</span><span class="p">:</span> <span class="n">sample_ids</span><span class="p">,</span>
+            <span class="s2">&quot;sampleListId&quot;</span><span class="p">:</span> <span class="n">sample_list_id</span>
+           <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">gene_panel_data_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;Failed to fetch gene panel data.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyBioGate Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyBioGate</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Matteo Valerio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

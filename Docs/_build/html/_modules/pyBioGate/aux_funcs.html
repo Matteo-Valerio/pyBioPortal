@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyBioGate.aux_funcs &#8212; pyBioGate Documentation 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyBioGate.aux_funcs</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Auxiliary functions</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<div class="viewcode-block" id="process_response">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.aux_funcs.process_response">[docs]</a>
+<span class="k">def</span> <span class="nf">process_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">fail_msg</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribute_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="s1">&#39;[]&#39;</span><span class="p">:</span>  <span class="c1"># Check if the response body is not empty</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">ret_format</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">attribute_ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">flatten_dict_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">flatten_dict_list_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">df</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span> <span class="c1"># in case of response dataframe with only 1 row to expand</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">flatten_dict_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">flatten_dict_list_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">df</span> 
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">ret_format</span> <span class="o">==</span> <span class="s1">&#39;WIDE&#39;</span><span class="p">:</span>
+                        <span class="n">cols_to_group</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">cols_to_group</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;clinicalAttributeId&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>              
+                        <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="c1"># check if all attributes has been retrieved</span>
+                        <span class="n">miss_attr</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">attribute_ids</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">miss_attr</span> <span class="o">!=</span> <span class="p">[]:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attributes not present: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">miss_attr</span><span class="p">)))</span>
+                    <span class="k">elif</span> <span class="n">ret_format</span> <span class="o">==</span> <span class="s1">&#39;LONG&#39;</span><span class="p">:</span>
+                        <span class="n">miss_attr</span> <span class="o">=</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attribute_ids</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">clinicalAttributeId</span><span class="p">)]</span>
+                        <span class="k">if</span> <span class="n">miss_attr</span> <span class="o">!=</span> <span class="p">[]:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attributes not present: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">miss_attr</span><span class="p">)))</span>
+                    <span class="k">else</span><span class="p">:</span> 
+                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error: ret_format must be &#39;LONG&#39; or &#39;WIDE&#39;&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">df</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error decoding the JSON response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Response is empty. No data available.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fail_msg</span><span class="si">}</span><span class="s2"> Status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Error messagge: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="process_response1">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.aux_funcs.process_response1">[docs]</a>
+<span class="k">def</span> <span class="nf">process_response1</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">ret_format</span><span class="p">,</span> <span class="n">attribute_ids</span><span class="p">,</span> <span class="n">fail_msg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="s1">&#39;[]&#39;</span><span class="p">:</span>  <span class="c1"># Check if the response body is not empty</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ret_format</span> <span class="o">==</span> <span class="s1">&#39;WIDE&#39;</span><span class="p">:</span>
+                    <span class="n">cols_to_group</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">cols_to_group</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;clinicalAttributeId&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>              
+                    <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="c1"># check if all attributes has been retrieved</span>
+                    <span class="n">miss_attr</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">attribute_ids</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">miss_attr</span> <span class="o">!=</span> <span class="p">[]:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attributes not present: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">miss_attr</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">miss_attr</span> <span class="o">=</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attribute_ids</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">clinicalAttributeId</span><span class="p">)]</span>
+                    <span class="k">if</span> <span class="n">miss_attr</span> <span class="o">!=</span> <span class="p">[]:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attributes not present: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">miss_attr</span><span class="p">)))</span>
+                <span class="k">return</span> <span class="n">df</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error decoding the JSON response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Response is empty. No data available.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fail_msg</span><span class="si">}</span><span class="s2"> Status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Error messagge: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="check_response">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.aux_funcs.check_response">[docs]</a>
+<span class="k">def</span> <span class="nf">check_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">fail_msg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="s1">&#39;[]&#39;</span><span class="p">:</span>  <span class="c1"># Check if the response body is not empty</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">flatten_dict_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">flatten_dict_list_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">df</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span> <span class="c1"># per il caso con un dizionario che avrebbe un dataframe con una sola riga</span>
+                    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error decoding the JSON response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Response is empty. No data available.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fail_msg</span><span class="si">}</span><span class="s2"> Status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Error messagge: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="flatten_dict_columns">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.aux_funcs.flatten_dict_columns">[docs]</a>
+<span class="k">def</span> <span class="nf">flatten_dict_columns</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">flatten_dict</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">parent_key</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">new_key</span> <span class="o">=</span> <span class="n">parent_key</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="k">if</span> <span class="n">parent_key</span> <span class="k">else</span> <span class="n">key</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">new_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">flatten_dict</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">new_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">items</span>
+
+    <span class="n">new_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">flattened_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">flattened_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">flatten_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">column</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">flattened_dict</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">new_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flattened_dict</span><span class="p">)</span>
+
+    <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_df</span></div>
+
+
+
+<div class="viewcode-block" id="flatten_dict_list_columns">
+<a class="viewcode-back" href="../../pyBioGate.html#pyBioGate.aux_funcs.flatten_dict_list_columns">[docs]</a>
+<span class="k">def</span> <span class="nf">flatten_dict_list_columns</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">list_columns</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Identifica le colonne che contengono liste di dizionari</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">list_columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">list_columns</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">df</span>
+        <span class="c1">#raise ValueError(&quot;Nessuna colonna contenente liste di dizionari trovata.&quot;)</span>
+
+    <span class="n">new_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">flattened_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">list_columns</span><span class="p">:</span>
+            <span class="n">list_of_dicts</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">list_of_dicts</span><span class="p">:</span>
+                <span class="n">flattened_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">list_columns</span><span class="p">}</span>
+                <span class="n">flattened_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+                <span class="n">flattened_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flattened_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flattened_dicts</span><span class="p">:</span>
+            <span class="n">flattened_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()]</span>
+        <span class="n">new_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">flattened_dicts</span><span class="p">)</span>
+
+    <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_df</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">pyBioGate Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyBioGate</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Matteo Valerio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
