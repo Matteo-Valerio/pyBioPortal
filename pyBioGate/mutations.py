@@ -1,60 +1,64 @@
 import requests
-import pandas as pd
-from config import base_url
-from aux_funcs import check_response
+from .config import base_url
+from .aux_funcs import process_response
 
 #############
 # Mutations #
 #############
-def get_mutations_in_molecular_profile_by_sample_list_id(molecular_profile_id, sample_list_id, projection="SUMMARY", entrez_gene_id=None, direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
+def get_muts_in_mol_prof_by_sample_list_id(molecular_profile_id, sample_list_id, entrez_gene_id=None, 
+                                           projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
-    Get mutations in a molecular profile by Sample List ID.
-    :param molecular_profile_id: Molecular Profile ID, e.g., "acc_tcga_mutations".
-    :type molecular_profile_id: str
-    :param sample_list_id: Sample List ID, e.g., "acc_tcga_all".
-    :type sample_list_id: str
-    :param projection: Level of detail of the response.
-        - "DETAILED": Detailed information.
-        - "ID": Information with only IDs.
-        - "META": Metadata information.
-        - "SUMMARY": Summary information (default).
-    :type projection: str, optional, default: "SUMMARY"
-    :param entrez_gene_id: Entrez Gene ID, e.g., 1.
-    :type entrez_gene_id: int, optional
-    :param direction: Direction of the sort.
-        - "ASC": Ascending.
-        - "DESC": Descending.
-    :type direction: str, optional, default: "ASC"
-    :param pageNumber: Page number of the result list.
-    :type pageNumber: int, optional, default: 0
-    :param pageSize: Page size of the result list.
-    :type pageSize: int, optional, default: 10000000
-    :param sortBy: Name of the property that the result list is sorted by.
-        Possible values:
-        - "aminoAcidChange"
-        - "center"
-        - "endPosition"
-        - "entrezGeneId"
-        - "keyword"
-        - "mutationStatus"
-        - "mutationType"
-        - "ncbiBuild"
-        - "normalAltCount"
-        - "normalRefCount"
-        - "proteinChange"
-        - "proteinPosEnd"
-        - "proteinPosStart"
-        - "referenceAllele"
-        - "refseqMrnaId"
-        - "startPosition"
-        - "tumorAltCount"
-        - "tumorRefCount"
-        - "validationStatus"
-        - "variantAllele"
-        - "variantType"
-    :type sortBy: str, optional
-    :returns: A DataFrame containing mutations in the molecular profile.
-    :rtype: pandas.DataFrame
+    Get mutations in a molecular profile by Sample List ID. \n
+    :param molecular_profile_id: Molecular Profile ID (e.g., "acc_tcga_mutations"). \n
+    :type molecular_profile_id: str \n
+    :param sample_list_id: Sample List ID (e.g., "acc_tcga_all"). \n
+    :type sample_list_id: str \n
+    :param projection: Level of detail of the response. \n
+        Possible values: \n
+            - "DETAILED": Detailed information.
+            - "ID": Information with only IDs.
+            - "META": Metadata information.
+            - "SUMMARY": Summary information (default).
+    :type projection: str \n
+    :param entrez_gene_id: Entrez Gene ID (e.g., "1"). \n
+    :type entrez_gene_id: str \n
+    :param direction: Direction of the sort. \n
+        Possible values: \n
+            - "ASC": Ascending (default).
+            - "DESC": Descending.
+    :type direction: str \n
+    :param pageNumber: Page number of the result list. \n
+            - Minimum value is 0.
+    :type pageNumber: int \n
+    :param pageSize: Page size of the result list. \n
+            - Minimum value is 1, maximum value is 10000000.
+    :type pageSize: int \n
+    :param sortBy: Name of the property that the result list is sorted by. \n
+        Possible values: \n
+            - "aminoAcidChange"
+            - "center"
+            - "endPosition"
+            - "entrezGeneId"
+            - "keyword"
+            - "mutationStatus"
+            - "mutationType"
+            - "ncbiBuild"
+            - "normalAltCount"
+            - "normalRefCount"
+            - "proteinChange"
+            - "proteinPosEnd"
+            - "proteinPosStart"
+            - "referenceAllele"
+            - "refseqMrnaId"
+            - "startPosition"
+            - "tumorAltCount"
+            - "tumorRefCount"
+            - "validationStatus"
+            - "variantAllele"
+            - "variantType"
+    :type sortBy: str \n
+    :returns: A DataFrame containing mutations in the molecular profile. \n
+    :rtype: pandas.DataFrame \n
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}/mutations"
     params = {
@@ -66,60 +70,66 @@ def get_mutations_in_molecular_profile_by_sample_list_id(molecular_profile_id, s
         "pageSize": pageSize,
         "sortBy": sortBy
     }
-    response = requests.get(f"{base_url}{endpoint}", params=params)
-    return check_response(response, "Failed to get mutations in molecular profile.")
 
-def fetch_mutations_in_molecular_profile(molecular_profile_id, entrez_gene_ids=None, sample_ids=None, sample_list_id=None, projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+    return process_response(response, "Failed to get mutations in molecular profile.")
+
+def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_ids=None, sample_list_id=None, 
+                           projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
-    Fetch mutations in a molecular profile.
-    :param molecular_profile_id: Molecular Profile ID, e.g., "brca_tcga_mutations".
-    :type molecular_profile_id: str
-    :param entrez_gene_ids: List ID and Entrez Gene IDs, e.g., ["TCGA-AR-A1AR-01","TCGA-BH-A1EO-01"]
-    :type entrez_gene_ids: List of str
-    :param sample_ids: List of Sample IDs, e.g., ["1005", "1020"].
-    :type sample_ids: List of str
-    :param sample_list_id: Sample List ID, e.g., "brca_tcga_all".
-    :type sample_list_id: str
-    :param projection: Level of detail of the response.
-        - "DETAILED": Detailed information.
-        - "ID": Information with only IDs.
-        - "META": Metadata information.
-        - "SUMMARY": Summary information (default).
-    :type projection: str, optional, default: "SUMMARY"
-    :param direction: Direction of the sort.
-        - "ASC": Ascending.
-        - "DESC": Descending.
-    :type direction: str, optional, default: "ASC"
-    :param pageNumber: Page number of the result list.
-    :type pageNumber: int, optional, default: 0
-    :param pageSize: Page size of the result list.
-    :type pageSize: int, optional, default: 10000000
-    :param sortBy: Name of the property that the result list is sorted by.
-        Possible values:
-        - "aminoAcidChange"
-        - "center"
-        - "endPosition"
-        - "entrezGeneId"
-        - "keyword"
-        - "mutationStatus"
-        - "mutationType"
-        - "ncbiBuild"
-        - "normalAltCount"
-        - "normalRefCount"
-        - "proteinChange"
-        - "proteinPosEnd"
-        - "proteinPosStart"
-        - "referenceAllele"
-        - "refseqMrnaId"
-        - "startPosition"
-        - "tumorAltCount"
-        - "tumorRefCount"
-        - "validationStatus"
-        - "variantAllele"
-        - "variantType"
-    :type sortBy: str, optional
-    :returns: A DataFrame containing mutations in the molecular profile.
-    :rtype: pandas.DataFrame
+    Fetch mutations in a molecular profile. \n
+    :param molecular_profile_id: Molecular Profile ID (e.g., "brca_tcga_mutations"). \n
+    :type molecular_profile_id: str \n
+    :param entrez_gene_ids: List ID and Entrez Gene IDs (e.g., ["TCGA-AR-A1AR-01","TCGA-BH-A1EO-01"]). \n
+    :type entrez_gene_ids: List of str \n
+    :param sample_ids: List of Sample IDs (e.g., ["1005", "1020"]). \n
+    :type sample_ids: List of str \n
+    :param sample_list_id: Sample List ID (e.g., "brca_tcga_all"). \n
+    :type sample_list_id: str \n
+    :param projection: Level of detail of the response. \n
+        Possible values: \n
+            - "DETAILED": Detailed information.
+            - "ID": Information with only IDs.
+            - "META": Metadata information.
+            - "SUMMARY": Summary information (default).
+    :type projection: str \n
+    :param direction: Direction of the sort. \n
+        Possible values: \n
+            - "ASC": Ascending (default).
+            - "DESC": Descending.
+    :type direction: str \n
+    :param pageNumber: Page number of the result list. \n
+            - Minimum value is 0.
+    :type pageNumber: int \n
+    :param pageSize: Page size of the result list. \n
+            - Minimum value is 1, maximum value is 10000000.
+    :type pageSize: int \n
+    :param sortBy: Name of the property that the result list is sorted by. \n
+        Possible values: \n
+            - "aminoAcidChange"
+            - "center"
+            - "endPosition"
+            - "entrezGeneId"
+            - "keyword"
+            - "mutationStatus"
+            - "mutationType"
+            - "ncbiBuild"
+            - "normalAltCount"
+            - "normalRefCount"
+            - "proteinChange"
+            - "proteinPosEnd"
+            - "proteinPosStart"
+            - "referenceAllele"
+            - "refseqMrnaId"
+            - "startPosition"
+            - "tumorAltCount"
+            - "tumorRefCount"
+            - "validationStatus"
+            - "variantAllele"
+            - "variantType"
+    :type sortBy: str \n
+    :returns: A DataFrame containing mutations in the molecular profile. \n
+    :rtype: pandas.DataFrame \n
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}/mutations/fetch"
     params = {
@@ -141,15 +151,16 @@ def fetch_mutations_in_molecular_profile(molecular_profile_id, entrez_gene_ids=N
     if sample_list_id:
         mutation_filter['sampleListId'] = sample_list_id
 
-    response = requests.post(f"{base_url}{endpoint}", json=mutation_filter, params=params)
-    return check_response(response, "Failed to fetch mutations in molecular profile.")
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_filter)
+    return process_response(response, "Failed to fetch mutations in molecular profile.")
 
-def fetch_mutations_in_multiple_molecular_profiles(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
+def fetch_muts_in_multiple_mol_profs(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, 
+                                     projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
     Fetch mutations in multiple molecular profiles by sample IDs.
-    :param entrez_gene_ids: List of Entrez Gene IDs, e.g. ["672","675"].
+    :param entrez_gene_ids: List of Entrez Gene IDs (e.g. ["672","675"]).
     :type entrez_gene_ids: list of str
-    :param molecular_profile_ids: List of Molecular Profile IDs, e.g. ["brca_tcga_mutations", "acc_tcga_mutations"].
+    :param molecular_profile_ids: List of Molecular Profile IDs (e.g. ["brca_tcga_mutations", "acc_tcga_mutations"]).
     :type molecular_profile_ids: list of str
     :param sample_molecular_identifiers: List of Molecular Profile ID / Sample ID pairs.
     :type sample_molecular_identifiers: list of dict
@@ -161,45 +172,47 @@ def fetch_mutations_in_multiple_molecular_profiles(entrez_gene_ids=None, molecul
                                           "sample_ids": ["TCGA-OR-A5LE-01"]}
                                          ]  
     :param projection: Level of detail of the response.
-        - "DETAILED": Detailed information.
-        - "ID": Information with only IDs.
-        - "META": Metadata information.
-        - "SUMMARY": Summary information (default).
-    :type projection: str, optional, default: "SUMMARY"
+            - "DETAILED": Detailed information.
+            - "ID": Information with only IDs.
+            - "META": Metadata information.
+            - "SUMMARY": Summary information (default).
+    :type projection: str
     :param direction: Direction of the sort.
-        - "ASC": Ascending.
-        - "DESC": Descending.
-    :type direction: str, optional, default: "ASC"
+            - "ASC": Ascending (default).
+            - "DESC": Descending.
+    :type direction: str
     :param pageNumber: Page number of the result list.
-    :type pageNumber: int, optional, default: 0
+            - Minimum value is 0.
+    :type pageNumber: int
     :param pageSize: Page size of the result list.
-    :type pageSize: int, optional, default: 10000000
+            - Minimum value is 1, maximum value is 10000000.
+    :type pageSize: int
     :param sortBy: Name of the property that the result list is sorted by.
-        Possible values:
-        - "aminoAcidChange"
-        - "center"
-        - "endPosition"
-        - "entrezGeneId"
-        - "keyword"
-        - "mutationStatus"
-        - "mutationType"
-        - "ncbiBuild"
-        - "normalAltCount"
-        - "normalRefCount"
-        - "proteinChange"
-        - "proteinPosEnd"
-        - "proteinPosStart"
-        - "referenceAllele"
-        - "refseqMrnaId"
-        - "startPosition"
-        - "tumorAltCount"
-        - "tumorRefCount"
-        - "validationStatus"
-        - "variantAllele"
-        - "variantType"
-    :type sortBy: str, optional
-    :returns: A DataFrame containing mutations in the specified molecular profiles.
-    :rtype: pandas.DataFrame
+        Possible values: \n
+            - "aminoAcidChange"
+            - "center"
+            - "endPosition"
+            - "entrezGeneId"
+            - "keyword"
+            - "mutationStatus"
+            - "mutationType"
+            - "ncbiBuild"
+            - "normalAltCount"
+            - "normalRefCount"
+            - "proteinChange"
+            - "proteinPosEnd"
+            - "proteinPosStart"
+            - "referenceAllele"
+            - "refseqMrnaId"
+            - "startPosition"
+            - "tumorAltCount"
+            - "tumorRefCount"
+            - "validationStatus"
+            - "variantAllele"
+            - "variantType"
+    :type sortBy: str \n
+    :returns: A DataFrame containing mutations in the specified molecular profiles. \n
+    :rtype: pandas.DataFrame \n
     """
     endpoint = "/mutations/fetch"
     params = {
@@ -232,5 +245,5 @@ def fetch_mutations_in_multiple_molecular_profiles(entrez_gene_ids=None, molecul
                 }
                 mutation_multiple_study_filter["sampleMolecularIdentifiers"].append(identifier)
 
-    response = requests.post(f"{base_url}{endpoint}", json=mutation_multiple_study_filter, params=params)
-    return check_response(response, "Failed to fetch mutations in multiple molecular profiles.")
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_multiple_study_filter)
+    return process_response(response, "Failed to fetch mutations in multiple molecular profiles.")
