@@ -121,8 +121,10 @@ def get_all_samples_of_patient_in_study(study_id, patient_id, direction="ASC",
             - "DESC": Descending.
     :type direction: str \n
     :param pageNumber: Page number of the result list. \n
+            - Minimum value is 0.
     :type pageNumber: int \n
     :param pageSize: Page size of the result list. \n
+            - Minimum value is 1, maximum value is 10000000.
     :type pageSize: int \n
     :param projection: Level of detail of the response. \n
         Possible values: \n
@@ -162,8 +164,10 @@ def get_all_samples_in_study(study_id, direction="ASC", pageNumber=0, pageSize=1
             - "DESC": Descending.
     :type direction: str \n
     :param pageNumber: Page number of the result list. \n
+            - Minimum value is 0.
     :type pageNumber: int \n
     :param pageSize: Page size of the result list. \n
+            - Minimum value is 1, maximum value is 10000000.
     :type pageSize: int \n
     :param projection: Level of detail of the response. \n
         Possible values: \n
