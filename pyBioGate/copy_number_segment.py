@@ -9,7 +9,6 @@ def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SU
     """
     Fetch copy number segments from BioPortal by sample ID. \n
     :param sample_study_ids: List of sample identifiers. \n
-    :type sample_study_ids: list of dict \n        
         Each list should have the following format: \n
             sample_study_ids = [
                                {"sample_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"], 
@@ -17,6 +16,7 @@ def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SU
                                {"sample_ids": ["TCGA-5T-A9QA-01", "TCGA-A1-A0SB-01"], 
                                 "study_id": "brca_tcga"}
                                ]
+    :type sample_study_ids: list of dict \n        
     :param chromosome: Chromosome (e.g., "1"). \n
     :type chromosome: str \n
     :param projection: Level of detail of the response. \n

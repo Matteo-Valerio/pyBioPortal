@@ -1,10 +1,11 @@
+"""
+This module provides functions related to Cancer Types.
+
+"""
 import requests
 from .config import base_url
 from .aux_funcs import process_response
 
-################
-# Cancer Types #
-################
 def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
     Get all cancer types from BioPortal. \n

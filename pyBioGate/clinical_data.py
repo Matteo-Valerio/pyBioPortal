@@ -22,8 +22,8 @@ def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAM
                                      "study": "msk_met_2021"},
                                     {"entity_ids": ["TCGA-5T-A9QA", "TCGA-A1-A0SB"], 
                                      "study": "brca_tcga"}
-                                    ] \n
-             -e.g. for SAMPLE data type: \n
+                                    ] \n                                    
+            - e.g. for SAMPLE data type: \n
                  entity_study_ids = [
                                     {"entity_ids": ["P-0000004-T01-IM3", "P-0000950-T01-IM3"], 
                                      "study": "msk_met_2021"},
@@ -111,7 +111,7 @@ def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_ty
         Possible values: \n
             - "clinicalAttributeId"
             - "value"
-    :type sortBy: str, optional, default: "clinicalAttributeId" \n
+    :type sortBy: str \n
     :returns: A DataFrame containing clinical data in the specified study. \n
     :rtype: pandas.DataFrame \n
     """

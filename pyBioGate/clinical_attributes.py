@@ -82,7 +82,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
         Possible values: \n
             - "ASC": Ascending (default).
             - "DESC": Descending.
-    :type direction: str, optional, default: "ASC" \n
+    :type direction: str \n
     :param pageNumber: Page number of the result list. \n
             - Minimum value is 0.
     :type pageNumber: int \n
