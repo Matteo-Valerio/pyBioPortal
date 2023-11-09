@@ -79,7 +79,7 @@ def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAM
 def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_type="SAMPLE", direction="ASC", 
                                    pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
-    Get all clinical data in a study.
+    Get all clinical data in a study. n
     :param study_id: Study ID (e.g., "acc_tcga"). \n
     :type study_id: str \n
     :param attribute_id: Attribute ID (e.g., "CANCER_TYPE"). \n

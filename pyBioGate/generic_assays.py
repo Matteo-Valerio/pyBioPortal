@@ -7,7 +7,7 @@ from .aux_funcs import process_response
 ##################
 def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_ids=None, projection="SUMMARY"):
     """
-    Fetch meta data for generic assays based on a filter.
+    Fetch meta data for generic assays based on a filter. \n
     :param generic_assay_stable_ids: List of Stable IDs (e.g., ["TULP4_pS563", "TEP1_pS397", "ALAD_214_215_1_1_S215"]). \n
     :type generic_assay_stable_ids: list of str \n
     :param molecular_profile_ids: List of Molecular Profile IDs (e.g., ["brca_tcga_phosphoprotein_quantification","brain_cptac_2020_phosphoprotein"]). \n
@@ -57,18 +57,18 @@ def get_generic_assay_meta_by_id(generic_assay_stable_id, projection="SUMMARY"):
 
 def get_generic_assay_meta_by_molecular_profile_id(molecular_profile_id, projection="SUMMARY"):
     """
-    Fetch meta data for a generic assay by molecular profile ID.
-    :param molecular_profile_id: Molecular Profile ID.
-    :type molecular_profile_id: str
-    :param projection: Level of detail of the response.
+    Fetch meta data for a generic assay by molecular profile ID. \n
+    :param molecular_profile_id: Molecular Profile ID. \n
+    :type molecular_profile_id: str \n
+    :param projection: Level of detail of the response. \n
         Possible values: \n
             - "DETAILED": Detailed information.
             - "ID": Information with only IDs.
             - "META": Metadata information.
             - "SUMMARY": Summary information (default).
-    :type projection: str
-    :returns: A DataFrame containing the fetched meta data for the generic assay in the specified molecular profile.
-    :rtype: pandas.DataFrame
+    :type projection: str \n
+    :returns: A DataFrame containing the fetched meta data for the generic assay in the specified molecular profile. \n
+    :rtype: pandas.DataFrame \n
     """
     params = {"projection": projection}
 

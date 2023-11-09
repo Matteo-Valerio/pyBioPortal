@@ -157,37 +157,39 @@ def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_id
 def fetch_muts_in_multiple_mol_profs(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, 
                                      projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
-    Fetch mutations in multiple molecular profiles by sample IDs.
-    :param entrez_gene_ids: List of Entrez Gene IDs (e.g. ["672","675"]).
-    :type entrez_gene_ids: list of str
-    :param molecular_profile_ids: List of Molecular Profile IDs (e.g. ["brca_tcga_mutations", "acc_tcga_mutations"]).
-    :type molecular_profile_ids: list of str
-    :param sample_molecular_identifiers: List of Molecular Profile ID / Sample ID pairs.
-    :type sample_molecular_identifiers: list of dict
-        Each dict should have the following format:
+    Fetch mutations in multiple molecular profiles by sample IDs. \n
+    :param entrez_gene_ids: List of Entrez Gene IDs (e.g. ["672","675"]). \n
+    :type entrez_gene_ids: list of str \n
+    :param molecular_profile_ids: List of Molecular Profile IDs (e.g. ["brca_tcga_mutations", "acc_tcga_mutations"]). \n
+    :type molecular_profile_ids: list of str \n
+    :param sample_molecular_identifiers: List of Molecular Profile ID / Sample ID pairs. \n
+    :type sample_molecular_identifiers: list of dict \n
+        Each dict should have the following format: \n
             sample_molecular_identifiers=[
                                          {"molecular_profile_id": "brca_tcga_mutations", 
                                           "sample_ids": ["TCGA-A2-A4S0-01","TCGA-E2-A1L9-01"]},
                                          {"molecular_profile_id": "acc_tcga_mutations", 
                                           "sample_ids": ["TCGA-OR-A5LE-01"]}
-                                         ]  
-    :param projection: Level of detail of the response.
+                                         ] \n
+    :param projection: Level of detail of the response. \n
+        Possible values: \n
             - "DETAILED": Detailed information.
             - "ID": Information with only IDs.
             - "META": Metadata information.
             - "SUMMARY": Summary information (default).
-    :type projection: str
-    :param direction: Direction of the sort.
+    :type projection: str \n
+    :param direction: Direction of the sort. \n
+        Possible values: \n
             - "ASC": Ascending (default).
             - "DESC": Descending.
-    :type direction: str
-    :param pageNumber: Page number of the result list.
+    :type direction: str \n
+    :param pageNumber: Page number of the result list. \n
             - Minimum value is 0.
-    :type pageNumber: int
-    :param pageSize: Page size of the result list.
+    :type pageNumber: int \n
+    :param pageSize: Page size of the result list. \n
             - Minimum value is 1, maximum value is 10000000.
-    :type pageSize: int
-    :param sortBy: Name of the property that the result list is sorted by.
+    :type pageSize: int \n
+    :param sortBy: Name of the property that the result list is sorted by. \n
         Possible values: \n
             - "aminoAcidChange"
             - "center"
