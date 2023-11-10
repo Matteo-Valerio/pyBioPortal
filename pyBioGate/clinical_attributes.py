@@ -53,7 +53,7 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
     
 def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     """
-    Fetch clinical attributes from BioPortal for a list of study IDs.
+    Fetch clinical attributes from BioPortal for a list of study IDs. \n
     :param study_ids: List of Study IDs. \n
     :type study_ids: list of str \n
     :param projection: Level of detail of the response. \n
@@ -73,7 +73,8 @@ def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
     return process_response(response, "Failed to fetch clinical attributes.")
 
-def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="clinicalAttributeId"):
+def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, 
+                                         projection="SUMMARY", sortBy=None):
     """
     Get all clinical attributes in the specified study.
     :param study_id: Study ID (e.g., "acc_tcga"). \n
@@ -98,7 +99,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
     :type projection: str \n
     :param sortBy: Name of the property that the result list is sorted by. \n
         Possible values: \n
-            - "clinicalAttributeId" (default)
+            - "clinicalAttributeId"
             - "datatype"
             - "description"
             - "displayName"
@@ -123,7 +124,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
     
 def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
     """
-    Get the specified clinical attribute in the study.
+    Get the specified clinical attribute in the study. \n
     :param study_id: Study ID (e.g., "acc_tcga"). \n
     :type study_id: str \n
     :param clinical_attribute_id: Clinical Attribute ID (e.g., "CANCER_TYPE"). \n
