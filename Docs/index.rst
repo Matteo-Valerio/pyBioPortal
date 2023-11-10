@@ -3,18 +3,25 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pyBioGate package's documentation!
-===================================================
+pyBioGate documentation
+=======================
+
+**Date**: |today| **Release**: |release|
+
+Descrizione package, link pagina git Hub e pagina Pypi per installazione
 
 Indices
-=======
+-------
 
 * :ref:`genindex`
 * :ref:`modindex`
 
+:mod:`pyBioGate` 
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 2   
+   :caption: Contents
+   :hidden:
 
    modules
 

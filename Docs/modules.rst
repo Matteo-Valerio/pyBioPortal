@@ -1,4 +1,4 @@
-pyBioGate package modules
+pyBioGate modules
 =========================
 
 .. toctree::
