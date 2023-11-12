@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>pyBioGate.cancer_types &#8212; pyBioGate 1.0.0 documentation</title>
   
@@ -41,7 +41,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pyBioGate';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="pyBioGate package modules" href="modules.html" />
+    <link rel="prev" title="pyBioGate modules" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -135,7 +135,7 @@
     
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="modules.html">
-                        pyBioGate package modules
+                        pyBioGate modules
                       </a>
                     </li>
                 
@@ -250,7 +250,7 @@ document.write(`
     
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="modules.html">
-                        pyBioGate package modules
+                        pyBioGate modules
                       </a>
                     </li>
                 
@@ -370,7 +370,7 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">pyBioGate package modules</a></li>
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">pyBioGate modules</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">pyBioGate.ca...</li>
   </ul>
@@ -464,21 +464,23 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.clinical_attributes.fetch_clinical_attributes">
 <span class="sig-name descname"><span class="pre">fetch_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.clinical_attributes.fetch_clinical_attributes" title="Link to this definition">#</a></dt>
-<dd><p>Fetch clinical attributes from BioPortal for a list of study IDs.
-:param study_ids: List of Study IDs.</p>
+<dd><p>Fetch clinical attributes from BioPortal for a list of study IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Study IDs.</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
 <p>Possible values:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>”DETAILED”: Detailed information.</p></li>
 <li><p>”ID”: Information with only IDs.</p></li>
 <li><p>”META”: Metadata information.</p></li>
 <li><p>”SUMMARY”: Summary information (default).</p></li>
 </ul>
 </div></blockquote>
-</p>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A DataFrame containing the fetched clinical attributes.</p>
@@ -553,7 +555,7 @@ document.write(`
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.clinical_attributes.get_all_clinical_attributes_in_study">
-<span class="sig-name descname"><span class="pre">get_all_clinical_attributes_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clinicalAttributeId'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.clinical_attributes.get_all_clinical_attributes_in_study" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_all_clinical_attributes_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.clinical_attributes.get_all_clinical_attributes_in_study" title="Link to this definition">#</a></dt>
 <dd><p>Get all clinical attributes in the specified study.
 :param study_id: Study ID (e.g., “acc_tcga”).</p>
 <dl class="field-list simple">
@@ -593,7 +595,7 @@ document.write(`
 <p>Possible values:</p>
 <blockquote>
 <div><ul>
-<li><p>”clinicalAttributeId” (default)</p></li>
+<li><p>”clinicalAttributeId”</p></li>
 <li><p>”datatype”</p></li>
 <li><p>”description”</p></li>
 <li><p>”displayName”</p></li>
@@ -617,11 +619,13 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.clinical_attributes.get_clinical_attribute_in_study">
 <span class="sig-name descname"><span class="pre">get_clinical_attribute_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clinical_attribute_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.clinical_attributes.get_clinical_attribute_in_study" title="Link to this definition">#</a></dt>
-<dd><p>Get the specified clinical attribute in the study.
-:param study_id: Study ID (e.g., “acc_tcga”).</p>
+<dd><p>Get the specified clinical attribute in the study.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>clinical_attribute_id</strong> (<em>str</em>) – Clinical Attribute ID (e.g., “CANCER_TYPE”).</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study_id</strong> (<em>str</em>) – Study ID (e.g., “acc_tcga”).</p></li>
+<li><p><strong>clinical_attribute_id</strong> (<em>str</em>) – Clinical Attribute ID (e.g., “CANCER_TYPE”).</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A DataFrame containing information about the specified clinical attribute in the study.</p>
@@ -784,7 +788,7 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.clinical_data.get_all_clinical_data_in_study">
 <span class="sig-name descname"><span class="pre">get_all_clinical_data_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clinical_data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SAMPLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.clinical_data.get_all_clinical_data_in_study" title="Link to this definition">#</a></dt>
-<dd><p>Get all clinical data in a study.
+<dd><p>Get all clinical data in a study. n
 :param study_id: Study ID (e.g., “acc_tcga”).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1432,11 +1436,11 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.generic_assays.fetch_generic_assay_meta">
 <span class="sig-name descname"><span class="pre">fetch_generic_assay_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generic_assay_stable_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molecular_profile_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.generic_assays.fetch_generic_assay_meta" title="Link to this definition">#</a></dt>
-<dd><p>Fetch meta data for generic assays based on a filter.
-:param generic_assay_stable_ids: List of Stable IDs (e.g., [“TULP4_pS563”, “TEP1_pS397”, “ALAD_214_215_1_1_S215”]).</p>
+<dd><p>Fetch meta data for generic assays based on a filter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>generic_assay_stable_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Stable IDs (e.g., [“TULP4_pS563”, “TEP1_pS397”, “ALAD_214_215_1_1_S215”]).</p></li>
 <li><p><strong>molecular_profile_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Molecular Profile IDs (e.g., [“brca_tcga_phosphoprotein_quantification”,”brain_cptac_2020_phosphoprotein”]).</p></li>
 <li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
 <p>Possible values:</p>
@@ -1493,27 +1497,29 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.generic_assays.get_generic_assay_meta_by_molecular_profile_id">
 <span class="sig-name descname"><span class="pre">get_generic_assay_meta_by_molecular_profile_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecular_profile_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.generic_assays.get_generic_assay_meta_by_molecular_profile_id" title="Link to this definition">#</a></dt>
-<dd><p>Fetch meta data for a generic assay by molecular profile ID.
-:param molecular_profile_id: Molecular Profile ID.
-:type molecular_profile_id: str
-:param projection: Level of detail of the response.</p>
+<dd><p>Fetch meta data for a generic assay by molecular profile ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecular_profile_id</strong> (<em>str</em>) – Molecular Profile ID.</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
 <blockquote>
-<div><p>Possible values:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>“DETAILED”: Detailed information.</p></li>
-<li><p>“ID”: Information with only IDs.</p></li>
-<li><p>“META”: Metadata information.</p></li>
-<li><p>“SUMMARY”: Summary information (default).</p></li>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
 </ul>
 </div></blockquote>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A DataFrame containing the fetched meta data for the generic assay in the specified molecular profile.</p>
+</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pandas.DataFrame</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing the fetched meta data for the generic assay in the specified molecular profile.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2033,45 +2039,45 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="pyBioGate.mutations.fetch_muts_in_multiple_mol_profs">
 <span class="sig-name descname"><span class="pre">fetch_muts_in_multiple_mol_profs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entrez_gene_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molecular_profile_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_molecular_identifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.mutations.fetch_muts_in_multiple_mol_profs" title="Link to this definition">#</a></dt>
-<dd><p>Fetch mutations in multiple molecular profiles by sample IDs.
-:param entrez_gene_ids: List of Entrez Gene IDs (e.g. [“672”,”675”]).
-:type entrez_gene_ids: list of str
-:param molecular_profile_ids: List of Molecular Profile IDs (e.g. [“brca_tcga_mutations”, “acc_tcga_mutations”]).
-:type molecular_profile_ids: list of str
-:param sample_molecular_identifiers: List of Molecular Profile ID / Sample ID pairs.
-:type sample_molecular_identifiers: list of dict</p>
-<blockquote>
-<div><dl>
-<dt>Each dict should have the following format:</dt><dd><dl>
-<dt>sample_molecular_identifiers=[</dt><dd><dl class="simple">
-<dt>{“molecular_profile_id”: “brca_tcga_mutations”, </dt><dd><p>“sample_ids”: [“TCGA-A2-A4S0-01”,”TCGA-E2-A1L9-01”]},</p>
-</dd>
-<dt>{“molecular_profile_id”: “acc_tcga_mutations”, </dt><dd><p>“sample_ids”: [“TCGA-OR-A5LE-01”]}</p>
-</dd>
-</dl>
-<p>]</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
+<dd><p>Fetch mutations in multiple molecular profiles by sample IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>projection</strong> (<em>str</em>) – Level of detail of the response.
-- “DETAILED”: Detailed information.
-- “ID”: Information with only IDs.
-- “META”: Metadata information.
-- “SUMMARY”: Summary information (default).</p></li>
-<li><p><strong>direction</strong> (<em>str</em>) – Direction of the sort.
-- “ASC”: Ascending (default).
-- “DESC”: Descending.</p></li>
-<li><p><strong>pageNumber</strong> (<em>int</em>) – Page number of the result list.
-- Minimum value is 0.</p></li>
-<li><p><strong>pageSize</strong> (<em>int</em>) – Page size of the result list.
-- Minimum value is 1, maximum value is 10000000.</p></li>
-<li><p><strong>sortBy</strong> (<em>str</em>) – <p>Name of the property that the result list is sorted by.
-Possible values:</p>
+<li><p><strong>entrez_gene_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Entrez Gene IDs (e.g. [“672”,”675”]).</p></li>
+<li><p><strong>molecular_profile_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Molecular Profile IDs (e.g. [“brca_tcga_mutations”, “acc_tcga_mutations”]).</p></li>
+<li><p><strong>sample_molecular_identifiers</strong> – List of Molecular Profile ID / Sample ID pairs.</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>direction</strong> (<em>str</em>) – <p>Direction of the sort.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”ASC”: Ascending (default).</p></li>
+<li><p>”DESC”: Descending.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>pageNumber</strong> (<em>int</em>) – <p>Page number of the result list.</p>
+<ul>
+<li><p>Minimum value is 0.</p></li>
+</ul>
+</p></li>
+<li><p><strong>pageSize</strong> (<em>int</em>) – <p>Page size of the result list.</p>
+<ul>
+<li><p>Minimum value is 1, maximum value is 10000000.</p></li>
+</ul>
+</p></li>
+<li><p><strong>sortBy</strong> (<em>str</em>) – <p>Name of the property that the result list is sorted by.</p>
+<p>Possible values:</p>
 <blockquote>
 <div><ul>
 <li><p>”aminoAcidChange”</p></li>
@@ -3113,7 +3119,7 @@ Possible values:</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pyBioGate package modules</p>
+        <p class="prev-next-title">pyBioGate modules</p>
       </div>
     </a>
 </div>
