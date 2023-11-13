@@ -24,3 +24,4 @@ cBioPortal resources for their research and bioinformatic analysis projects.
    :hidden:
 
    modules
+   CancerTypes_Notebook.ipynb
