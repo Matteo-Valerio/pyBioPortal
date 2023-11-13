@@ -33,6 +33,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
 
+html_css_files = [
+    'custom.css',
+]
+
 html_theme_options = {
     #"icon_links_label": "Quick Links",
     "icon_links": [
@@ -49,10 +53,11 @@ html_theme_options = {
             # The default for `type` is `fontawesome` so it is not actually required in any of the above examples as it is shown here
         },
     ],
-    "show_prev_next": False,
+    "show_prev_next": True,
     "external_links": [
       {"name": "cBioPortal", "url": "https://www.cbioportal.org/"},
       {"name": "cBioPortal API", "url": "https://www.cbioportal.org/api/swagger-ui/index.html"}
     ],
-    "primary_sidebar_end": ["indices.html", "sidebar-ethical-ads.html"]
+    "footer_start": ["copyright", "sphinx-version"],
+    "footer_end": ["theme-version"]
 }

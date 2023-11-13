@@ -1,7 +1,3 @@
-"""
-This module provides functions related to Cancer Types.
-
-"""
 import requests
 from .config import base_url
 from .aux_funcs import process_response

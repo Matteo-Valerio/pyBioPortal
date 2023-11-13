@@ -1,5 +1,8 @@
-sample_lists
+Sample Lists
 ============
+
+The module ``sample_lists`` provides functions related to *Sample Lists* section of 
+`cBioPortal Web Public API <https://www.cbioportal.org/api/swagger-ui/index.html>`__.
 
 .. automodule:: pyBioGate.sample_lists
    :members:
