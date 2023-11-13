@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .aux_funcs import process_response
+from .__aux_funcs import process_response
 
 ################
 # Sample Lists #
