@@ -1,6 +1,7 @@
+pyBioGate modules
+=================
 
-
-pyBioGate.cancer\_types 
+cancer\_types 
 ------------------------------
 
 .. automodule:: pyBioGate.cancer_types
@@ -8,7 +9,7 @@ pyBioGate.cancer\_types
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.clinical\_attributes 
+clinical\_attributes 
 -------------------------------------
 
 .. automodule:: pyBioGate.clinical_attributes
@@ -16,7 +17,7 @@ pyBioGate.clinical\_attributes
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.clinical\_data 
+clinical\_data 
 -------------------------------
 
 .. automodule:: pyBioGate.clinical_data
@@ -24,7 +25,7 @@ pyBioGate.clinical\_data
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.config 
+config 
 -----------------------
 
 .. automodule:: pyBioGate.config
@@ -32,7 +33,7 @@ pyBioGate.config
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.copy\_number\_segment 
+copy\_number\_segment 
 --------------------------------------
 
 .. automodule:: pyBioGate.copy_number_segment
@@ -40,7 +41,7 @@ pyBioGate.copy\_number\_segment
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.discrete\_copy\_number\_alterations 
+discrete\_copy\_number\_alterations 
 ----------------------------------------------------
 
 .. automodule:: pyBioGate.discrete_copy_number_alterations
@@ -48,7 +49,7 @@ pyBioGate.discrete\_copy\_number\_alterations
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.gene\_panel\_data 
+gene\_panel\_data 
 ----------------------------------
 
 .. automodule:: pyBioGate.gene_panel_data
@@ -56,7 +57,7 @@ pyBioGate.gene\_panel\_data
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.gene\_panels 
+gene\_panels 
 -----------------------------
 
 .. automodule:: pyBioGate.gene_panels
@@ -64,7 +65,7 @@ pyBioGate.gene\_panels
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.generic\_assay\_data 
+generic\_assay\_data 
 -------------------------------------
 
 .. automodule:: pyBioGate.generic_assay_data
@@ -72,7 +73,7 @@ pyBioGate.generic\_assay\_data
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.generic\_assays 
+generic\_assays 
 --------------------------------
 
 .. automodule:: pyBioGate.generic_assays
@@ -80,7 +81,7 @@ pyBioGate.generic\_assays
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.genes 
+genes 
 ----------------------
 
 .. automodule:: pyBioGate.genes
@@ -88,7 +89,7 @@ pyBioGate.genes
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.info 
+info 
 ---------------------
 
 .. automodule:: pyBioGate.info
@@ -96,7 +97,7 @@ pyBioGate.info
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.molecular\_data 
+molecular\_data 
 --------------------------------
 
 .. automodule:: pyBioGate.molecular_data
@@ -104,7 +105,7 @@ pyBioGate.molecular\_data
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.molecular\_profiles 
+molecular\_profiles 
 ------------------------------------
 
 .. automodule:: pyBioGate.molecular_profiles
@@ -112,7 +113,7 @@ pyBioGate.molecular\_profiles
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.mutations 
+mutations 
 --------------------------
 
 .. automodule:: pyBioGate.mutations
@@ -120,7 +121,7 @@ pyBioGate.mutations
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.patients 
+patients 
 -------------------------
 
 .. automodule:: pyBioGate.patients
@@ -128,7 +129,7 @@ pyBioGate.patients
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.sample\_lists 
+sample\_lists 
 ------------------------------
 
 .. automodule:: pyBioGate.sample_lists
@@ -136,7 +137,7 @@ pyBioGate.sample\_lists
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.samples 
+samples 
 ------------------------
 
 .. automodule:: pyBioGate.samples
@@ -144,7 +145,7 @@ pyBioGate.samples
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.server\_running\_status 
+server\_running\_status 
 ----------------------------------------
 
 .. automodule:: pyBioGate.server_running_status
@@ -152,7 +153,7 @@ pyBioGate.server\_running\_status
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.studies 
+studies 
 ------------------------
 
 .. automodule:: pyBioGate.studies
@@ -160,7 +161,7 @@ pyBioGate.studies
    :undoc-members:
    :show-inheritance:
 
-pyBioGate.treatments 
+treatments 
 ---------------------------
 
 .. automodule:: pyBioGate.treatments

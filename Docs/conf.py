@@ -8,8 +8,8 @@
 
 import os
 import sys
-
 sys.path.insert(0, os.path.abspath(".."))
+
 
 project = 'pyBioGate'
 copyright = '2023, Matteo Valerio'
@@ -20,7 +20,7 @@ release = '1.0.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["sphinx.ext.autodoc"]
-add_module_names = False
+#add_module_names = False
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -33,6 +33,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
 
+html_css_files = [
+    'css/custom.css',
+]
+
 html_theme_options = {
     #"icon_links_label": "Quick Links",
     "icon_links": [
@@ -41,12 +45,22 @@ html_theme_options = {
             "url": "https://github.com/<your-org>/<your-repo>",
             "icon": "fab fa-github-square",
             "type": "fontawesome",
-        },
-        {
-            "name": "Twitter",
-            "url": "https://twitter.com/<your-handle>",
-            "icon": "fab fa-twitter-square",
-            # The default for `type` is `fontawesome` so it is not actually required in any of the above examples as it is shown here
-        },
-    ]
+        }
+        # {
+        #     "name": "Twitter",
+        #     "url": "https://twitter.com/<your-handle>",
+        #     "icon": "fab fa-twitter-square",
+        #     # The default for `type` is `fontawesome` so it is not actually required in any of the above examples as it is shown here
+        # },
+    ],
+    "show_prev_next": True,
+    "external_links": [
+      {"name": "cBioPortal", "url": "https://www.cbioportal.org/"},
+      {"name": "cBioPortal API", "url": "https://www.cbioportal.org/api/swagger-ui/index.html"}
+    ],
+    "footer_start": ["copyright"],
+    "footer_center": ["sphinx-version"],
+    "footer_end": ["theme-version"]
 }
+
+
