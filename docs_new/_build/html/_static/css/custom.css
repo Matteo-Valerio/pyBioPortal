@@ -1,3 +1,3 @@
-.footer-items__start, .footer-items__end {
+div.footer-items__start {
     flex-direction: row;
   }
