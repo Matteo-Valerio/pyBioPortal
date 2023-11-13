@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-#############
-# Mutations #
-#############
 def get_muts_in_mol_prof_by_sample_list_id(molecular_profile_id, sample_list_id, entrez_gene_id=None, 
                                            projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """

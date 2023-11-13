@@ -1,6 +1,6 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
 def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """

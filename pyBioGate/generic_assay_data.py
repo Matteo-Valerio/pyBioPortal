@@ -1,10 +1,6 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
-
-######################
-# Generic Assay Data #
-######################
+from .__config import base_url
+from .__aux_funcs import process_response
 
 def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_ids=None, 
                                                   sample_ids=None, sample_list_id=None, projection="SUMMARY"):

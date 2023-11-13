@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-#########################
-# Server running status #
-#########################
 def get_server_status():
     """
     Get the running status of the server. \n

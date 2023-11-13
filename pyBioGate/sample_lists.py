@@ -1,5 +1,5 @@
 import requests
-from .config import base_url
+from .__config import base_url
 from .aux_funcs import process_response
 
 ################

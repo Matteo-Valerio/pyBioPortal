@@ -1,11 +1,8 @@
 
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-#########
-# Genes #
-#########
 def get_all_genes(alias=None, direction="ASC", keyword=None, pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="hugoGeneSymbol"):
     """
     Get all genes based on filter criteria (alias or keyword). \n

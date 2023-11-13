@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-##################
-# Molecular Data #
-##################
 def fetch_molecular_data(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, projection="SUMMARY"):
     """
     Fetch molecular data. \n

@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-###################
-# Gene Panel Data #
-###################
 def fetch_gene_panel_data(molecular_profile_ids=None, molecular_prof_sample_ids=None):
     """
     Fetch gene panel data from BioPortal. \n

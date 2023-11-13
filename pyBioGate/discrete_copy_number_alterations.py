@@ -1,10 +1,6 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
-
-####################################
-# Discrete Copy Number Alterations #
-####################################
+from .__config import base_url
+from .__aux_funcs import process_response
 
 def get_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, sample_list_id, discrete_cn_evt_type="HOMDEL_AND_AMP", projection="SUMMARY"):
     """

@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-##############
-# Treatments #
-##############
 def fetch_status_display_patient_trts(study_ids, tier="Agent"):
     """
     Check if patient level treatments should be displayed. \n

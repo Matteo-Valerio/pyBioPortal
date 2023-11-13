@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-############
-# Patients #
-############
 def get_all_patients(projection="SUMMARY", direction="ASC", keyword=None, pageNumber=0, pageSize=10000000, sortBy=None):
     """
     Get all patients. \n

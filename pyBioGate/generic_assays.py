@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-##################
-# Generic Assays #
-##################
 def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_ids=None, projection="SUMMARY"):
     """
     Fetch meta data for generic assays based on a filter. \n

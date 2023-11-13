@@ -1,10 +1,7 @@
 import requests
-from .config import base_url
-from .aux_funcs import process_response
+from .__config import base_url
+from .__aux_funcs import process_response
 
-########################
-# Copy Number Segments #
-########################
 def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SUMMARY"):
     """
     Fetch copy number segments from BioPortal by sample ID. \n
