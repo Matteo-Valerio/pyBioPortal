@@ -1,0 +1,12 @@
+.dataframe {
+    font-size: 9pt !important;
+}
+
+.dataframe thead tr th {
+    text-align: left !important;
+ }
+
+ .dataframe th,
+ .dataframe td {
+     padding: 6px !important;
+ }

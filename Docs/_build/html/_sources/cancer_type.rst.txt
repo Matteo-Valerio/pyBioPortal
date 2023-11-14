@@ -8,3 +8,5 @@ The module ``cancer_types`` provides functions related to *Cancer Types* section
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: cancer_types_nb.rst

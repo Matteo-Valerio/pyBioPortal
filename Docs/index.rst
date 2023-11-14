@@ -18,10 +18,11 @@ It allows users to easily query the cBioPortal public API and retrieve the data 
 It is an essential tool for researchers and biological data analysts who wish to access and leverage 
 cBioPortal resources for their research and bioinformatic analysis projects.
 
+
 .. toctree::
    :maxdepth: 2   
    :caption: Modules
    :hidden:
 
-   modules
-   CancerTypes_Notebook.ipynb
+   modules   
+   cancer_types_nb
