@@ -8,3 +8,5 @@ The module ``treatments`` provides functions related to *Treatments* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: treatments_nb.rst

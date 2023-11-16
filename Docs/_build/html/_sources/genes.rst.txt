@@ -8,3 +8,5 @@ The module ``genes`` provides functions related to *Genes* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: genes_nb.rst

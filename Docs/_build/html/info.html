@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Info &#8212; pyBioGate 1.0.0 documentation</title>
   
@@ -29,7 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css?v=3a2e6387" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
@@ -144,8 +144,8 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -268,8 +268,8 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -332,8 +332,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cancer_type.html">Cancer Types</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
@@ -428,6 +427,81 @@ document.write(`
 </dl>
 </dd></dl>
 
+<hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioGate.info</span> <span class="kn">import</span> <span class="n">get_info</span>
+<span class="n">get_info</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>portalVersion</th>
+      <th>dbVersion</th>
+      <th>gitBranch</th>
+      <th>gitCommitId</th>
+      <th>gitCommitIdDescribe</th>
+      <th>gitCommitIdDescribeShort</th>
+      <th>gitCommitMessageFull</th>
+      <th>gitCommitMessageShort</th>
+      <th>gitCommitMessageUserEmail</th>
+      <th>gitCommitMessageUserName</th>
+      <th>gitDirty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.4.7-dirty-SNAPSHOT</td>
+      <td>2.13.1</td>
+      <td>d4b06559c81a99911d620107113b2acf0e40523e</td>
+      <td>d4b06559c81a99911d620107113b2acf0e40523e</td>
+      <td>v5.4.7-dirty</td>
+      <td>v5.4.7-dirty</td>
+      <td>Merge pull request #10453 from cBioPortal/fron...</td>
+      <td>Merge pull request #10453 from cBioPortal/fron...</td>
+      <td>15748980+dippindots@users.noreply.github.com</td>
+      <td>Gaofei Zhao</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">portalVersion</span><span class="p">:</span> <span class="mf">5.4.7</span><span class="o">-</span><span class="n">dirty</span><span class="o">-</span><span class="n">SNAPSHOT</span>
+<span class="n">dbVersion</span><span class="p">:</span> <span class="mf">2.13.1</span>
+<span class="n">gitBranch</span><span class="p">:</span> <span class="n">d4b06559c81a99911d620107113b2acf0e40523e</span>
+<span class="n">gitCommitId</span><span class="p">:</span> <span class="n">d4b06559c81a99911d620107113b2acf0e40523e</span>
+<span class="n">gitCommitIdDescribe</span><span class="p">:</span> <span class="n">v5</span><span class="mf">.4.7</span><span class="o">-</span><span class="n">dirty</span>
+<span class="n">gitCommitIdDescribeShort</span><span class="p">:</span> <span class="n">v5</span><span class="mf">.4.7</span><span class="o">-</span><span class="n">dirty</span>
+<span class="n">gitCommitMessageFull</span><span class="p">:</span> <span class="n">Merge</span> <span class="n">pull</span> <span class="n">request</span> <span class="c1">#10453 from cBioPortal/front...</span>
+<span class="n">gitCommitMessageShort</span><span class="p">:</span> <span class="n">Merge</span> <span class="n">pull</span> <span class="n">request</span> <span class="c1">#10453 from cBioPortal/front...</span>
+<span class="n">gitCommitMessageUserEmail</span><span class="p">:</span> <span class="mi">15748980</span><span class="o">+</span><span class="n">dippindots</span><span class="nd">@users</span><span class="o">.</span><span class="n">noreply</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
+<span class="n">gitCommitMessageUserName</span><span class="p">:</span> <span class="n">Gaofei</span> <span class="n">Zhao</span>
+<span class="n">gitDirty</span><span class="p">:</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -474,6 +548,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.info.get_info"><code class="docutils literal notranslate"><span class="pre">get_info()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

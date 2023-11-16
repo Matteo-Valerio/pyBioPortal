@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Molecular Data &#8212; pyBioGate 1.0.0 documentation</title>
   
@@ -29,7 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css?v=3a2e6387" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
@@ -144,8 +144,8 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -268,8 +268,8 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -332,8 +332,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cancer_type.html">Cancer Types</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
@@ -511,6 +510,486 @@ document.write(`
 </dl>
 </dd></dl>
 
+<hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioGate</span> <span class="kn">import</span> <span class="n">molecular_data</span> <span class="k">as</span> <span class="n">md</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">fetch_molecular_data</span><span class="p">(</span><span class="n">entrez_gene_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;672&quot;</span><span class="p">,</span><span class="s2">&quot;675&quot;</span><span class="p">],</span>
+                               <span class="n">molecular_profile_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;brca_tcga_mrna&quot;</span><span class="p">,</span> <span class="s2">&quot;acc_tcga_rna_seq_v2_mrna&quot;</span><span class="p">])</span>
+<span class="n">df1a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>entrezGeneId</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1PUi1BNUoxLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>672</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J1-01</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>40.345800</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1PUi1BNUoxLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>675</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J1-01</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>15.850100</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1PUi1BNUoyLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUoyOmFjY190Y2dh</td>
+      <td>672</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J2-01</td>
+      <td>TCGA-OR-A5J2</td>
+      <td>acc_tcga</td>
+      <td>177.560000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1PUi1BNUoyLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUoyOmFjY190Y2dh</td>
+      <td>675</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J2-01</td>
+      <td>TCGA-OR-A5J2</td>
+      <td>acc_tcga</td>
+      <td>29.392000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1PUi1BNUozLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUozOmFjY190Y2dh</td>
+      <td>672</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J3-01</td>
+      <td>TCGA-OR-A5J3</td>
+      <td>acc_tcga</td>
+      <td>47.992900</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1211</th>
+      <td>VENHQS1FMi1BMTVBLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVBOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-E2-A15A-06</td>
+      <td>TCGA-E2-A15A</td>
+      <td>brca_tcga</td>
+      <td>-1.171750</td>
+    </tr>
+    <tr>
+      <th>1212</th>
+      <td>VENHQS1FMi1BMTVLLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVLOmJyY2FfdGNnYQ</td>
+      <td>672</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-E2-A15K-06</td>
+      <td>TCGA-E2-A15K</td>
+      <td>brca_tcga</td>
+      <td>-0.918167</td>
+    </tr>
+    <tr>
+      <th>1213</th>
+      <td>VENHQS1FMi1BMTVLLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVLOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-E2-A15K-06</td>
+      <td>TCGA-E2-A15K</td>
+      <td>brca_tcga</td>
+      <td>-0.193000</td>
+    </tr>
+    <tr>
+      <th>1214</th>
+      <td>VENHQS1FMi1BMTVFLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVFOmJyY2FfdGNnYQ</td>
+      <td>672</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-E2-A15E-06</td>
+      <td>TCGA-E2-A15E</td>
+      <td>brca_tcga</td>
+      <td>-1.898417</td>
+    </tr>
+    <tr>
+      <th>1215</th>
+      <td>VENHQS1FMi1BMTVFLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVFOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-E2-A15E-06</td>
+      <td>TCGA-E2-A15E</td>
+      <td>brca_tcga</td>
+      <td>-2.228000</td>
+    </tr>
+  </tbody>
+</table>
+<p>1216 rows × 8 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1b</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">fetch_molecular_data</span><span class="p">(</span><span class="n">entrez_gene_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;672&quot;</span><span class="p">,</span><span class="s2">&quot;675&quot;</span><span class="p">],</span>
+                               <span class="n">sample_molecular_identifiers</span><span class="o">=</span><span class="p">[</span>
+                                         <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga_mrna&quot;</span><span class="p">,</span>
+                                          <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-AR-A1AR-01&quot;</span><span class="p">,</span><span class="s2">&quot;TCGA-BH-A1EO-01&quot;</span><span class="p">]},</span>
+                                         <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;acc_tcga_rna_seq_v2_mrna&quot;</span><span class="p">,</span>
+                                          <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-OR-A5J1-01&quot;</span><span class="p">,</span><span class="s2">&quot;TCGA-OR-A5J2&quot;</span><span class="p">]}</span>
+                                         <span class="p">])</span>
+<span class="n">df1b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>entrezGeneId</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>672</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>-1.224333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>0.027250</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1CSC1BMUVPLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVPOmJyY2FfdGNnYQ</td>
+      <td>672</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-BH-A1EO-01</td>
+      <td>TCGA-BH-A1EO</td>
+      <td>brca_tcga</td>
+      <td>-1.739417</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1CSC1BMUVPLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVPOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_mrna</td>
+      <td>TCGA-BH-A1EO-01</td>
+      <td>TCGA-BH-A1EO</td>
+      <td>brca_tcga</td>
+      <td>-1.380500</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1PUi1BNUoxLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>672</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J1-01</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>40.345800</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>VENHQS1PUi1BNUoxLTAxOmFjY190Y2dh</td>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>675</td>
+      <td>acc_tcga_rna_seq_v2_mrna</td>
+      <td>TCGA-OR-A5J1-01</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>15.850100</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">get_all_molecular_data_in_molecular_profile</span><span class="p">(</span><span class="n">molecular_profile_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga_rppa&quot;</span><span class="p">,</span>
+                                                     <span class="n">sample_list_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga_all&quot;</span><span class="p">,</span>
+                                                     <span class="n">entrez_gene_id</span><span class="o">=</span><span class="s2">&quot;675&quot;</span><span class="p">)</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>entrezGeneId</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS0zQy1BQUxJLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS0zQy1BQUxJOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-3C-AALI-01</td>
+      <td>TCGA-3C-AALI</td>
+      <td>brca_tcga</td>
+      <td>-0.181730</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS0zQy1BQUxLLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS0zQy1BQUxLOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-3C-AALK-01</td>
+      <td>TCGA-3C-AALK</td>
+      <td>brca_tcga</td>
+      <td>-0.366790</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS00SC1BQUFLLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS00SC1BQUFLOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-4H-AAAK-01</td>
+      <td>TCGA-4H-AAAK</td>
+      <td>brca_tcga</td>
+      <td>-0.108050</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS01TC1BQVQxLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS01TC1BQVQxOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-5L-AAT1-01</td>
+      <td>TCGA-5L-AAT1</td>
+      <td>brca_tcga</td>
+      <td>-0.785290</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS01VC1BOVFBLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-5T-A9QA-01</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>-0.469280</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>VENHQS1XOC1BODZHLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1XOC1BODZHOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-W8-A86G-01</td>
+      <td>TCGA-W8-A86G</td>
+      <td>brca_tcga</td>
+      <td>-0.083261</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>VENHQS1XVC1BQjQxLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1XVC1BQjQxOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-WT-AB41-01</td>
+      <td>TCGA-WT-AB41</td>
+      <td>brca_tcga</td>
+      <td>-0.386950</td>
+    </tr>
+    <tr>
+      <th>889</th>
+      <td>VENHQS1YWC1BODk5LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1YWC1BODk5OmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-XX-A899-01</td>
+      <td>TCGA-XX-A899</td>
+      <td>brca_tcga</td>
+      <td>-0.472410</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>VENHQS1aNy1BOFI1LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1aNy1BOFI1OmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-Z7-A8R5-01</td>
+      <td>TCGA-Z7-A8R5</td>
+      <td>brca_tcga</td>
+      <td>-0.458130</td>
+    </tr>
+    <tr>
+      <th>891</th>
+      <td>VENHQS1aNy1BOFI2LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1aNy1BOFI2OmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-Z7-A8R6-01</td>
+      <td>TCGA-Z7-A8R6</td>
+      <td>brca_tcga</td>
+      <td>-0.382420</td>
+    </tr>
+  </tbody>
+</table>
+<p>892 rows × 8 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">fetch_all_molecular_data_in_molecular_profile</span><span class="p">(</span><span class="n">molecular_profile_id</span> <span class="o">=</span> <span class="s2">&quot;brca_tcga_rppa&quot;</span><span class="p">,</span>
+                                                       <span class="n">entrez_gene_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;672&quot;</span><span class="p">,</span><span class="s2">&quot;675&quot;</span><span class="p">],</span>
+                                                       <span class="n">sample_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TCGA-AR-A1AR-01&quot;</span><span class="p">,</span><span class="s2">&quot;TCGA-BH-A1EO-01&quot;</span><span class="p">])</span>
+<span class="n">df3</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>entrezGeneId</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1CSC1BMUVPLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVPOmJyY2FfdGNnYQ</td>
+      <td>675</td>
+      <td>brca_tcga_rppa</td>
+      <td>TCGA-BH-A1EO-01</td>
+      <td>TCGA-BH-A1EO</td>
+      <td>brca_tcga</td>
+      <td>-0.40763</td>
+    </tr>
+  </tbody>
+</table>
+</div></section>
 </section>
 
 
@@ -559,6 +1038,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.molecular_data.fetch_all_molecular_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_all_molecular_data_in_molecular_profile()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.molecular_data.fetch_molecular_data"><code class="docutils literal notranslate"><span class="pre">fetch_molecular_data()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.molecular_data.get_all_molecular_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">get_all_molecular_data_in_molecular_profile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

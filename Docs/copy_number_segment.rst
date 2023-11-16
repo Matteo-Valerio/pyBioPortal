@@ -8,3 +8,5 @@ The module ``copy_number_segment`` provides functions related to *Copy Number Se
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: copy_number_segment_nb.rst

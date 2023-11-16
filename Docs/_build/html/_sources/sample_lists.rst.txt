@@ -8,3 +8,5 @@ The module ``sample_lists`` provides functions related to *Sample Lists* section
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: sample_lists_nb.rst

@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Gene Panels &#8212; pyBioGate 1.0.0 documentation</title>
   
@@ -29,7 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css?v=3a2e6387" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
@@ -144,8 +144,8 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -268,8 +268,8 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -332,8 +332,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cancer_type.html">Cancer Types</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
@@ -510,6 +509,304 @@ document.write(`
 </dl>
 </dd></dl>
 
+<hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioGate</span> <span class="kn">import</span> <span class="n">gene_panels</span> <span class="k">as</span> <span class="n">gp</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">get_all_gene_panels</span><span class="p">()</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>description</th>
+      <th>genePanelId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Targeted (27 cancer genes) sequencing of adeno...</td>
+      <td>ACYC_FMI_27</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Targeted panel of 232 genes.</td>
+      <td>Agilent</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Targeted panel of 8 genes.</td>
+      <td>AmpliSeq</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARCHER-HEME gene panel (199 genes)</td>
+      <td>ARCHER-HEME-CV1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARCHER-SOLID Gene Panel (62 genes)</td>
+      <td>ARCHER-SOLID-CV1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Targeted sequencing of various tumor types via...</td>
+      <td>bait_v3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Targeted sequencing of various tumor types via...</td>
+      <td>bait_v4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Targeted sequencing of various tumor types via...</td>
+      <td>bait_v5</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Targeted panel of 387 cancer-related genes.</td>
+      <td>bcc_unige_2016_cancer_panel</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Research (CMO) IMPACT-Heme gene panel version 3.</td>
+      <td>HemePACT_v3</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">get_gene_panel</span><span class="p">(</span><span class="s2">&quot;NSCLC_UNITO_2016_PANEL&quot;</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>description</th>
+      <th>genePanelId</th>
+      <th>entrezGeneId</th>
+      <th>hugoGeneSymbol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>25</td>
+      <td>ABL1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>207</td>
+      <td>AKT1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>324</td>
+      <td>APC</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>472</td>
+      <td>ATM</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>673</td>
+      <td>BRAF</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>999</td>
+      <td>CDH1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>1029</td>
+      <td>CDKN2A</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>1956</td>
+      <td>EGFR</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>2064</td>
+      <td>ERBB2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>2066</td>
+      <td>ERBB4</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">fetch_gene_panels</span><span class="p">(</span><span class="n">gene_panel_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NSCLC_UNITO_2016_PANEL&quot;</span><span class="p">,</span> <span class="s2">&quot;bcc_unige_2016_cancer_panel&quot;</span><span class="p">],</span>
+                           <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;DETAILED&quot;</span><span class="p">)</span>
+<span class="n">df3</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>description</th>
+      <th>genePanelId</th>
+      <th>entrezGeneId</th>
+      <th>hugoGeneSymbol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Targeted panel of 387 cancer-related genes.</td>
+      <td>bcc_unige_2016_cancer_panel</td>
+      <td>25</td>
+      <td>ABL1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Targeted panel of 387 cancer-related genes.</td>
+      <td>bcc_unige_2016_cancer_panel</td>
+      <td>56</td>
+      <td>ACRV1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Targeted panel of 387 cancer-related genes.</td>
+      <td>bcc_unige_2016_cancer_panel</td>
+      <td>2181</td>
+      <td>ACSL3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Targeted panel of 387 cancer-related genes.</td>
+      <td>bcc_unige_2016_cancer_panel</td>
+      <td>91</td>
+      <td>ACVR1B</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Targeted panel of 387 cancer-related genes.</td>
+      <td>bcc_unige_2016_cancer_panel</td>
+      <td>92</td>
+      <td>ACVR2A</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>409</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>4089</td>
+      <td>SMAD4</td>
+    </tr>
+    <tr>
+      <th>410</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>6608</td>
+      <td>SMO</td>
+    </tr>
+    <tr>
+      <th>411</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>6794</td>
+      <td>STK11</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>7157</td>
+      <td>TP53</td>
+    </tr>
+    <tr>
+      <th>413</th>
+      <td>Targeted NGS of NSCLC Samples.</td>
+      <td>NSCLC_UNITO_2016_PANEL</td>
+      <td>7428</td>
+      <td>VHL</td>
+    </tr>
+  </tbody>
+</table>
+<p>414 rows × 4 columns</p>
+</div></section>
 </section>
 
 
@@ -558,6 +855,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.gene_panels.fetch_gene_panels"><code class="docutils literal notranslate"><span class="pre">fetch_gene_panels()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.gene_panels.get_all_gene_panels"><code class="docutils literal notranslate"><span class="pre">get_all_gene_panels()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.gene_panels.get_gene_panel"><code class="docutils literal notranslate"><span class="pre">get_gene_panel()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

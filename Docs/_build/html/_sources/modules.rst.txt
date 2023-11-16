@@ -12,7 +12,7 @@ with the prefixes ``get`` or ``fetch`` respectively.
 .. toctree::
    :maxdepth: 4
 
-   cancer_type
+   cancer_types
    clinical_attributes
    clinical_data
    copy_number_segment

@@ -8,3 +8,5 @@ The module ``info`` provides functions related to *Info* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: info_nb.rst

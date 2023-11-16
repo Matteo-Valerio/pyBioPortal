@@ -8,3 +8,5 @@ The module ``patients`` provides functions related to *Patients* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: patients_nb.rst

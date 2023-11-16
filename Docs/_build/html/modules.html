@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Modules &#8212; pyBioGate 1.0.0 documentation</title>
   
@@ -43,7 +43,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Cancer Types" href="cancer_type.html" />
+    <link rel="next" title="Cancer Types" href="cancer_types.html" />
     <link rel="prev" title="pyBioGate documentation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -332,7 +332,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cancer_type.html">Cancer Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
@@ -416,10 +416,10 @@ specification, to make clear the type of GET or POST request made by naming func
 with the prefixes <code class="docutils literal notranslate"><span class="pre">get</span></code> or <code class="docutils literal notranslate"><span class="pre">fetch</span></code> respectively.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cancer_type.html">Cancer Types</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cancer_type.html#pyBioGate.cancer_types.get_all_cancer_types"><code class="docutils literal notranslate"><span class="pre">get_all_cancer_types()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="cancer_type.html#pyBioGate.cancer_types.get_cancer_type"><code class="docutils literal notranslate"><span class="pre">get_cancer_type()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="cancer_type.html#examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cancer_types.html#pyBioGate.cancer_types.get_all_cancer_types"><code class="docutils literal notranslate"><span class="pre">get_all_cancer_types()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cancer_types.html#pyBioGate.cancer_types.get_cancer_type"><code class="docutils literal notranslate"><span class="pre">get_cancer_type()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cancer_types.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a><ul>
@@ -427,6 +427,7 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="clinical_attributes.html#pyBioGate.clinical_attributes.get_all_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="clinical_attributes.html#pyBioGate.clinical_attributes.get_all_clinical_attributes_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="clinical_attributes.html#pyBioGate.clinical_attributes.get_clinical_attribute_in_study"><code class="docutils literal notranslate"><span class="pre">get_clinical_attribute_in_study()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clinical_attributes.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a><ul>
@@ -435,39 +436,46 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="clinical_data.html#pyBioGate.clinical_data.get_all_clinical_data_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_data_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="clinical_data.html#pyBioGate.clinical_data.get_all_clinical_data_of_patient_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_data_of_patient_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="clinical_data.html#pyBioGate.clinical_data.get_all_clinical_data_of_sample_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_data_of_sample_in_study()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="clinical_data.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="copy_number_segment.html#pyBioGate.copy_number_segment.fetch_copy_number_segments"><code class="docutils literal notranslate"><span class="pre">fetch_copy_number_segments()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="copy_number_segment.html#pyBioGate.copy_number_segment.get_copy_number_segments_in_sample_in_study"><code class="docutils literal notranslate"><span class="pre">get_copy_number_segments_in_sample_in_study()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="copy_number_segment.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="discrete_copy_number_alterations.html">Discrete Copy Number Alterations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="discrete_copy_number_alterations.html#pyBioGate.discrete_copy_number_alterations.fetch_discrete_copy_numbers_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_discrete_copy_numbers_in_molecular_profile()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="discrete_copy_number_alterations.html#pyBioGate.discrete_copy_number_alterations.get_discrete_copy_numbers_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">get_discrete_copy_numbers_in_molecular_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="discrete_copy_number_alterations.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gene_panel_data.html">Gene Panel Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gene_panel_data.html#pyBioGate.gene_panel_data.fetch_gene_panel_data"><code class="docutils literal notranslate"><span class="pre">fetch_gene_panel_data()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="gene_panel_data.html#pyBioGate.gene_panel_data.fetch_gene_panel_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_gene_panel_data_in_molecular_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gene_panel_data.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gene_panels.html">Gene Panels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gene_panels.html#pyBioGate.gene_panels.fetch_gene_panels"><code class="docutils literal notranslate"><span class="pre">fetch_gene_panels()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="gene_panels.html#pyBioGate.gene_panels.get_all_gene_panels"><code class="docutils literal notranslate"><span class="pre">get_all_gene_panels()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="gene_panels.html#pyBioGate.gene_panels.get_gene_panel"><code class="docutils literal notranslate"><span class="pre">get_gene_panel()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gene_panels.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="generic_assay_data.html">Generic Assay Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="generic_assay_data.html#pyBioGate.generic_assay_data.fetch_generic_assay_data"><code class="docutils literal notranslate"><span class="pre">fetch_generic_assay_data()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="generic_assay_data.html#pyBioGate.generic_assay_data.fetch_generic_assay_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_generic_assay_data_in_molecular_profile()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="generic_assay_data.html#pyBioGate.generic_assay_data.get_generic_assay_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">get_generic_assay_data_in_molecular_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic_assay_data.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="generic_assays.html">Generic Assays</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="generic_assays.html#pyBioGate.generic_assays.fetch_generic_assay_meta"><code class="docutils literal notranslate"><span class="pre">fetch_generic_assay_meta()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="generic_assays.html#pyBioGate.generic_assays.get_generic_assay_meta_by_id"><code class="docutils literal notranslate"><span class="pre">get_generic_assay_meta_by_id()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="generic_assays.html#pyBioGate.generic_assays.get_generic_assay_meta_by_molecular_profile_id"><code class="docutils literal notranslate"><span class="pre">get_generic_assay_meta_by_molecular_profile_id()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic_assays.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="genes.html">Genes</a><ul>
@@ -475,16 +483,19 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="genes.html#pyBioGate.genes.get_aliases_of_gene"><code class="docutils literal notranslate"><span class="pre">get_aliases_of_gene()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="genes.html#pyBioGate.genes.get_all_genes"><code class="docutils literal notranslate"><span class="pre">get_all_genes()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="genes.html#pyBioGate.genes.get_gene"><code class="docutils literal notranslate"><span class="pre">get_gene()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="genes.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="info.html">Info</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="info.html#pyBioGate.info.get_info"><code class="docutils literal notranslate"><span class="pre">get_info()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="molecular_data.html">Molecular Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="molecular_data.html#pyBioGate.molecular_data.fetch_all_molecular_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_all_molecular_data_in_molecular_profile()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="molecular_data.html#pyBioGate.molecular_data.fetch_molecular_data"><code class="docutils literal notranslate"><span class="pre">fetch_molecular_data()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="molecular_data.html#pyBioGate.molecular_data.get_all_molecular_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">get_all_molecular_data_in_molecular_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_data.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="molecular_profiles.html">Molecular Profiles</a><ul>
@@ -492,12 +503,14 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="molecular_profiles.html#pyBioGate.molecular_profiles.get_all_molecular_profiles"><code class="docutils literal notranslate"><span class="pre">get_all_molecular_profiles()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="molecular_profiles.html#pyBioGate.molecular_profiles.get_all_molecular_profiles_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_molecular_profiles_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="molecular_profiles.html#pyBioGate.molecular_profiles.get_molecular_profile"><code class="docutils literal notranslate"><span class="pre">get_molecular_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_profiles.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mutations.html">Mutations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mutations.html#pyBioGate.mutations.fetch_muts_in_mol_prof"><code class="docutils literal notranslate"><span class="pre">fetch_muts_in_mol_prof()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="mutations.html#pyBioGate.mutations.fetch_muts_in_multiple_mol_profs"><code class="docutils literal notranslate"><span class="pre">fetch_muts_in_multiple_mol_profs()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="mutations.html#pyBioGate.mutations.get_muts_in_mol_prof_by_sample_list_id"><code class="docutils literal notranslate"><span class="pre">get_muts_in_mol_prof_by_sample_list_id()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mutations.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="patients.html">Patients</a><ul>
@@ -505,6 +518,7 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="patients.html#pyBioGate.patients.get_all_patients"><code class="docutils literal notranslate"><span class="pre">get_all_patients()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="patients.html#pyBioGate.patients.get_all_patients_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_patients_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="patients.html#pyBioGate.patients.get_patient_in_study"><code class="docutils literal notranslate"><span class="pre">get_patient_in_study()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="patients.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sample_lists.html">Sample Lists</a><ul>
@@ -513,6 +527,7 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="sample_lists.html#pyBioGate.sample_lists.get_all_sample_lists"><code class="docutils literal notranslate"><span class="pre">get_all_sample_lists()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample_lists.html#pyBioGate.sample_lists.get_all_sample_lists_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_sample_lists_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample_lists.html#pyBioGate.sample_lists.get_sample_list"><code class="docutils literal notranslate"><span class="pre">get_sample_list()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample_lists.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="samples.html">Samples</a><ul>
@@ -521,10 +536,12 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="samples.html#pyBioGate.samples.get_all_samples_of_patient_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_samples_of_patient_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="samples.html#pyBioGate.samples.get_sample_in_study"><code class="docutils literal notranslate"><span class="pre">get_sample_in_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="samples.html#pyBioGate.samples.get_samples_by_keyword"><code class="docutils literal notranslate"><span class="pre">get_samples_by_keyword()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="server_running_status.html">Server running status</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="server_running_status.html#pyBioGate.server_running_status.get_server_status"><code class="docutils literal notranslate"><span class="pre">get_server_status()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_running_status.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="studies.html">Studies</a><ul>
@@ -533,6 +550,7 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="studies.html#pyBioGate.studies.get_all_studies"><code class="docutils literal notranslate"><span class="pre">get_all_studies()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="studies.html#pyBioGate.studies.get_study"><code class="docutils literal notranslate"><span class="pre">get_study()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="studies.html#pyBioGate.studies.get_tags_of_study"><code class="docutils literal notranslate"><span class="pre">get_tags_of_study()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="studies.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="treatments.html">Treatments</a><ul>
@@ -540,6 +558,7 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
 <li class="toctree-l2"><a class="reference internal" href="treatments.html#pyBioGate.treatments.fetch_all_sample_level_treatments"><code class="docutils literal notranslate"><span class="pre">fetch_all_sample_level_treatments()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="treatments.html#pyBioGate.treatments.fetch_status_display_patient_trts"><code class="docutils literal notranslate"><span class="pre">fetch_status_display_patient_trts()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="treatments.html#pyBioGate.treatments.fetch_status_display_sample_trts"><code class="docutils literal notranslate"><span class="pre">fetch_status_display_sample_trts()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="treatments.html#examples">Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -566,7 +585,7 @@ with the prefixes <code class="docutils literal notranslate"><span class="pre">g
       </div>
     </a>
     <a class="right-next"
-       href="cancer_type.html"
+       href="cancer_types.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>

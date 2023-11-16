@@ -8,3 +8,5 @@ The module ``clinical_data`` provides functions related to *Clinical Data* secti
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: clinical_data_nb.rst

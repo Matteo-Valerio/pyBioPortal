@@ -8,3 +8,5 @@ The module ``samples`` provides functions related to *Samples* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: samples_nb.rst

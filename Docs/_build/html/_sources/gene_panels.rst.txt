@@ -8,3 +8,5 @@ The module ``gene_panels`` provides functions related to *Gene Panels* section o
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: gene_panels_nb.rst

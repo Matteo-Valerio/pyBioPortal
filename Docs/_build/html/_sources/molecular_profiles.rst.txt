@@ -8,3 +8,5 @@ The module ``molecular_profiles`` provides functions related to *Molecular Profi
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: molecular_profiles_nb.rst

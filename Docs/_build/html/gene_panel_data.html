@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Gene Panel Data &#8212; pyBioGate 1.0.0 documentation</title>
   
@@ -29,7 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css?v=3a2e6387" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
@@ -144,8 +144,8 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -268,8 +268,8 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="CancerTypes_Notebook.html">
-                        Test
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
                       </a>
                     </li>
                 
@@ -332,8 +332,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cancer_type.html">Cancer Types</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
@@ -455,6 +454,466 @@ document.write(`
 </dl>
 </dd></dl>
 
+<hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioGate</span> <span class="kn">import</span> <span class="n">gene_panel_data</span> <span class="k">as</span> <span class="n">gpd</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">fetch_gene_panel_data</span><span class="p">(</span><span class="n">molecular_profile_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;brca_tcga_gistic&quot;</span><span class="p">,</span> <span class="s2">&quot;acc_tcga_gistic&quot;</span><span class="p">,</span> <span class="s2">&quot;brca_tcga_mutations&quot;</span><span class="p">])</span>
+<span class="n">df1a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>profiled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1CSC1BMUVPLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVPOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-BH-A1EO-01</td>
+      <td>TCGA-BH-A1EO</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1CSC1BMUVTLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVTOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-BH-A1ES-01</td>
+      <td>TCGA-BH-A1ES</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1CSC1BMUVTLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVTOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-BH-A1ES-06</td>
+      <td>TCGA-BH-A1ES</td>
+      <td>brca_tcga</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1CSC1BMUVULTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVUOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-BH-A1ET-01</td>
+      <td>TCGA-BH-A1ET</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2303</th>
+      <td>VENHQS1FMi1BMUI0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUI0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1B4-01</td>
+      <td>TCGA-E2-A1B4</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2304</th>
+      <td>VENHQS1FMi1BMUI1LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUI1OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1B5-01</td>
+      <td>TCGA-E2-A1B5</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2305</th>
+      <td>VENHQS1FMi1BMUI2LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUI2OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1B6-01</td>
+      <td>TCGA-E2-A1B6</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2306</th>
+      <td>VENHQS1FMi1BMUJDLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJDOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1BC-01</td>
+      <td>TCGA-E2-A1BC</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2307</th>
+      <td>VENHQS1FMi1BMUJELTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJEOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1BD-01</td>
+      <td>TCGA-E2-A1BD</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>2308 rows × 7 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1b</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">fetch_gene_panel_data</span><span class="p">(</span><span class="n">molecular_prof_sample_ids</span><span class="o">=</span><span class="p">[</span>
+                                            <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga_gistic&quot;</span><span class="p">,</span>
+                                             <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-AR-A1AR-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-E2-A1BC-01&quot;</span><span class="p">]},</span>
+                                            <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga_mutations&quot;</span><span class="p">,</span>
+                                             <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-AR-A1AR-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-E2-A1BC-01&quot;</span><span class="p">]},</span>
+                                            <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;msk_met_2021_mutations&quot;</span><span class="p">,</span>
+                                             <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;P-0000004-T01-IM3&quot;</span><span class="p">,</span> <span class="s2">&quot;P-0000950-T01-IM3&quot;</span><span class="p">]}</span>
+                                  <span class="p">])</span>
+<span class="n">df1b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>profiled</th>
+      <th>genePanelId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1FMi1BMUJDLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJDOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_gistic</td>
+      <td>TCGA-E2-A1BC-01</td>
+      <td>TCGA-E2-A1BC</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>msk_met_2021_mutations</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>True</td>
+      <td>IMPACT341</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>UC0wMDAwOTUwLVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwOTUwOm1za19tZXRfMjAyMQ</td>
+      <td>msk_met_2021_mutations</td>
+      <td>P-0000950-T01-IM3</td>
+      <td>P-0000950</td>
+      <td>msk_met_2021</td>
+      <td>True</td>
+      <td>IMPACT341</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>VENHQS1FMi1BMUJDLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJDOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1BC-01</td>
+      <td>TCGA-E2-A1BC</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2a</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">fetch_gene_panel_data_in_molecular_profile</span><span class="p">(</span><span class="s2">&quot;brca_tcga_mutations&quot;</span><span class="p">,</span><span class="n">sample_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TCGA-AR-A1AR-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-E2-A1BC-01&quot;</span><span class="p">])</span>
+<span class="n">df2a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>profiled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1FMi1BMUJDLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJDOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A1BC-01</td>
+      <td>TCGA-E2-A1BC</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2b</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">fetch_gene_panel_data_in_molecular_profile</span><span class="p">(</span><span class="s2">&quot;brca_tcga_mutations&quot;</span><span class="p">,</span> <span class="n">sample_list_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga_all&quot;</span><span class="p">)</span>
+<span class="n">df2b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>profiled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1CSC1BMUVPLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVPOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-BH-A1EO-01</td>
+      <td>TCGA-BH-A1EO</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1CSC1BMUVTLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVTOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-BH-A1ES-01</td>
+      <td>TCGA-BH-A1ES</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1CSC1BMUVULTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVUOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-BH-A1ET-01</td>
+      <td>TCGA-BH-A1ET</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1CSC1BMUVVLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVVOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-BH-A1EU-01</td>
+      <td>TCGA-BH-A1EU</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1103</th>
+      <td>VENHQS1FMi1BMTVBLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVBOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A15A-06</td>
+      <td>TCGA-E2-A15A</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>VENHQS1CSC1BMThWLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMThWOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-BH-A18V-06</td>
+      <td>TCGA-BH-A18V</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>VENHQS1FMi1BMTVLLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVLOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A15K-06</td>
+      <td>TCGA-E2-A15K</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1106</th>
+      <td>VENHQS1FMi1BMTVFLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVFOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-E2-A15E-06</td>
+      <td>TCGA-E2-A15E</td>
+      <td>brca_tcga</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1107</th>
+      <td>VENHQS1BQy1BNklYLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BQy1BNklYOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_mutations</td>
+      <td>TCGA-AC-A6IX-06</td>
+      <td>TCGA-AC-A6IX</td>
+      <td>brca_tcga</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>1108 rows × 7 columns</p>
+</div></section>
 </section>
 
 
@@ -502,6 +961,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.gene_panel_data.fetch_gene_panel_data"><code class="docutils literal notranslate"><span class="pre">fetch_gene_panel_data()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.gene_panel_data.fetch_gene_panel_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_gene_panel_data_in_molecular_profile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

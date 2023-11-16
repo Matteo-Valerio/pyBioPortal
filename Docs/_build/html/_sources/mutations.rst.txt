@@ -8,3 +8,5 @@ The module ``mutations`` provides functions related to *Mutations* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: mutations_nb.rst

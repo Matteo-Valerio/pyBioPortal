@@ -8,3 +8,5 @@ The module ``server_running_status`` provides functions related to *Server runni
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: server_running_status_nb.rst

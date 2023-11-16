@@ -8,3 +8,5 @@ The module ``generic_assays`` provides functions related to *Generic Assays* sec
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: generic_assays_nb.rst

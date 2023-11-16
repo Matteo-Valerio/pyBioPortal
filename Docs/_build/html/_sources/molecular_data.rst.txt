@@ -8,3 +8,5 @@ The module ``molecular_data`` provides functions related to *Molecular Data* sec
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: molecular_data_nb.rst

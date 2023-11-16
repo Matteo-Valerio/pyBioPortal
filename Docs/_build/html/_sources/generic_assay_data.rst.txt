@@ -8,3 +8,5 @@ The module ``generic_assay_data`` provides functions related to *Generic Assay D
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: generic_assay_data_nb.rst

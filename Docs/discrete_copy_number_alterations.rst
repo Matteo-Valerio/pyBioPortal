@@ -8,3 +8,5 @@ The module ``discrete_copy_number_alterations`` provides functions related to *D
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: discrete_copy_number_alterations_nb.rst

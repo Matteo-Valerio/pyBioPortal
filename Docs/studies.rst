@@ -8,3 +8,5 @@ The module ``studies`` provides functions related to *Studies* section of
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: studies_nb.rst

@@ -8,3 +8,5 @@ The module ``clinical_attributes`` provides functions related to *Clinical Attri
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: clinical_attributes_nb.rst

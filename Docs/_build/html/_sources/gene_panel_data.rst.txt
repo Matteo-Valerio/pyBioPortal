@@ -8,3 +8,5 @@ The module ``gene_panel_data`` provides functions related to *Gene Panel Data* s
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: gene_panel_data_nb.rst
