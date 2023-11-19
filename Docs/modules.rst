@@ -1,7 +1,7 @@
 Modules
 =======
 
-This page gives an overview of all pyBioGate modules and functions available.
+This page gives an overview of all pyBioPortal modules and functions available.
 Each module refers to a specific data type as documented in 
 `cBioPortal Web Public API <https://www.cbioportal.org/api/swagger-ui/index.html>`__.
 

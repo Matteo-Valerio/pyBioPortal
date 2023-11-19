@@ -1,4 +1,3 @@
-
 import requests
 from .__config import base_url
 from .__aux_funcs import process_response

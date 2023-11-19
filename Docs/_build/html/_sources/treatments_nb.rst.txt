@@ -13,13 +13,13 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import treatments as trt
+    from pyBioPortal import treatments as trt
 
 Get the Study IDs of all studies
 
 .. code:: ipython3
 
-    from pyBioGate import studies as std
+    from pyBioPortal import studies as std
     studies = std.get_all_studies(projection="DETAILED")
     std_ids = studies["studyId"].to_list()
     print(f"First Study IDs of {len(std_ids)}: {std_ids[0:5]}")

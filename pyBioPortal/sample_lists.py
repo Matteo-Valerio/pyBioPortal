@@ -2,9 +2,6 @@ import requests
 from .__config import base_url
 from .__aux_funcs import process_response
 
-################
-# Sample Lists #
-################
 def get_all_sample_lists(projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
     Get all sample lists. \n

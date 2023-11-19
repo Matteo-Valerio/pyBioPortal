@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Samples &#8212; pyBioGate 1.0.0 documentation</title>
+    <title>Samples &#8212; pyBioPortal 1.0.0 documentation</title>
   
   
   
@@ -117,7 +117,7 @@
   
   
   
-    <p class="title logo__title">pyBioGate 1.0.0 documentation</p>
+    <p class="title logo__title">pyBioPortal 1.0.0 documentation</p>
   
 </a></div>
     
@@ -413,9 +413,9 @@ document.write(`
 <h1>Samples<a class="headerlink" href="#samples" title="Link to this heading">#</a></h1>
 <p>The module <code class="docutils literal notranslate"><span class="pre">samples</span></code> provides functions related to <em>Samples</em> section of
 <a class="reference external" href="https://www.cbioportal.org/api/swagger-ui/index.html">cBioPortal Web Public API</a>.</p>
-<dl class="py function" id="module-pyBioGate.samples">
-<dt class="sig sig-object py" id="pyBioGate.samples.fetch_samples">
-<span class="sig-prename descclassname"><span class="pre">pyBioGate.samples.</span></span><span class="sig-name descname"><span class="pre">fetch_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_identifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_list_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_sample_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.samples.fetch_samples" title="Link to this definition">#</a></dt>
+<dl class="py function" id="module-pyBioPortal.samples">
+<dt class="sig sig-object py" id="pyBioPortal.samples.fetch_samples">
+<span class="sig-prename descclassname"><span class="pre">pyBioPortal.samples.</span></span><span class="sig-name descname"><span class="pre">fetch_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_identifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_list_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_sample_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.samples.fetch_samples" title="Link to this definition">#</a></dt>
 <dd><p>Fetch samples by ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -462,8 +462,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioGate.samples.get_all_samples_in_study">
-<span class="sig-prename descclassname"><span class="pre">pyBioGate.samples.</span></span><span class="sig-name descname"><span class="pre">get_all_samples_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.samples.get_all_samples_in_study" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyBioPortal.samples.get_all_samples_in_study">
+<span class="sig-prename descclassname"><span class="pre">pyBioPortal.samples.</span></span><span class="sig-name descname"><span class="pre">get_all_samples_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.samples.get_all_samples_in_study" title="Link to this definition">#</a></dt>
 <dd><p>Get all samples in a study.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -520,8 +520,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioGate.samples.get_all_samples_of_patient_in_study">
-<span class="sig-prename descclassname"><span class="pre">pyBioGate.samples.</span></span><span class="sig-name descname"><span class="pre">get_all_samples_of_patient_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patient_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.samples.get_all_samples_of_patient_in_study" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyBioPortal.samples.get_all_samples_of_patient_in_study">
+<span class="sig-prename descclassname"><span class="pre">pyBioPortal.samples.</span></span><span class="sig-name descname"><span class="pre">get_all_samples_of_patient_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patient_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.samples.get_all_samples_of_patient_in_study" title="Link to this definition">#</a></dt>
 <dd><p>Get all samples of a patient in a study.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -579,8 +579,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioGate.samples.get_sample_in_study">
-<span class="sig-prename descclassname"><span class="pre">pyBioGate.samples.</span></span><span class="sig-name descname"><span class="pre">get_sample_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.samples.get_sample_in_study" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyBioPortal.samples.get_sample_in_study">
+<span class="sig-prename descclassname"><span class="pre">pyBioPortal.samples.</span></span><span class="sig-name descname"><span class="pre">get_sample_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.samples.get_sample_in_study" title="Link to this definition">#</a></dt>
 <dd><p>Get information about a specific sample in a study.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -599,8 +599,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioGate.samples.get_samples_by_keyword">
-<span class="sig-prename descclassname"><span class="pre">pyBioGate.samples.</span></span><span class="sig-name descname"><span class="pre">get_samples_by_keyword</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keyword</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioGate.samples.get_samples_by_keyword" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyBioPortal.samples.get_samples_by_keyword">
+<span class="sig-prename descclassname"><span class="pre">pyBioPortal.samples.</span></span><span class="sig-name descname"><span class="pre">get_samples_by_keyword</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keyword</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.samples.get_samples_by_keyword" title="Link to this definition">#</a></dt>
 <dd><p>Get all samples matching a keyword.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -660,7 +660,7 @@ document.write(`
     <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
 </head><section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioGate</span> <span class="kn">import</span> <span class="n">samples</span> <span class="k">as</span> <span class="n">sp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioPortal</span> <span class="kn">import</span> <span class="n">samples</span> <span class="k">as</span> <span class="n">sp</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">get_samples_by_keyword</span><span class="p">(</span><span class="n">keyword</span><span class="o">=</span><span class="s2">&quot;TCGA&quot;</span><span class="p">)</span>
@@ -1337,11 +1337,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.samples.fetch_samples"><code class="docutils literal notranslate"><span class="pre">fetch_samples()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.samples.get_all_samples_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_samples_in_study()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.samples.get_all_samples_of_patient_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_samples_of_patient_in_study()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.samples.get_sample_in_study"><code class="docutils literal notranslate"><span class="pre">get_sample_in_study()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioGate.samples.get_samples_by_keyword"><code class="docutils literal notranslate"><span class="pre">get_samples_by_keyword()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.samples.fetch_samples"><code class="docutils literal notranslate"><span class="pre">fetch_samples()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.samples.get_all_samples_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_samples_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.samples.get_all_samples_of_patient_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_samples_of_patient_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.samples.get_sample_in_study"><code class="docutils literal notranslate"><span class="pre">get_sample_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.samples.get_samples_by_keyword"><code class="docutils literal notranslate"><span class="pre">get_samples_by_keyword()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>

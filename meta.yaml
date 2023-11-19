@@ -1,0 +1,29 @@
+package:
+  name: pyBioPortal
+  version: 1.0.0
+
+source:
+  url: https://github.com/tuoaccount/pyBioPortal/archive/1.0.0.tar.gz
+  sha256: <inserisci qui l'hash SHA256 del pacchetto>
+
+build:
+  number: 0
+  noarch: python
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+
+requirements:
+  run:
+    - python
+    - requests >=2.0.0
+    - pandas >=1.0.0
+
+about:
+  home: https://github.com/tuoaccount/pyBioPortal
+  license: BSD 3-Clause License
+  summary: A Python package to easily retrieve data from cBioPortal.
+  description: |
+    A Python package to easily retrieve data from cBioPortal.
+
+extra:
+  recipe-maintainers:
+    - Matteo Valerio

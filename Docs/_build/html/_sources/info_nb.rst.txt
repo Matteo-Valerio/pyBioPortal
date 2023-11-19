@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate.info import get_info
+    from pyBioPortal.info import get_info
     get_info()
 
 

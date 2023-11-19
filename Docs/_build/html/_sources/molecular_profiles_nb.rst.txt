@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import molecular_profiles as mf
+    from pyBioPortal import molecular_profiles as mf
 
 .. code:: ipython3
 

@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import samples as sp
+    from pyBioPortal import samples as sp
 
 .. code:: ipython3
 

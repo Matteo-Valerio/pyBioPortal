@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import cancer_types as ct
+    from pyBioPortal import cancer_types as ct
 
 .. code:: ipython3
 

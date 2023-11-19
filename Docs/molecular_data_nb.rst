@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import molecular_data as md
+    from pyBioPortal import molecular_data as md
 
 .. code:: ipython3
 

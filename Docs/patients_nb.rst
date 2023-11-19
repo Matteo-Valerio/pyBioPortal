@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import patients as pts
+    from pyBioPortal import patients as pts
 
 .. code:: ipython3
 

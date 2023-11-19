@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import clinical_data as cd
+    from pyBioPortal import clinical_data as cd
 
 .. code:: ipython3
 

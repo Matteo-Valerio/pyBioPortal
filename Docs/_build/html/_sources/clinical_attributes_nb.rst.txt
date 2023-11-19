@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import clinical_attributes as ca
+    from pyBioPortal import clinical_attributes as ca
 
 .. code:: ipython3
 

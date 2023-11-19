@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import studies as std
+    from pyBioPortal import studies as std
 
 .. code:: ipython3
 

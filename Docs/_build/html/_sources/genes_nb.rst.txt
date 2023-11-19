@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import genes as gns
+    from pyBioPortal import genes as gns
 
 .. code:: ipython3
 

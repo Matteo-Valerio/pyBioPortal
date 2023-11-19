@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioGate import gene_panel_data as gpd
+    from pyBioPortal import gene_panel_data as gpd
 
 .. code:: ipython3
 
