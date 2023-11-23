@@ -1,1 +1,1 @@
-.. nbinclude:: C:\Users\matte\OneDrive\Notebook\Attività Ricerca Machine Learrning\pyBioPortal\pyBioPortal\CancerTypes_Notebook.ipynb
+.. nbinclude:: C:\Users\matte\OneDrive\Notebook\Attività Ricerca Machine Learrning\pybioportal\pybioportal\CancerTypes_Notebook.ipynb

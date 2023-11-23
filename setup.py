@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-name = "pyBioPortal"
+name = "pybioportal"
 version = "1.0.0"
 description = "A Python package to easily retrieve data from cBioPortal."
 author = "Matteo Valerio"
 author_email = "tua@email.com"
-url = "https://github.com/tuoaccount/pyBioPortal"
+url = "https://github.com/tuoaccount/pybioportal"
 license = """
 BSD 3-Clause License
 

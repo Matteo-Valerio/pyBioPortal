@@ -1,1 +1,1 @@
-pyBioPortal
+pybioportal

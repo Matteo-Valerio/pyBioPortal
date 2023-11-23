@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import discrete_copy_number_alterations as dcna
+    from pybioportal import discrete_copy_number_alterations as dcna
 
 .. code:: ipython3
 

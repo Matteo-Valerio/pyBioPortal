@@ -4,7 +4,7 @@ Samples
 The module ``samples`` provides functions related to *Samples* section of 
 `cBioPortal Web Public API <https://www.cbioportal.org/api/swagger-ui/index.html>`__.
 
-.. automodule:: pyBioPortal.samples
+.. automodule:: pybioportal.samples
    :members:
    :undoc-members:
    :show-inheritance:

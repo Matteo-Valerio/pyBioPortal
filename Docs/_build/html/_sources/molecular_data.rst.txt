@@ -4,7 +4,7 @@ Molecular Data
 The module ``molecular_data`` provides functions related to *Molecular Data* section of 
 `cBioPortal Web Public API <https://www.cbioportal.org/api/swagger-ui/index.html>`__.
 
-.. automodule:: pyBioPortal.molecular_data
+.. automodule:: pybioportal.molecular_data
    :members:
    :undoc-members:
    :show-inheritance:

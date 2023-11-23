@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Clinical Attributes &#8212; pyBioPortal 1.0.0 documentation</title>
+    <title>Clinical Attributes &#8212; pybioportal 1.0.0</title>
   
   
   
@@ -117,7 +117,7 @@
   
   
   
-    <p class="title logo__title">pyBioPortal 1.0.0 documentation</p>
+    <p class="title logo__title">pybioportal 1.0.0</p>
   
 </a></div>
     
@@ -413,9 +413,9 @@ document.write(`
 <h1>Clinical Attributes<a class="headerlink" href="#clinical-attributes" title="Link to this heading">#</a></h1>
 <p>The module <code class="docutils literal notranslate"><span class="pre">clinical_attributes</span></code> provides functions related to <em>Clinical Attributes</em> section of
 <a class="reference external" href="https://www.cbioportal.org/api/swagger-ui/index.html">cBioPortal Web Public API</a>.</p>
-<dl class="py function" id="module-pyBioPortal.clinical_attributes">
-<dt class="sig sig-object py" id="pyBioPortal.clinical_attributes.fetch_clinical_attributes">
-<span class="sig-prename descclassname"><span class="pre">pyBioPortal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">fetch_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.clinical_attributes.fetch_clinical_attributes" title="Link to this definition">#</a></dt>
+<dl class="py function" id="module-pybioportal.clinical_attributes">
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.fetch_clinical_attributes">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">fetch_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.fetch_clinical_attributes" title="Link to this definition">#</a></dt>
 <dd><p>Fetch clinical attributes from BioPortal for a list of study IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -444,8 +444,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioPortal.clinical_attributes.get_all_clinical_attributes">
-<span class="sig-prename descclassname"><span class="pre">pyBioPortal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_all_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.clinical_attributes.get_all_clinical_attributes" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.get_all_clinical_attributes">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_all_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.get_all_clinical_attributes" title="Link to this definition">#</a></dt>
 <dd><p>Get all clinical attributes from BioPortal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -506,8 +506,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioPortal.clinical_attributes.get_all_clinical_attributes_in_study">
-<span class="sig-prename descclassname"><span class="pre">pyBioPortal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_all_clinical_attributes_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.clinical_attributes.get_all_clinical_attributes_in_study" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.get_all_clinical_attributes_in_study">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_all_clinical_attributes_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.get_all_clinical_attributes_in_study" title="Link to this definition">#</a></dt>
 <dd><p>Get all clinical attributes in the specified study.
 :param study_id: Study ID (e.g., “acc_tcga”).</p>
 <dl class="field-list simple">
@@ -569,8 +569,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyBioPortal.clinical_attributes.get_clinical_attribute_in_study">
-<span class="sig-prename descclassname"><span class="pre">pyBioPortal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_clinical_attribute_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clinical_attribute_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyBioPortal.clinical_attributes.get_clinical_attribute_in_study" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.get_clinical_attribute_in_study">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_clinical_attribute_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clinical_attribute_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.get_clinical_attribute_in_study" title="Link to this definition">#</a></dt>
 <dd><p>Get the specified clinical attribute in the study.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -592,7 +592,7 @@ document.write(`
     <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
 </head><section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyBioPortal</span> <span class="kn">import</span> <span class="n">clinical_attributes</span> <span class="k">as</span> <span class="n">ca</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybioportal</span> <span class="kn">import</span> <span class="n">clinical_attributes</span> <span class="k">as</span> <span class="n">ca</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">get_all_clinical_attributes</span><span class="p">()</span>
@@ -1129,10 +1129,10 @@ reported.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.clinical_attributes.fetch_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">fetch_clinical_attributes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.clinical_attributes.get_all_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.clinical_attributes.get_all_clinical_attributes_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes_in_study()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyBioPortal.clinical_attributes.get_clinical_attribute_in_study"><code class="docutils literal notranslate"><span class="pre">get_clinical_attribute_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.fetch_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">fetch_clinical_attributes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.get_all_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.get_all_clinical_attributes_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.get_clinical_attribute_in_study"><code class="docutils literal notranslate"><span class="pre">get_clinical_attribute_in_study()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>

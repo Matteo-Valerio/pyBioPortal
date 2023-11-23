@@ -1,8 +1,8 @@
-# pyBioPortal: a Python package to easily retrieve data from cBioPortal
+# pybioportal: a Python package to easily retrieve data from cBioPortal
 
 ## What is it?
 
-**pyBioPortal** is an open source, BSD-licensed [Python] library that provides a set of 
+**pybioportal** is an open source, BSD-licensed [Python] library that provides a set of 
 functions to facilitate data acquisition from the [cBioPortal Web Public API] and the transformation 
 of that data into useful data structures.
 
@@ -18,13 +18,13 @@ cBioPortal resources for their research and bioinformatic analysis projects.
 
 ## Where to get it
 The source code is currently hosted on GitHub at:
-https://github.com/pyBioPortal
+https://github.com/pybioportal
 
 Binary installers for the latest released version are available at the Python
 Package Index ([PyPI]).
 
 ```sh
-pip install pyBioPortal
+pip install pybioportal
 ```
 [PyPI]: https://pypi.org/project/pybioportal
 

@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import server_running_status as srs
+    from pybioportal import server_running_status as srs
 
 .. code:: ipython3
 

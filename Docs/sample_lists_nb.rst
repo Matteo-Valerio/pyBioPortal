@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import sample_lists as sl
+    from pybioportal import sample_lists as sl
 
 .. code:: ipython3
 

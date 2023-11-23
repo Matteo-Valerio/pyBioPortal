@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import copy_number_segment as cns
+    from pybioportal import copy_number_segment as cns
 
 .. code:: ipython3
 

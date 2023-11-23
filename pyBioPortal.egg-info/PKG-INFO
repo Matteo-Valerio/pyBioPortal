@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
-Name: pyBioPortal
+Name: pybioportal
 Version: 1.0.0
 Summary: A Python package to easily retrieve data from cBioPortal.
-Home-page: https://github.com/tuoaccount/pyBioPortal
+Home-page: https://github.com/tuoaccount/pybioportal
 Author: Matteo Valerio
 Author-email: tua@email.com
 License: 

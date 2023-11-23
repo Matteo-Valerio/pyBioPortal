@@ -4,7 +4,7 @@ Clinical Data
 The module ``clinical_data`` provides functions related to *Clinical Data* section of 
 `cBioPortal Web Public API <https://www.cbioportal.org/api/swagger-ui/index.html>`__.
 
-.. automodule:: pyBioPortal.clinical_data
+.. automodule:: pybioportal.clinical_data
    :members:
    :undoc-members:
    :show-inheritance:

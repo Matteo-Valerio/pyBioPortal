@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import mutations as mts
+    from pybioportal import mutations as mts
 
 .. code:: ipython3
 

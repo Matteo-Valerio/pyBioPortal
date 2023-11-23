@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import generic_assay_data as gad
+    from pybioportal import generic_assay_data as gad
 
 .. code:: ipython3
 

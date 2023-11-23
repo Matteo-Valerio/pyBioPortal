@@ -13,7 +13,7 @@ Examples
 
 .. code:: ipython3
 
-    from pyBioPortal import generic_assays as ga
+    from pybioportal import generic_assays as ga
 
 .. code:: ipython3
 
