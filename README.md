@@ -34,4 +34,4 @@ pip install pybioportal
 [BSD 3](LICENSE.txt)
 
 ## Documentation
-The official documentation is hosted on [ReadtheDpcs](https://pybioportal.readthedocs.io/en/latest/).
+The official documentation is hosted on [ReadtheDocs](https://pybioportal.readthedocs.io/en/latest/).
