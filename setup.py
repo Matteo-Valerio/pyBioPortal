@@ -50,7 +50,7 @@ setup(
     version=version,
     description=description,
     author=author,
-    author_email=author_email,
+    #author_email=author_email,
     url=url,
     license=license,
     keywords=keywords,
