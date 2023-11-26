@@ -4,8 +4,7 @@ name = "pybioportal"
 version = "1.0.0"
 description = "A Python package to easily retrieve data from cBioPortal."
 author = "Matteo Valerio"
-author_email = "tua@email.com"
-url = "https://github.com/tuoaccount/pybioportal"
+url = "https://github.com/Matteo-Valerio/pyBioPortal"
 license = """
 BSD 3-Clause License
 
