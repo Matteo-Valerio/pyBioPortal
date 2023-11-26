@@ -1,0 +1,17 @@
+.dataframe {
+    font-size: 10pt !important;
+}
+
+.dataframe thead tr th {
+    text-align: left !important;
+ }
+
+.dataframe th,
+.dataframe td {
+     padding: 6px !important;
+ }
+
+ div:not(:first-of-type):has(table.dataframe) {
+    overflow-x: auto;
+    width: 100%;
+}

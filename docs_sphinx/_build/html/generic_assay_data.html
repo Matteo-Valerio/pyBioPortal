@@ -1,0 +1,1438 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Generic Assay Data &#8212; pybioportal 1.0.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generic_assay_data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generic Assays" href="generic_assays.html" />
+    <link rel="prev" title="Gene Panels" href="gene_panels.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pybioportal 1.0.0</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Modules
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/">
+                    cBioPortal
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/api/swagger-ui/index.html">
+                    cBioPortal API
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/<your-org>/<your-repo>" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Modules
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/">
+                    cBioPortal
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/api/swagger-ui/index.html">
+                    cBioPortal API
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/<your-org>/<your-repo>" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clinical_attributes.html">Clinical Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discrete_copy_number_alterations.html">Discrete Copy Number Alterations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_panel_data.html">Gene Panel Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_panels.html">Gene Panels</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Generic Assay Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_assays.html">Generic Assays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genes.html">Genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="molecular_data.html">Molecular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="molecular_profiles.html">Molecular Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutations.html">Mutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patients.html">Patients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample_lists.html">Sample Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples.html">Samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_running_status.html">Server running status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="studies.html">Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="treatments.html">Treatments</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">Modules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Generic Assay Data</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="generic-assay-data">
+<h1>Generic Assay Data<a class="headerlink" href="#generic-assay-data" title="Link to this heading">#</a></h1>
+<p>The module <code class="docutils literal notranslate"><span class="pre">generic_assay_data</span></code> provides functions related to <em>Generic Assay Data</em> section of
+<a class="reference external" href="https://www.cbioportal.org/api/swagger-ui/index.html">cBioPortal Web Public API</a>.</p>
+<dl class="py function" id="module-pybioportal.generic_assay_data">
+<dt class="sig sig-object py" id="pybioportal.generic_assay_data.fetch_generic_assay_data">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.generic_assay_data.</span></span><span class="sig-name descname"><span class="pre">fetch_generic_assay_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generic_assay_stable_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molecular_profile_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_molecular_identifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.generic_assay_data.fetch_generic_assay_data" title="Link to this definition">#</a></dt>
+<dd><p>Fetch generic assay data from multiple molecular profiles in BioPortal providing</p>
+<p>List of Molecular Profile ID and Sample ID pairs or List of Molecular Profile IDs and Generic Assay IDs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generic_assay_stable_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Generic Assay IDs, e.g. [“TULP4_pS563”, “TEP1_pS397”]</p></li>
+<li><p><strong>molecular_profile_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Molecular Profile IDs, e.g. [“brca_tcga_phosphoprotein_quantification”,”brain_cptac_2020_phosphoprotein”]</p></li>
+<li><p><strong>sample_molecular_identifiers</strong> – List of Molecular Profile ID and Sample IDs pairs.</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing the fetched generic assay data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pybioportal.generic_assay_data.fetch_generic_assay_data_in_molecular_profile">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.generic_assay_data.</span></span><span class="sig-name descname"><span class="pre">fetch_generic_assay_data_in_molecular_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecular_profile_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generic_assay_stable_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_list_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.generic_assay_data.fetch_generic_assay_data_in_molecular_profile" title="Link to this definition">#</a></dt>
+<dd><p>Fetch generic assay data in a specific molecular profile from BioPortal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecular_profile_id</strong> (<em>str</em>) – Molecular Profile ID (e.g., “brca_tcga_phosphoprotein_quantification”).</p></li>
+<li><p><strong>generic_assay_stable_ids</strong> (<em>List</em><em> of </em><em>str</em>) – List of Generic Assays IDs (e.g., [“TULP4_pS563”, “TEP1_pS397”]).</p></li>
+<li><p><strong>sample_ids</strong> (<em>List</em><em> of </em><em>str</em>) – List of Sample IDs (e.g., [“TCGA-C8-A130-01”, “TCGA-C8-A134-01”] and sample_list_id set to None).</p></li>
+<li><p><strong>sample_list_id</strong> (<em>str</em>) – Sample List ID (e.g., “brca_tcga_all” and sample_ids set to None).</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing the fetched generic assay data in the specified molecular profile.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pybioportal.generic_assay_data.get_generic_assay_data_in_molecular_profile">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.generic_assay_data.</span></span><span class="sig-name descname"><span class="pre">get_generic_assay_data_in_molecular_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecular_profile_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generic_assay_stable_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.generic_assay_data.get_generic_assay_data_in_molecular_profile" title="Link to this definition">#</a></dt>
+<dd><p>Get generic assay data in a molecular profile from BioPortal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecular_profile_id</strong> (<em>str</em>) – Molecular Profile ID.</p></li>
+<li><p><strong>generic_assay_stable_id</strong> (<em>str</em>) – Generic Assay stable ID.</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing the generic assay data in the specified molecular profile.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybioportal</span> <span class="kn">import</span> <span class="n">generic_assay_data</span> <span class="k">as</span> <span class="n">gad</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">gad</span><span class="o">.</span><span class="n">fetch_generic_assay_data_in_molecular_profile</span><span class="p">(</span><span class="n">molecular_profile_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga_phosphoprotein_quantification&quot;</span><span class="p">,</span>
+                                                         <span class="n">generic_assay_stable_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TULP4_pS563&quot;</span><span class="p">,</span> <span class="s2">&quot;TEP1_pS397&quot;</span><span class="p">],</span>
+                                                         <span class="n">sample_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TCGA-C8-A130-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-C8-A134-01&quot;</span><span class="p">])</span>
+<span class="n">df1a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+      <th>genericAssayStableId</th>
+      <th>stableId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1DOC1BMTMwLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTMwOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A130-01</td>
+      <td>TCGA-C8-A130</td>
+      <td>brca_tcga</td>
+      <td>0.31374650000644216</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1DOC1BMTMwLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTMwOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A130-01</td>
+      <td>TCGA-C8-A130</td>
+      <td>brca_tcga</td>
+      <td>1.8338606392734915</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.13629911078391418</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>-0.2314224260050513</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1b</span> <span class="o">=</span> <span class="n">gad</span><span class="o">.</span><span class="n">fetch_generic_assay_data_in_molecular_profile</span><span class="p">(</span><span class="n">molecular_profile_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga_phosphoprotein_quantification&quot;</span><span class="p">,</span>
+                                                         <span class="n">generic_assay_stable_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TULP4_pS563&quot;</span><span class="p">,</span> <span class="s2">&quot;TEP1_pS397&quot;</span><span class="p">],</span>
+                                                         <span class="n">sample_list_id</span> <span class="o">=</span> <span class="s2">&quot;brca_tcga_all&quot;</span><span class="p">)</span>
+<span class="n">df1b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+      <th>genericAssayStableId</th>
+      <th>stableId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BMi1BMENNLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BMi1BMENNOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-A2-A0CM-01</td>
+      <td>TCGA-A2-A0CM</td>
+      <td>brca_tcga</td>
+      <td>0.3990168921075522</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1BMi1BMEQyLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BMi1BMEQyOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-A2-A0D2-01</td>
+      <td>TCGA-A2-A0D2</td>
+      <td>brca_tcga</td>
+      <td>-0.6936246814411646</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1BMi1BMEVRLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BMi1BMEVROmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-A2-A0EQ-01</td>
+      <td>TCGA-A2-A0EQ</td>
+      <td>brca_tcga</td>
+      <td>0.3121367021962257</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1BMi1BMEVWLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BMi1BMEVWOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-A2-A0EV-01</td>
+      <td>TCGA-A2-A0EV</td>
+      <td>brca_tcga</td>
+      <td>-1.14562097925631</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1BMi1BMEVYLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BMi1BMEVYOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-A2-A0EX-01</td>
+      <td>TCGA-A2-A0EX</td>
+      <td>brca_tcga</td>
+      <td>0.20418754958872287</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>VENHQS1DOC1BMTM4LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM4OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A138-01</td>
+      <td>TCGA-C8-A138</td>
+      <td>brca_tcga</td>
+      <td>0.6359899875778352</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>VENHQS1EOC1BMTQyLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1EOC1BMTQyOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-D8-A142-01</td>
+      <td>TCGA-D8-A142</td>
+      <td>brca_tcga</td>
+      <td>-0.578947377398709</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>VENHQS1FMi1BMTU0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTU0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-E2-A154-01</td>
+      <td>TCGA-E2-A154</td>
+      <td>brca_tcga</td>
+      <td>-0.3888088589350173</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>VENHQS1FMi1BMTU4LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTU4OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-E2-A158-01</td>
+      <td>TCGA-E2-A158</td>
+      <td>brca_tcga</td>
+      <td>-0.3037812098567177</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>VENHQS1FMi1BMTVBLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMTVBOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-E2-A15A-01</td>
+      <td>TCGA-E2-A15A</td>
+      <td>brca_tcga</td>
+      <td>-0.25129006810968774</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+  </tbody>
+</table>
+<p>70 rows × 9 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2a</span> <span class="o">=</span> <span class="n">gad</span><span class="o">.</span><span class="n">fetch_generic_assay_data</span><span class="p">(</span><span class="n">generic_assay_stable_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TULP4_pS563&quot;</span><span class="p">,</span> <span class="s2">&quot;TEP1_pS397&quot;</span><span class="p">,</span> <span class="s2">&quot;ALAD_214_215_1_1_S215&quot;</span><span class="p">],</span>
+                                    <span class="n">molecular_profile_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;brca_tcga_phosphoprotein_quantification&quot;</span><span class="p">,</span><span class="s2">&quot;brain_cptac_2020_phosphoprotein&quot;</span><span class="p">])</span>
+<span class="n">df2a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+      <th>genericAssayStableId</th>
+      <th>stableId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NzMxNi0xNzgxOmJyYWluX2NwdGFjXzIwMjA</td>
+      <td>UFRfTTFSWU43QjA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-1781</td>
+      <td>PT_M1RYN7B0</td>
+      <td>brain_cptac_2020</td>
+      <td>-0.696372026845622</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NzMxNi0xNzkwOmJyYWluX2NwdGFjXzIwMjA</td>
+      <td>UFRfRVNIQUNXRjY6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-1790</td>
+      <td>PT_ESHACWF6</td>
+      <td>brain_cptac_2020</td>
+      <td>-0.890851197690543</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NzMxNi04Nzg6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfRVNIQUNXRjY6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-878</td>
+      <td>PT_ESHACWF6</td>
+      <td>brain_cptac_2020</td>
+      <td>-1.11503373579888</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NzMxNi0yMTgxOmJyYWluX2NwdGFjXzIwMjA</td>
+      <td>UFRfR0g2OTNUVDg6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-2181</td>
+      <td>PT_GH693TT8</td>
+      <td>brain_cptac_2020</td>
+      <td>-0.819816432243918</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NzMxNi0yMTQxOmJyYWluX2NwdGFjXzIwMjA</td>
+      <td>UFRfV0cyWjk1QjU6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-2141</td>
+      <td>PT_WG2Z95B5</td>
+      <td>brain_cptac_2020</td>
+      <td>-1.10382655624193</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>282</th>
+      <td>VENHQS1BUi1BMUFTLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFTOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-AR-A1AS-01</td>
+      <td>TCGA-AR-A1AS</td>
+      <td>brca_tcga</td>
+      <td>1.2692087467241393</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>VENHQS1BUi1BMUFWLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFWOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-AR-A1AV-01</td>
+      <td>TCGA-AR-A1AV</td>
+      <td>brca_tcga</td>
+      <td>-1.0879171469891096</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>284</th>
+      <td>VENHQS1BUi1BMUFXLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFXOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-AR-A1AW-01</td>
+      <td>TCGA-AR-A1AW</td>
+      <td>brca_tcga</td>
+      <td>-0.06646907668277764</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>285</th>
+      <td>VENHQS1CSC1BMERELTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMEREOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-BH-A0DD-01</td>
+      <td>TCGA-BH-A0DD</td>
+      <td>brca_tcga</td>
+      <td>-1.5077329846223932</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>286</th>
+      <td>VENHQS1CSC1BMERHLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMERHOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-BH-A0DG-01</td>
+      <td>TCGA-BH-A0DG</td>
+      <td>brca_tcga</td>
+      <td>0.18414782925259893</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+  </tbody>
+</table>
+<p>287 rows × 9 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2b</span> <span class="o">=</span> <span class="n">gad</span><span class="o">.</span><span class="n">fetch_generic_assay_data</span><span class="p">(</span><span class="n">generic_assay_stable_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TULP4_pS563&quot;</span><span class="p">,</span> <span class="s2">&quot;TEP1_pS397&quot;</span><span class="p">,</span> <span class="s2">&quot;ALAD_214_215_1_1_S215&quot;</span><span class="p">],</span>
+                                    <span class="n">sample_molecular_identifiers</span><span class="o">=</span><span class="p">[</span>
+                                                      <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga_phosphoprotein_quantification&quot;</span><span class="p">,</span>
+                                                       <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-C8-A130-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-C8-A134-01&quot;</span><span class="p">]},</span>
+                                                      <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brain_cptac_2020_phosphoprotein&quot;</span><span class="p">,</span>
+                                                       <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;7316-101&quot;</span><span class="p">,</span> <span class="s2">&quot;7316-109&quot;</span><span class="p">]}</span>
+                                                      <span class="p">])</span>
+<span class="n">df2b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+      <th>genericAssayStableId</th>
+      <th>stableId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NzMxNi0xMDE6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfQ1dENzE3UTA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-101</td>
+      <td>PT_CWD717Q0</td>
+      <td>brain_cptac_2020</td>
+      <td>0.293524074916423</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NzMxNi0xMDk6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfNUZSMllBNkU6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-109</td>
+      <td>PT_5FR2YA6E</td>
+      <td>brain_cptac_2020</td>
+      <td>-0.709355260194312</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1DOC1BMTMwLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTMwOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A130-01</td>
+      <td>TCGA-C8-A130</td>
+      <td>brca_tcga</td>
+      <td>0.31374650000644216</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1DOC1BMTMwLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTMwOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A130-01</td>
+      <td>TCGA-C8-A130</td>
+      <td>brca_tcga</td>
+      <td>1.8338606392734915</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.13629911078391418</td>
+      <td>TEP1_pS397</td>
+      <td>TEP1_pS397</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>-0.2314224260050513</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2c</span> <span class="o">=</span> <span class="n">gad</span><span class="o">.</span><span class="n">fetch_generic_assay_data</span><span class="p">(</span><span class="n">sample_molecular_identifiers</span><span class="o">=</span><span class="p">[</span>
+                                                        <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga_phosphoprotein_quantification&quot;</span><span class="p">,</span>
+                                                         <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-C8-A130-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-C8-A134-01&quot;</span><span class="p">]},</span>
+                                                        <span class="p">{</span><span class="s2">&quot;molecular_profile_id&quot;</span><span class="p">:</span> <span class="s2">&quot;brain_cptac_2020_phosphoprotein&quot;</span><span class="p">,</span>
+                                                         <span class="s2">&quot;sample_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;7316-101&quot;</span><span class="p">,</span> <span class="s2">&quot;7316-109&quot;</span><span class="p">]}</span>
+                                                        <span class="p">])</span>
+<span class="n">df2c</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+      <th>genericAssayStableId</th>
+      <th>stableId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NzMxNi0xMDE6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfQ1dENzE3UTA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-101</td>
+      <td>PT_CWD717Q0</td>
+      <td>brain_cptac_2020</td>
+      <td>0.293524074916423</td>
+      <td>ALAD_214_215_1_1_S215</td>
+      <td>ALAD_214_215_1_1_S215</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NzMxNi0xMDE6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfQ1dENzE3UTA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-101</td>
+      <td>PT_CWD717Q0</td>
+      <td>brain_cptac_2020</td>
+      <td>1.18589905169363</td>
+      <td>ALDOA_36_39_1_1_S36</td>
+      <td>ALDOA_36_39_1_1_S36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NzMxNi0xMDE6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfQ1dENzE3UTA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-101</td>
+      <td>PT_CWD717Q0</td>
+      <td>brain_cptac_2020</td>
+      <td>1.05737336393577</td>
+      <td>ALDOA_36_39_1_1_S39</td>
+      <td>ALDOA_36_39_1_1_S39</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NzMxNi0xMDE6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfQ1dENzE3UTA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-101</td>
+      <td>PT_CWD717Q0</td>
+      <td>brain_cptac_2020</td>
+      <td>0.0624267000967347</td>
+      <td>ALDOA_46_52_1_1_S46</td>
+      <td>ALDOA_46_52_1_1_S46</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NzMxNi0xMDE6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>UFRfQ1dENzE3UTA6YnJhaW5fY3B0YWNfMjAyMA</td>
+      <td>brain_cptac_2020_phosphoprotein</td>
+      <td>7316-101</td>
+      <td>PT_CWD717Q0</td>
+      <td>brain_cptac_2020</td>
+      <td>-1.46987364905827</td>
+      <td>ANK1_1684_1693_1_1_S1686</td>
+      <td>ANK1_1684_1693_1_1_S1686</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>56312</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.6904941038059361</td>
+      <td>OTUD4_pS320</td>
+      <td>OTUD4_pS320</td>
+    </tr>
+    <tr>
+      <th>56313</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.5406159008386409</td>
+      <td>TBKBP1_pS415</td>
+      <td>TBKBP1_pS415</td>
+    </tr>
+    <tr>
+      <th>56314</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.34418985891868537</td>
+      <td>PTPN3_pS241</td>
+      <td>PTPN3_pS241</td>
+    </tr>
+    <tr>
+      <th>56315</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.6839793452245334</td>
+      <td>SIK2_pT484</td>
+      <td>SIK2_pT484</td>
+    </tr>
+    <tr>
+      <th>56316</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>0.36039894811889295</td>
+      <td>PKN2_pT958</td>
+      <td>PKN2_pT958</td>
+    </tr>
+  </tbody>
+</table>
+<p>56317 rows × 9 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">gad</span><span class="o">.</span><span class="n">get_generic_assay_data_in_molecular_profile</span><span class="p">(</span><span class="n">molecular_profile_id</span> <span class="o">=</span> <span class="s2">&quot;brca_tcga_phosphoprotein_quantification&quot;</span><span class="p">,</span>
+                                                      <span class="n">generic_assay_stable_id</span> <span class="o">=</span> <span class="s2">&quot;TULP4_pS563&quot;</span><span class="p">)</span>
+<span class="n">df3</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>molecularProfileId</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>value</th>
+      <th>genericAssayStableId</th>
+      <th>stableId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BOC1BMDlHLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BOC1BMDlHOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-A8-A09G-01</td>
+      <td>TCGA-A8-A09G</td>
+      <td>brca_tcga</td>
+      <td>-2.1236739808061182</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1DOC1BMTMwLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTMwOmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A130-01</td>
+      <td>TCGA-C8-A130</td>
+      <td>brca_tcga</td>
+      <td>1.8338606392734915</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1DOC1BMTM0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1DOC1BMTM0OmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-C8-A134-01</td>
+      <td>TCGA-C8-A134</td>
+      <td>brca_tcga</td>
+      <td>-0.2314224260050513</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1CSC1BMThRLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMThROmJyY2FfdGNnYQ</td>
+      <td>brca_tcga_phosphoprotein_quantification</td>
+      <td>TCGA-BH-A18Q-01</td>
+      <td>TCGA-BH-A18Q</td>
+      <td>brca_tcga</td>
+      <td>-2.3187358473784534</td>
+      <td>TULP4_pS563</td>
+      <td>TULP4_pS563</td>
+    </tr>
+  </tbody>
+</table>
+</div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gene_panels.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gene Panels</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="generic_assays.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Generic Assays</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.generic_assay_data.fetch_generic_assay_data"><code class="docutils literal notranslate"><span class="pre">fetch_generic_assay_data()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.generic_assay_data.fetch_generic_assay_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">fetch_generic_assay_data_in_molecular_profile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.generic_assay_data.get_generic_assay_data_in_molecular_profile"><code class="docutils literal notranslate"><span class="pre">get_generic_assay_data_in_molecular_profile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/generic_assay_data.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Matteo Valerio.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__center">
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

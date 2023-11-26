@@ -1,0 +1,1205 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clinical Attributes &#8212; pybioportal 1.0.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'clinical_attributes';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Clinical Data" href="clinical_data.html" />
+    <link rel="prev" title="Cancer Types" href="cancer_types.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pybioportal 1.0.0</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Modules
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/">
+                    cBioPortal
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/api/swagger-ui/index.html">
+                    cBioPortal API
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/<your-org>/<your-repo>" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Modules
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cancer_types_nb.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/">
+                    cBioPortal
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/api/swagger-ui/index.html">
+                    cBioPortal API
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/<your-org>/<your-repo>" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cancer_types.html">Cancer Types</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clinical Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clinical_data.html">Clinical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy_number_segment.html">Copy Number Segment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discrete_copy_number_alterations.html">Discrete Copy Number Alterations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_panel_data.html">Gene Panel Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_panels.html">Gene Panels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_assay_data.html">Generic Assay Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_assays.html">Generic Assays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genes.html">Genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="molecular_data.html">Molecular Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="molecular_profiles.html">Molecular Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutations.html">Mutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patients.html">Patients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample_lists.html">Sample Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples.html">Samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_running_status.html">Server running status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="studies.html">Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="treatments.html">Treatments</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">Modules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Clinical Attributes</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="clinical-attributes">
+<h1>Clinical Attributes<a class="headerlink" href="#clinical-attributes" title="Link to this heading">#</a></h1>
+<p>The module <code class="docutils literal notranslate"><span class="pre">clinical_attributes</span></code> provides functions related to <em>Clinical Attributes</em> section of
+<a class="reference external" href="https://www.cbioportal.org/api/swagger-ui/index.html">cBioPortal Web Public API</a>.</p>
+<dl class="py function" id="module-pybioportal.clinical_attributes">
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.fetch_clinical_attributes">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">fetch_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.fetch_clinical_attributes" title="Link to this definition">#</a></dt>
+<dd><p>Fetch clinical attributes from BioPortal for a list of study IDs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of Study IDs.</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing the fetched clinical attributes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.get_all_clinical_attributes">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_all_clinical_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.get_all_clinical_attributes" title="Link to this definition">#</a></dt>
+<dd><p>Get all clinical attributes from BioPortal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>str</em>) – <p>Direction of the sort.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”ASC”: Ascending (default).</p></li>
+<li><p>”DESC”: Descending.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>pageNumber</strong> (<em>int</em>) – <p>Page number of the result list.</p>
+<ul>
+<li><p>Minimum value is 0.</p></li>
+</ul>
+</p></li>
+<li><p><strong>pageSize</strong> (<em>int</em>) – <p>Page size of the result list.</p>
+<ul>
+<li><p>Minimum value is 1, maximum value is 10000000.</p></li>
+</ul>
+</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>sortBy</strong> (<em>str</em>) – <p>Name of the property that the result list is sorted by.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”clinicalAttributeId”: Sort by clinical attribute ID.</p></li>
+<li><p>”datatype”: Sort by datatype.</p></li>
+<li><p>”description”: Sort by description.</p></li>
+<li><p>”displayName”: Sort by display name.</p></li>
+<li><p>”patientAttribute”: Sort by patient attribute.</p></li>
+<li><p>”priority”: Sort by priority.</p></li>
+<li><p>”studyId”: Sort by study ID.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing the list of clinical attributes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.get_all_clinical_attributes_in_study">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_all_clinical_attributes_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageNumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pageSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SUMMARY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sortBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.get_all_clinical_attributes_in_study" title="Link to this definition">#</a></dt>
+<dd><p>Get all clinical attributes in the specified study.
+:param study_id: Study ID (e.g., “acc_tcga”).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>str</em>) – <p>Direction of the sort.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”ASC”: Ascending (default).</p></li>
+<li><p>”DESC”: Descending.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>pageNumber</strong> (<em>int</em>) – <p>Page number of the result list.</p>
+<ul>
+<li><p>Minimum value is 0.</p></li>
+</ul>
+</p></li>
+<li><p><strong>pageSize</strong> (<em>int</em>) – <p>Page size of the result list.</p>
+<ul>
+<li><p>Minimum value is 1, maximum value is 10000000.</p></li>
+</ul>
+</p></li>
+<li><p><strong>projection</strong> (<em>str</em>) – <p>Level of detail of the response.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”DETAILED”: Detailed information.</p></li>
+<li><p>”ID”: Information with only IDs.</p></li>
+<li><p>”META”: Metadata information.</p></li>
+<li><p>”SUMMARY”: Summary information (default).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>sortBy</strong> (<em>str</em>) – <p>Name of the property that the result list is sorted by.</p>
+<p>Possible values:</p>
+<blockquote>
+<div><ul>
+<li><p>”clinicalAttributeId”</p></li>
+<li><p>”datatype”</p></li>
+<li><p>”description”</p></li>
+<li><p>”displayName”</p></li>
+<li><p>”patientAttribute”</p></li>
+<li><p>”priority”</p></li>
+<li><p>”studyId”</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing clinical attributes in the specified study.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pybioportal.clinical_attributes.get_clinical_attribute_in_study">
+<span class="sig-prename descclassname"><span class="pre">pybioportal.clinical_attributes.</span></span><span class="sig-name descname"><span class="pre">get_clinical_attribute_in_study</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clinical_attribute_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybioportal.clinical_attributes.get_clinical_attribute_in_study" title="Link to this definition">#</a></dt>
+<dd><p>Get the specified clinical attribute in the study.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study_id</strong> (<em>str</em>) – Study ID (e.g., “acc_tcga”).</p></li>
+<li><p><strong>clinical_attribute_id</strong> (<em>str</em>) – Clinical Attribute ID (e.g., “CANCER_TYPE”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame containing information about the specified clinical attribute in the study.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybioportal</span> <span class="kn">import</span> <span class="n">clinical_attributes</span> <span class="k">as</span> <span class="n">ca</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">get_all_clinical_attributes</span><span class="p">()</span>
+<span class="n">df1</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>displayName</th>
+      <th>description</th>
+      <th>datatype</th>
+      <th>patientAttribute</th>
+      <th>priority</th>
+      <th>clinicalAttributeId</th>
+      <th>studyId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adjuvant Chemotherapy</td>
+      <td>Adjuvant Chemotherapy</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>ADJUVANT_CHEMO</td>
+      <td>acbc_mskcc_2015</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adjuvant Treatment</td>
+      <td>Adjuvant treatment.</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>ADJUVANT_TX</td>
+      <td>acbc_mskcc_2015</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Diagnosis Age</td>
+      <td>Age at which a condition or disease was first ...</td>
+      <td>NUMBER</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AGE</td>
+      <td>acbc_mskcc_2015</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Cancer Type</td>
+      <td>Cancer Type</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>CANCER_TYPE</td>
+      <td>acbc_mskcc_2015</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cancer Type Detailed</td>
+      <td>Cancer Type Detailed</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>CANCER_TYPE_DETAILED</td>
+      <td>acbc_mskcc_2015</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14752</th>
+      <td>Race Category</td>
+      <td>The text for reporting information about race.</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>RACE</td>
+      <td>wt_target_2018_pub</td>
+    </tr>
+    <tr>
+      <th>14753</th>
+      <td>Number of Samples Per Patient</td>
+      <td>Number of Samples Per Patient</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>SAMPLE_COUNT</td>
+      <td>wt_target_2018_pub</td>
+    </tr>
+    <tr>
+      <th>14754</th>
+      <td>Sex</td>
+      <td>Sex</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>SEX</td>
+      <td>wt_target_2018_pub</td>
+    </tr>
+    <tr>
+      <th>14755</th>
+      <td>Somatic Status</td>
+      <td>Somatic Status</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>SOMATIC_STATUS</td>
+      <td>wt_target_2018_pub</td>
+    </tr>
+    <tr>
+      <th>14756</th>
+      <td>TMB (nonsynonymous)</td>
+      <td>TMB (nonsynonymous)</td>
+      <td>NUMBER</td>
+      <td>False</td>
+      <td>1</td>
+      <td>TMB_NONSYNONYMOUS</td>
+      <td>wt_target_2018_pub</td>
+    </tr>
+  </tbody>
+</table>
+<p>14757 rows × 7 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">fetch_clinical_attributes</span><span class="p">(</span><span class="n">study_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span> <span class="s2">&quot;brca_bccrc&quot;</span><span class="p">])</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>displayName</th>
+      <th>description</th>
+      <th>datatype</th>
+      <th>patientAttribute</th>
+      <th>priority</th>
+      <th>clinicalAttributeId</th>
+      <th>studyId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Diagnosis Age</td>
+      <td>Age at which a condition or disease was first ...</td>
+      <td>NUMBER</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AGE</td>
+      <td>brca_bccrc</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Angiolymphatic Invasion</td>
+      <td>Presence of angiolymphatic invasion.</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>ANGIOLYMPHATIC_INVASION</td>
+      <td>brca_bccrc</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cancer Type</td>
+      <td>Cancer Type</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>CANCER_TYPE</td>
+      <td>brca_bccrc</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Cancer Type Detailed</td>
+      <td>Cancer Type Detailed</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>CANCER_TYPE_DETAILED</td>
+      <td>brca_bccrc</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Neoplasm American Joint Committee on Cancer Cl...</td>
+      <td>Extent of the distant metastasis for the cance...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>CLIN_M_STAGE</td>
+      <td>brca_bccrc</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>Time between excision and freezing</td>
+      <td>Time between excision and freezing</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>TIME_BETWEEN_EXCISION_AND_FREEZING</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>157</th>
+      <td>Tissue Source Site</td>
+      <td>A Tissue Source Site collects samples (tissue,...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>TISSUE_SOURCE_SITE</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>TMB (nonsynonymous)</td>
+      <td>TMB (nonsynonymous)</td>
+      <td>NUMBER</td>
+      <td>False</td>
+      <td>1</td>
+      <td>TMB_NONSYNONYMOUS</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Person Neoplasm Status</td>
+      <td>The state or condition of an individual's neop...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>TUMOR_STATUS</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Vial number</td>
+      <td>Vial number</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>VIAL_NUMBER</td>
+      <td>brca_tcga</td>
+    </tr>
+  </tbody>
+</table>
+<p>161 rows × 7 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3a</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">get_all_clinical_attributes_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;DETAILED&quot;</span><span class="p">)</span>
+<span class="n">df3a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>displayName</th>
+      <th>description</th>
+      <th>datatype</th>
+      <th>patientAttribute</th>
+      <th>priority</th>
+      <th>clinicalAttributeId</th>
+      <th>studyId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Diagnosis Age</td>
+      <td>Age at which a condition or disease was first ...</td>
+      <td>NUMBER</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AGE</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>American Joint Committee on Cancer Metastasis ...</td>
+      <td>Code to represent the defined absence or prese...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AJCC_METASTASIS_PATHOLOGIC_PM</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Neoplasm Disease Lymph Node Stage American Joi...</td>
+      <td>The codes that represent the stage of cancer b...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AJCC_NODES_PATHOLOGIC_PN</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Neoplasm Disease Stage American Joint Committe...</td>
+      <td>The extent of a cancer, especially whether the...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AJCC_PATHOLOGIC_TUMOR_STAGE</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>American Joint Committee on Cancer Publication...</td>
+      <td>The version or edition of the American Joint C...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AJCC_STAGING_EDITION</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>Time between excision and freezing</td>
+      <td>Time between excision and freezing</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>TIME_BETWEEN_EXCISION_AND_FREEZING</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>Tissue Source Site</td>
+      <td>A Tissue Source Site collects samples (tissue,...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>TISSUE_SOURCE_SITE</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>TMB (nonsynonymous)</td>
+      <td>TMB (nonsynonymous)</td>
+      <td>NUMBER</td>
+      <td>False</td>
+      <td>1</td>
+      <td>TMB_NONSYNONYMOUS</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>Person Neoplasm Status</td>
+      <td>The state or condition of an individual's neop...</td>
+      <td>STRING</td>
+      <td>True</td>
+      <td>1</td>
+      <td>TUMOR_STATUS</td>
+      <td>brca_tcga</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>Vial number</td>
+      <td>Vial number</td>
+      <td>STRING</td>
+      <td>False</td>
+      <td>1</td>
+      <td>VIAL_NUMBER</td>
+      <td>brca_tcga</td>
+    </tr>
+  </tbody>
+</table>
+<p>138 rows × 7 columns</p>
+</div><p>In case of data not present on cBioPortal a notification message is
+reported.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3b</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">get_all_clinical_attributes_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;META&quot;</span><span class="p">)</span>
+<span class="n">df3b</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Response</span> <span class="ow">is</span> <span class="n">empty</span><span class="o">.</span> <span class="n">No</span> <span class="n">data</span> <span class="n">available</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df4</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">get_clinical_attribute_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span> <span class="n">clinical_attribute_id</span><span class="o">=</span><span class="s2">&quot;AGE&quot;</span><span class="p">)</span>
+<span class="n">df4</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>displayName</th>
+      <th>description</th>
+      <th>datatype</th>
+      <th>patientAttribute</th>
+      <th>priority</th>
+      <th>clinicalAttributeId</th>
+      <th>studyId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Diagnosis Age</td>
+      <td>Age at which a condition or disease was first ...</td>
+      <td>NUMBER</td>
+      <td>True</td>
+      <td>1</td>
+      <td>AGE</td>
+      <td>brca_tcga</td>
+    </tr>
+  </tbody>
+</table>
+</div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cancer_types.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cancer Types</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="clinical_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Clinical Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.fetch_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">fetch_clinical_attributes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.get_all_clinical_attributes"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.get_all_clinical_attributes_in_study"><code class="docutils literal notranslate"><span class="pre">get_all_clinical_attributes_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybioportal.clinical_attributes.get_clinical_attribute_in_study"><code class="docutils literal notranslate"><span class="pre">get_clinical_attribute_in_study()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/clinical_attributes.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Matteo Valerio.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__center">
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
