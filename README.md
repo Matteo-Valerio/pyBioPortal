@@ -16,6 +16,7 @@ cBioPortal resources for their research and bioinformatic analysis projects.
 [cBioPortal Web Public API]: https://www.cbioportal.org/api/swagger-ui/index.html
 [pandas]: https://pandas.pydata.org/
 
+<!--
 ## Where to get it
 The source code is currently hosted on GitHub at:
 https://github.com/pybioportal
@@ -26,10 +27,10 @@ Package Index ([PyPI]).
 ```sh
 pip install pybioportal
 ```
-[PyPI]: https://pypi.org/project/pybioportal
+[PyPI]: https://pypi.org/project/pybioportal -->
 
 ## License
 [BSD 3](LICENSE.txt)
 
-## Documentation
-The official documentation is hosted on [GitHub](https://).
+<!-- ## Documentation
+The official documentation is hosted on [GitHub](https://). -->
