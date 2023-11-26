@@ -33,5 +33,5 @@ pip install pybioportal
 ## License
 [BSD 3](LICENSE.txt)
 
-<!-- ## Documentation
-The official documentation is hosted on [GitHub](https://). -->
+## Documentation
+The official documentation is hosted on [ReadtheDpcs](https://pybioportal.readthedocs.io/en/latest/).
