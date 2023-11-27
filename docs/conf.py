@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath(".."))
 
 
 project = 'pybioportal'
-copyright = '2023, Matteo Valerio'
+copyright = '2023, [Matteo Valerio](https://pybioportal.readthedocs.io/en/latest/)'
 author = 'Matteo Valerio'
 version = '1.0.0'
 
