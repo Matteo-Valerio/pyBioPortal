@@ -6,7 +6,7 @@
 pybioportal documentation
 =======================
 
-**Date**: |today| **Release**: |release|
+**Date**: |today| **Version**: |version|
 
 :mod:`pybioportal` is an open source, BSD-licensed `Python <https://www.python.org/>`__ library that provides a set of 
 functions to facilitate data acquisition from the `cBioPortal Web Public API <https://www.cbioportal.org/api/swagger-ui/index.html>`__ 
@@ -24,5 +24,4 @@ cBioPortal resources for their research and bioinformatic analysis projects.
    :caption: Modules
    :hidden:
 
-   modules   
-   cancer_types_nb
+   modules

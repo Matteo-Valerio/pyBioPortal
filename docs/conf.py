@@ -42,7 +42,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/<your-org>/<your-repo>",
+            "url": "https://github.com/Matteo-Valerio/pyBioPortal",
             "icon": "fab fa-github-square",
             "type": "fontawesome",
         }

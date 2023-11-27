@@ -24,5 +24,4 @@ cBioPortal resources for their research and bioinformatic analysis projects.
    :caption: Modules
    :hidden:
 
-   modules   
-   cancer_types_nb
+   modules
