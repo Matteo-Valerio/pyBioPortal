@@ -25,3 +25,6 @@ cBioPortal resources for their research and bioinformatic analysis projects.
    :hidden:
 
    modules
+
+.. |author_link| raw:: html
+    <a href="https://pybioportal.readthedocs.io/en/latest/">Matteo Valerio</a>
