@@ -17,8 +17,8 @@ requirements:
     - python
     - requests>=2.0.0
     - pandas>=1.0.0
-    - numpy>=1.26.0
-
+    - numpy
+    
 about:
   home: https://github.com/Matteo-Valerio/pyBioPortal.git
   license: BSD 3-Clause License
