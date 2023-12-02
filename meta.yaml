@@ -18,6 +18,8 @@ requirements:
     - requests>=2.0.0
     - pandas>=1.0.0
     - numpy={{ numpy }}
+  build:
+    - numpy={{ numpy }}
 
 about:
   home: https://github.com/Matteo-Valerio/pyBioPortal.git
