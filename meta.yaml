@@ -23,9 +23,10 @@ requirements:
 
 about:
   home: https://github.com/Matteo-Valerio/pyBioPortal.git
-  license: BSD 3-Clause License
+  license: BSD-3-Clause
   license_file: LICENSE.txt
   summary: A Python package to easily retrieve data from cBioPortal.
+  doc_url: https://pybioportal.readthedocs.io
   description: |
     A Python package to easily retrieve data from cBioPortal.
 
