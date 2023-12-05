@@ -1,14 +1,12 @@
 from setuptools import setup, find_packages
+import sys
 
 if __name__ == "__main__":
-    import sys
-
-    script_args = sys.argv[1:]
-    if 'sdist' in script_args:
+    if 'sdist' in sys.argv:
         # output folder for the distributable package
-        script_args += ['--dist-dir', 'nome_cartella_output']
+        sys.argv += ['--dist-dir', 'build/pypi']
 
-with open('LICENSE.txt', 'r') as file:
+with open('LICENSE.txt', 'r', encoding='utf-8') as file:
     license_text = file.read()
 
 name = "pybioportal"
