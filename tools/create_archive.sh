@@ -3,6 +3,9 @@
 # version definition
 VERSION="v1.0.0"
 
+# move to main directory
+cd ..
+
 git pull origin master
 git archive --format tar.gz -o ./archive/pybioportal-"$VERSION".tar.gz "$VERSION":pybioportal/
 git add .
