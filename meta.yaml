@@ -17,12 +17,10 @@ requirements:
     - python
     - requests>=2.0.0
     - pandas>=1.0.0
-    - numpy={{ numpy }}
-  build:
-    - numpy={{ numpy }}
+    - numpy>=1.23.0
 
 about:
-  home: https://github.com/Matteo-Valerio/pyBioPortal.git
+  home: https://github.com/Matteo-Valerio/pyBioPortal
   license: BSD-3-Clause
   license_file: LICENSE.txt
   summary: A Python package to easily retrieve data from cBioPortal.
