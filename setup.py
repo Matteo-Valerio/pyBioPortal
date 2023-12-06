@@ -1,10 +1,7 @@
 from setuptools import setup, find_packages
+import os
 import sys
 
-if __name__ == "__main__":
-    if 'sdist' in sys.argv:
-        # output folder for the distributable package
-        sys.argv += ['--dist-dir', 'build/pypi']
 
 with open('LICENSE.txt', 'r', encoding='utf-8') as file:
     license_text = file.read()
@@ -24,7 +21,22 @@ install_requires = [
     "numpy>=1.23.0"
 ]
 
-packages = find_packages()
+packages = ["pybioportal"]
+
+if __name__ == "__main__":
+
+    # output folder for package distribution file tar.gz and whl
+    version_folder = f"dist/v{version}/pypi"
+    
+    # create output folder if not exists
+    if not os.path.exists(version_folder):
+        os.makedirs(version_folder)
+
+    # check if command is python setup.py
+    if len(sys.argv) == 1 and sys.argv[0] == "setup.py":
+        # adding option for building
+        sys.argv += ["sdist", "--dist-dir", version_folder]
+        sys.argv += ["bdist_wheel", "--dist-dir", version_folder]
 
 setup(
     name=name,
@@ -47,3 +59,17 @@ setup(
         "Operating System :: OS Independent",
     ],
 )
+
+
+# Remove the build and pybioportal.egg-info directory after creating the packages
+if os.path.exists("build"):
+    if os.name == "nt":  # Check if running on Windows
+        os.system(f"rmdir /s /q build")
+    else:  # For Unix-like systems
+        os.system(f"rm -rf build")
+
+if os.path.exists("pybioportal.egg-info"):
+    if os.name == "nt":  # Check if running on Windows
+        os.system(f"rmdir /s /q pybioportal.egg-info")
+    else:  # For Unix-like systems
+        os.system(f"rm -rf pybioportal.egg-info")

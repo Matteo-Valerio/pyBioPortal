@@ -1,9 +1,11 @@
+{% set version = "1.0.0" %}
+
 package:
   name: pybioportal
-  version: "1.0.0"
+  version: {{ version }}
 
 source:
-  url: "https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal.tar.gz"
+  url: https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal-v{{ version }}.tar.gz
 
 
 build:
@@ -16,7 +18,6 @@ requirements:
     - python
     - requests>=2.0.0
     - pandas>=1.0.0
-    - numpy>=1.23.0
 
 about:
   home: https://github.com/Matteo-Valerio/pyBioPortal
