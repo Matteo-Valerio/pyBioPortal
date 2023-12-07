@@ -7,7 +7,7 @@ VERSION="v1.0.0"
 cd ..
 
 git pull origin master
-git archive --format=zip -o ./archive/pybioportal-"$VERSION".zip master:setup.py
+git archive --format=zip -o ./archive/pybioportal-"$VERSION".zip master:pybioportal
 git add .
 git commit -m "Create new archive $VERSION"
 git push origin master
