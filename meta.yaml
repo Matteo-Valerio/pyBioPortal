@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal-v{{ version }}.tar.gz
+  url: https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal.tar.gz
 
 build:
   number: 0
