@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 import os
 import sys
 
-
 with open('LICENSE.txt', 'r', encoding='utf-8') as file:
     license_text = file.read()
 
