@@ -1,13 +1,14 @@
 from setuptools import setup, find_packages
 import os
 import sys
+from tools.conf_build import VERSION, vVERSION
 
 
 with open('LICENSE.txt', 'r', encoding='utf-8') as file:
     license_text = file.read()
 
 name = "pybioportal"
-version = "1.0.0"
+version = VERSION
 description = "A Python package to easily retrieve data from cBioPortal."
 author = "Matteo Valerio"
 url = "https://github.com/Matteo-Valerio/pyBioPortal"
@@ -26,7 +27,7 @@ packages = ["pybioportal"]
 if __name__ == "__main__":
 
     # output folder for package distribution file tar.gz and whl
-    version_folder = f"dist/v{version}/pypi"
+    version_folder = f"dist/{vVERSION}/pypi"
     
     # create output folder if not exists
     if not os.path.exists(version_folder):
