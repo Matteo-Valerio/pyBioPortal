@@ -1,6 +1,7 @@
 import tarfile
 import os
-from conf_build import vVERSION
+import subprocess
+from conf_build import VERSION, vVERSION
 
 def create_tar_gz(output_file, folders, files):
     with tarfile.open(output_file, "w:gz") as tar:
@@ -21,3 +22,13 @@ if __name__ == "__main__":
     output_file = f"../archive/pybioportal-{vVERSION}.tar.gz"
 
     create_tar_gz(output_file, folders_to_add, files_to_add)
+
+# command git add .
+subprocess.run(['git', 'add', '.'])
+
+# command git commit -m "Create new archive VERSION"
+commit_message = f"Create new archive {VERSION}"
+subprocess.run(['git', 'commit', '-m', commit_message])
+
+# command git push origin master
+subprocess.run(['git', 'push', 'origin', 'master'])
