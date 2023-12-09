@@ -1,5 +1,5 @@
 import ruamel.yaml
-from conf_build import VERSION
+from conf_build import VERSION, URL_ARCHIVE
 
 def update_version_in_yaml(new_version):
     file_path = '../meta.yaml'
@@ -12,6 +12,7 @@ def update_version_in_yaml(new_version):
 
     # update version value
     data['package']['version'] = new_version
+    data['source']['url'] = f"{URL_ARCHIVE}/pybioportal-v{new_version}.tar.gz"
 
     with open(file_path, 'w') as file:
         yaml.dump(data, file)
