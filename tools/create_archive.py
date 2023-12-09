@@ -31,11 +31,11 @@ if __name__ == "__main__":
 os.chdir(output_folder)
 
 # command git add .
-subprocess.run(['git', 'add', file_name])
+subprocess.run(["git", "add", file_name])
 
 # command git commit -m "Create new archive VERSION"
 commit_message = f"Create new archive {vVERSION}"
-subprocess.run(['git', 'commit', '-m', commit_message])
+subprocess.run(["git", "commit", "-m", commit_message])
 
 # command git push origin master
-subprocess.run(['git', 'push', 'origin', 'master'])
+subprocess.run(["git", "push", "origin", "master"])
