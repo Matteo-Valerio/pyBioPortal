@@ -25,6 +25,7 @@ if __name__ == "__main__":
 
     create_tar_gz(output_file, folders_to_add, files_to_add)
 
+# commit archive folder
 os.chdir('..')
 
 # command git add .

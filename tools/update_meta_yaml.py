@@ -1,4 +1,6 @@
 import ruamel.yaml
+import os
+import subprocess
 from conf_build import VERSION, URL_ARCHIVE
 
 def update_version_in_yaml(new_version):
@@ -18,3 +20,16 @@ def update_version_in_yaml(new_version):
         yaml.dump(data, file)
 
 update_version_in_yaml(VERSION)
+
+# commit repository
+os.chdir('..')
+
+# command git add .
+subprocess.run(['git', 'add', '.'])
+
+# command git commit
+commit_message = f"Update version: {VERSION}"
+subprocess.run(['git', 'commit', '-m', commit_message])
+
+# command git push origin master
+subprocess.run(['git', 'push', 'origin', 'master'])

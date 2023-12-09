@@ -1,9 +1,9 @@
 package:
   name: pybioportal
-  version: 1.0.0
+  version: 2.0.0
 
 source:
-  url: https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal-v1.0.0.tar.gz
+  url: https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal-v2.0.0.tar.gz
 
 build:
   number: 0
