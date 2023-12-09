@@ -3,8 +3,10 @@ import os
 import subprocess
 from conf_build import VERSION, URL_ARCHIVE
 
-def update_version_in_yaml(new_version):
-    file_path = '../meta.yaml'
+file_path = '../meta.yaml'
+
+def update_version_in_yaml(new_version, file_path):
+    file_path = file_path
 
     yaml = ruamel.yaml.YAML()
     yaml.preserve_quotes = True  # maintain double quotes around values
@@ -19,13 +21,13 @@ def update_version_in_yaml(new_version):
     with open(file_path, 'w') as file:
         yaml.dump(data, file)
 
-update_version_in_yaml(VERSION)
+update_version_in_yaml(VERSION, file_path)
 
 # commit repository
 os.chdir('..')
 
 # command git add .
-subprocess.run(['git', 'add', '.'])
+subprocess.run(['git', 'add', 'meta.yaml'])
 
 # command git commit
 commit_message = f"Update version: {VERSION}"
