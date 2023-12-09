@@ -21,15 +21,17 @@ if __name__ == "__main__":
     files_to_add = ["../setup.py", "../LICENSE.txt", "../README.md", "../tools/conf_build.py"]
 
     # tar.gz file name
-    output_file = f"../archive/pybioportal-{vVERSION}.tar.gz"
+    output_folder = "../archive/"
+    file_name = f"pybioportal-{vVERSION}.tar.gz"
+    output_file = output_folder + file_name
 
     create_tar_gz(output_file, folders_to_add, files_to_add)
 
 # commit archive folder
-os.chdir('..')
+os.chdir(output_folder)
 
 # command git add .
-subprocess.run(['git', 'add', '.'])
+subprocess.run(['git', 'add', file_name])
 
 # command git commit -m "Create new archive VERSION"
 commit_message = f"Create new archive {vVERSION}"

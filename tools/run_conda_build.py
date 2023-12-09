@@ -9,27 +9,27 @@ if not os.path.exists(output_folder):
 
 # commands to execute
 commands = [
-    f'conda build . --output-folder {output_folder}',
-    'conda build purge'
+    f"conda build . --output-folder {output_folder}",
+    "conda build purge"
 ]
 
 os.chdir("..")
 
-print(f'Working Directory: {os.getcwd()}',)
+print(f"Working Directory: {os.getcwd()}",)
 
 for cmd in commands:
-    print(f'>>{cmd}: \n')
+    print(f">>{cmd}: \n")
     subprocess.run(cmd, shell=True)
 
 # commit anaconda build folder 
 os.chdir(output_folder)
 
 # command git add .
-subprocess.run(['git', 'add', '.'])
+subprocess.run(["git", "add", "."])
 
 # command git commit
 commit_message = f"Build version {vVERSION}"
-subprocess.run(['git', 'commit', '-m', commit_message])
+subprocess.run(["git", "commit", "-m", commit_message])
 
 # command git push origin master
-subprocess.run(['git', 'push', 'origin', 'master'])
+subprocess.run(["git", "push", "origin", "master"])
