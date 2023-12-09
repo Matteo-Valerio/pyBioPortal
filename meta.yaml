@@ -12,10 +12,10 @@ build:
 
 requirements:
   run:
-    - python
-    - requests>=2.0.0
-    - pandas>=1.0.0
-    - numpy>=1.23.0
+  - python
+  - requests>=2.0.0
+  - pandas>=1.0.0
+  - numpy>=1.23.0
 
 about:
   home: https://github.com/Matteo-Valerio/pyBioPortal
@@ -28,4 +28,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - Matteo Valerio
+  - Matteo Valerio
