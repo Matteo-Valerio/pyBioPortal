@@ -20,6 +20,9 @@ for cmd in commands:
     print(f'>>{cmd}: \n')
     subprocess.run(cmd, shell=True)
 
+# comminit anaconda build folder
+os.chdir(output_folder)
+
 # command git add .
 subprocess.run(['git', 'add', '.'])
 
