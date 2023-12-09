@@ -29,7 +29,7 @@ def update_version_in_yaml(new_version, file_path):
     # update version value
     data["package"]["version"] = new_version
     data["source"]["url"] = f"{URL_ARCHIVE}/pybioportal-v{new_version}.tar.gz"
-    data["source"]["sha256"] = hash_sha256.hexdigest()
+    #data["source"]["sha256"] = hash_sha256.hexdigest()
 
     with open(file_path, "w") as file:
         yaml.dump(data, file)

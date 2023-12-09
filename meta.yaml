@@ -4,7 +4,6 @@ package:
 
 source:
   url: https://github.com/Matteo-Valerio/pyBioPortal/raw/master/archive/pybioportal-v1.0.0.tar.gz
-  sha256: e4bbaca121aa9f9cf87595d8d607fc3e50cb45b54cb0994c663b26bc3d4d2ed9
 
 build:
   number: 0
