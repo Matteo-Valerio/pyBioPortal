@@ -9,7 +9,7 @@ if not os.path.exists(output_folder):
 
 # commands to execute
 commands = [
-    f'conda build ..\ --output-folder {output_folder}',
+    f'conda build . --output-folder {output_folder}',
     'conda build purge'
 ]
 
