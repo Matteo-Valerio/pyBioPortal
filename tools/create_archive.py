@@ -1,7 +1,7 @@
 import tarfile
 import os
 import subprocess
-from conf_build import VERSION, vVERSION
+from conf_build import vVERSION
 
 def create_tar_gz(output_file, folders, files):
     with tarfile.open(output_file, "w:gz") as tar:
@@ -32,7 +32,7 @@ os.chdir('..')
 subprocess.run(['git', 'add', '.'])
 
 # command git commit -m "Create new archive VERSION"
-commit_message = f"Create new archive {VERSION}"
+commit_message = f"Create new archive {vVERSION}"
 subprocess.run(['git', 'commit', '-m', commit_message])
 
 # command git push origin master
