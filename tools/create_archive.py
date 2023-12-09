@@ -11,14 +11,14 @@ def create_tar_gz(output_file, folders, files):
 
         # Add files to file tar.gz
         for file in files:
-            arcname = file.replace("..", "root").replace("/", os.sep)
+            arcname = file.replace("../", "").replace("/", os.sep)
             tar.add(file, arcname=arcname)
             #tar.add(file, arcname=os.path.basename(file))
 
 if __name__ == "__main__":
     # Define folders and files to add to file tar.gz
-    folders_to_add = ["../pybioportal", "../tools/conf_build.py"]
-    files_to_add = ["../setup.py", "../LICENSE.txt", "../README.md"]
+    folders_to_add = ["../pybioportal"]
+    files_to_add = ["../setup.py", "../LICENSE.txt", "../README.md", "../tools/conf_build.py"]
 
     # tar.gz file name
     output_file = f"../archive/pybioportal-{vVERSION}.tar.gz"
