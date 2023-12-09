@@ -11,7 +11,7 @@ def create_tar_gz(output_file, folders, files):
 
         # Add files to file tar.gz
         for file in files:
-            arcname = file.replace("../", "").replace("/", os.sep)
+            arcname = file.replace("..", "root").replace("/", os.sep)
             tar.add(file, arcname=arcname)
             #tar.add(file, arcname=os.path.basename(file))
 
