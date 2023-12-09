@@ -1,9 +1,21 @@
 import ruamel.yaml
 import os
 import subprocess
-from conf_build import VERSION, URL_ARCHIVE
+import hashlib
+from conf_build import VERSION, vVERSION, URL_ARCHIVE
 
 file_path = "../meta.yaml"
+
+#--- calculate sha256 of the source tar.gz
+
+# tar.gz file name
+output_file = f"../archive/pybioportal-{vVERSION}.tar.gz"
+
+hash_sha256 = hashlib.sha256()
+
+with open(output_file, 'rb') as f:
+    for chunk in iter(lambda: f.read(4096), b''):
+        hash_sha256.update(chunk)
 
 def update_version_in_yaml(new_version, file_path):
     file_path = file_path
@@ -17,6 +29,7 @@ def update_version_in_yaml(new_version, file_path):
     # update version value
     data["package"]["version"] = new_version
     data["source"]["url"] = f"{URL_ARCHIVE}/pybioportal-v{new_version}.tar.gz"
+    data["source"]["sha256"] = hash_sha256.hexdigest()
 
     with open(file_path, "w") as file:
         yaml.dump(data, file)
