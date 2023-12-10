@@ -68,12 +68,3 @@ try:
     print("Successfully pushed all tags to the remote repository.")
 except subprocess.CalledProcessError as e:
     print(f"An error occurred while pushing tags to the remote repository: {e}")
-
-
-#---- Create a release associated with the tag
-create_release_command = f'git push origin master && git tag -a {tag_name} -m "{release_message}" && git push origin {tag_name}'
-try:
-    subprocess.run(create_release_command, shell=True, check=True)
-    print(f"Release '{tag_name}' created successfully.")
-except subprocess.CalledProcessError as e:
-    print(f"An error occurred while creating the release: {e}")
