@@ -2,25 +2,26 @@ import os
 import subprocess
 from conf_build import VERSION, vVERSION
 
-# Define tag name and description
+#---- Define tag name and description
 tag_name = vVERSION
 tag_message = f"Version {VERSION}"
+release_message = f"Version {VERSION}"
 
 os.chdir("..")
 
 print(f"Working Directory: {os.getcwd()}",)
 
-# Command to check if the tag exists locally
+#---- Command to check if the tag exists locally
 check_tag_command = f'git rev-parse --verify --quiet refs/tags/{tag_name}'
 
-# Run the command to check if the tag exists
+# Run the command to check if the tag exists locally
 try:
     subprocess.run(check_tag_command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     tag_exists = True
 except subprocess.CalledProcessError as e:
     tag_exists = False
 
-# Command to check if the tag exists remotely
+#---- Command to check if the tag exists remotely
 check_remote_tag_command = f'git ls-remote --tags origin {tag_name}'
 
 # Run the command to check if the tag exists remotely
@@ -40,7 +41,7 @@ else:
     print(f"The remote tag '{tag_name}' is new")
 
 
-# Overwrite the existing tag with a new annotation if present, otherwise create a new tag
+#---- Overwrite the existing tag with a new annotation if present, otherwise create a new tag
 if tag_exists:
     overwrite_tag_command = f'git tag -a -f {tag_name} -m "{tag_message}"'
 
@@ -58,7 +59,8 @@ else:
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while creating the local tag: {e}")
 
-# Push of all tags, including those edited or added
+
+#---- Push of all tags, including those edited or added
 push_tags_command = 'git push --tags'
 
 try:
@@ -67,3 +69,11 @@ try:
 except subprocess.CalledProcessError as e:
     print(f"An error occurred while pushing tags to the remote repository: {e}")
 
+
+#---- Create a release associated with the tag
+create_release_command = f'git push origin master && git tag -a {tag_name} -m "{release_message}" && git push origin {tag_name}'
+try:
+    subprocess.run(create_release_command, shell=True, check=True)
+    print(f"Release '{tag_name}' created successfully.")
+except subprocess.CalledProcessError as e:
+    print(f"An error occurred while creating the release: {e}")
