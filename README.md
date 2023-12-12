@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://github.com/Matteo-Valerio/pyBioPortal/blob/master/docs/logo/pbp_light.svg"><br>
+</div>
+
+-----------------
+
 # pybioportal: a Python package to easily retrieve data from cBioPortal
 
 ## What is it?
