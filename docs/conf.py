@@ -48,17 +48,17 @@ html_theme_options = {
       {
          "rel": "icon",
          "sizes": "16x16",
-         "href": "pbp_dark_logo.png",
+         "href": "pbp_light_logo.png",
       },
       {
          "rel": "icon",
          "sizes": "32x32",
-         "href": "pbp_dark_logo.png",
+         "href": "pbp_light_logo.png",
       },
       {
          "rel": "apple-touch-icon",
          "sizes": "180x180",
-         "href": "pbp_dark_logo.png",
+         "href": "pbp_light_logo.png",
          "color": "#000000",
       },
    ],
