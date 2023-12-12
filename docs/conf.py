@@ -39,6 +39,29 @@ html_css_files = [
 
 html_theme_options = {
     #"icon_links_label": "Quick Links",
+    "logo": {
+        "text": "pybioportal",
+        "image_light": "_static/pbp_light_logo.png",
+        "image_dark": "_static/pbp_dark_logo.png",
+    },
+    "favicons": [
+      {
+         "rel": "icon",
+         "sizes": "16x16",
+         "href": "pbp_dark_logo.png",
+      },
+      {
+         "rel": "icon",
+         "sizes": "32x32",
+         "href": "pbp_dark_logo.png",
+      },
+      {
+         "rel": "apple-touch-icon",
+         "sizes": "180x180",
+         "href": "pbp_dark_logo.png",
+         "color": "#000000",
+      },
+   ],
     "icon_links": [
         {
             "name": "GitHub",
