@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Matteo-Valerio/pyBioPortal/blob/master/docs/logo/pbp_light.svg"><br>
+  <img src="https://raw.githubusercontent.com/Matteo-Valerio/pyBioPortal/master/docs/logo/pbp_light.svg"><br>
 </div>
 
 -----------------
