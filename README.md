@@ -56,9 +56,8 @@ The official documentation is hosted on [ReadtheDocs](https://pybioportal.readth
 ## Contributing to pandas
 Bug reports, bug fixes, documentation improvements, enhancements and ideas are welcome and can be made 
 on [![GitHub](https://img.shields.io/badge/github-blue?logo=github)](https://github.com/Matteo-Valerio/pyBioPortal) 
-and/or by sending an [![email](https://img.shields.io/badge/email-red?logo=maildotru)](mailto:mv.datascientist@outlook.com)   
-or [![telegram](https://img.shields.io/badge/telegram-gray?logo=telegram)](https://telegram.me/MatteoValerio) message to the author.
+and/or by sending an [![email](https://img.shields.io/badge/email-red?logo=maildotru)](mailto:mv.datascientist@outlook.com) or [![telegram](https://img.shields.io/badge/telegram-gray?logo=telegram)](https://telegram.me/MatteoValerio) message to the author.
 
 <hr>
 
-[Go to Top](#table-of-contents)
+[Go to Top](#What-is-it?)
