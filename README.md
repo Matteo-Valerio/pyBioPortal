@@ -33,8 +33,12 @@ cBioPortal resources for their research and bioinformatic analysis projects.
 The source code is currently hosted on GitHub at:
 https://github.com/Matteo-Valerio/pyBioPortal
 
-Binary installers for the latest released version are available at the Python
-Package Index ([PyPI]) (https://pypi.org/project/pybioportal) and on [Anaconda] (https://anaconda.org/matteo.valerio/pybioportal).
+Binary installers for the latest released version are available at the [Python
+Package Index (PyPI)] and on [Anaconda].
+
+[Python Package Index (PyPI)]: https://pypi.org/project/pybioportal
+[Anaconda]: https://anaconda.org/matteo.valerio/pybioportal
+
 
 ```sh
 # PyPI
