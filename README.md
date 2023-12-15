@@ -7,7 +7,6 @@
 # pybioportal: a Python package to easily retrieve data from cBioPortal
 
 | | |
-| --- | --- |
 | Package | [![PyPI Latest Release](https://img.shields.io/pypi/v/pybioportal.svg)](https://pypi.org/project/pybioportal/) [![PyPI Downloads](https://img.shields.io/pypi/dm/pybioportal)](https://pypi.org/project/pybioportal/) [![Conda Latest Release](https://anaconda.org/matteo.valerio/pybioportal/badges/version.svg)](https://anaconda.org/matteo.valerio/pybioportal) [![Conda Downloads](https://img.shields.io/conda/dn/matteo.valerio/pybioportal)](https://anaconda.org/matteo.valerio/pybioportal) |
 | Meta | [![License - BSD 3-Clause](https://img.shields.io/pypi/l/pybioportal.svg)](https://github.com/Matteo-Valerio/pyBioPortal/blob/master/LICENSE.txt) |
 
