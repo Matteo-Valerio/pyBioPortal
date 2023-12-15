@@ -6,6 +6,13 @@
 
 # pybioportal: a Python package to easily retrieve data from cBioPortal
 
+| | |
+| --- | --- |
+| Package | [![PyPI Latest Release](https://img.shields.io/pypi/v/pybioportal.svg)](https://pypi.org/project/pybioportal/) [![PyPI Downloads](https://img.shields.io/pypi/dm/pybioportal.svg?label=PyPI%20downloads)](https://pypi.org/project/pybioportal/) [![Conda Latest Release](
+https://anaconda.org/matteo.valerio/pybioportal/badges/version.svg)](https://anaconda.org/matteo.valerio/pybioportal) [![Conda Downloads](https://img.shields.io/conda/dn/matteo.valerio/pybioportal.svg?label=Conda%20downloads)](https://anaconda.org/matteo.valerio/pybioportal) |
+| Meta | [![License - BSD 3-Clause](https://img.shields.io/pypi/l/pybioportal.svg)](https://github.com/Matteo-Valerio/pyBioPortal/blob/master/LICENSE.txt) |
+
+
 ## What is it?
 
 **pybioportal** is an open source, BSD-licensed [Python] library that provides a set of 
@@ -27,17 +34,32 @@ cBioPortal resources for their research and bioinformatic analysis projects.
 The source code is currently hosted on GitHub at:
 https://github.com/Matteo-Valerio/pyBioPortal
 
-<!--
 Binary installers for the latest released version are available at the Python
-Package Index ([PyPI]).
+Package Index ([PyPI]) (https://pypi.org/project/pybioportal) and on [Anaconda] (https://anaconda.org/matteo.valerio/pybioportal).
 
 ```sh
+# PyPI
 pip install pybioportal
 ```
-[PyPI]: https://pypi.org/project/pybioportal -->
+
+```sh
+# Anaconda
+conda install -c matteo.valerio pybioportal
+```
+
 
 ## License
 [BSD 3](LICENSE.txt)
 
 ## Documentation
 The official documentation is hosted on [ReadtheDocs](https://pybioportal.readthedocs.io/en/latest/).
+
+## Contributing to pandas
+Bug reports, bug fixes, documentation improvements, enhancements and ideas are welcome and can be made 
+on [![GitHub](https://img.shields.io/badge/github-blue?logo=github)](https://github.com/Matteo-Valerio/pyBioPortal) 
+and/or by sending an [![email](https://img.shields.io/badge/email-red?logo=maildotru)](mailto:mv.datascientist@outlook.com)   
+or [![telegram](https://img.shields.io/badge/telegram-gray?logo=telegram)](https://telegram.me/MatteoValerio) message to the author.
+
+<hr>
+
+[Go to Top](#table-of-contents)
