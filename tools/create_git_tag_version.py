@@ -7,6 +7,7 @@ tag_name = vVERSION
 tag_message = f"Version {VERSION}"
 release_message = f"Version {VERSION}"
 
+# command must be executed in root folder of repository
 os.chdir("..")
 
 print(f"Working Directory: {os.getcwd()}",)
