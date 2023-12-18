@@ -18,7 +18,7 @@ def create_tar_gz(output_file, folders, files):
 if __name__ == "__main__":
     # Define folders and files to add to file tar.gz
     folders_to_add = ["../pybioportal"]
-    files_to_add = ["../setup.py", "../LICENSE.txt", "../README.md", "../tools/conf_build.py"]
+    files_to_add = ["../setup.py", "../pyproject.toml", "../LICENSE.txt", "../README.md", "../tools/conf_build.py"]
 
     # tar.gz file name
     output_folder = "../archive/"
