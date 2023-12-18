@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pybioportal"
-version = "1.0.0"
+version = "1.0.1"
 description = "A Python package to easily retrieve data from cBioPortal"
 readme = "README.md"
 authors = [
