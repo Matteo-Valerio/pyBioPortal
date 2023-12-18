@@ -4,18 +4,18 @@ import subprocess
 import hashlib
 from conf_build import VERSION, vVERSION, URL_ARCHIVE
 
-file_path = "../meta.yaml"
+file_path = "../recipe/meta.yaml"
 
 #--- calculate sha256 of the source tar.gz
 
 # tar.gz file name
 output_file = f"../archive/pybioportal-{vVERSION}.tar.gz"
 
-hash_sha256 = hashlib.sha256()
+# hash_sha256 = hashlib.sha256()
 
-with open(output_file, 'rb') as f:
-    for chunk in iter(lambda: f.read(4096), b''):
-        hash_sha256.update(chunk)
+# with open(output_file, 'rb') as f:
+#     for chunk in iter(lambda: f.read(4096), b''):
+#         hash_sha256.update(chunk)
 
 def update_version_in_yaml(new_version, file_path):
     file_path = file_path
@@ -37,7 +37,7 @@ def update_version_in_yaml(new_version, file_path):
 update_version_in_yaml(VERSION, file_path)
 
 # commit repository
-os.chdir("..")
+os.chdir("../recipe")
 
 # command git add .
 subprocess.run(["git", "add", "meta.yaml"])
