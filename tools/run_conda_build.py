@@ -2,7 +2,7 @@ import subprocess
 import os
 from conf_build import vVERSION
 
-output_folder = f"dist/{vVERSION}/anaconda"
+output_folder = f"../dist/{vVERSION}/anaconda"
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
@@ -13,7 +13,8 @@ commands = [
     "conda build purge"
 ]
 
-os.chdir("..")
+# command must be executed in recipe folder of repository
+os.chdir("../recipe")
 
 print(f"Working Directory: {os.getcwd()}",)
 
@@ -31,5 +32,5 @@ subprocess.run(["git", "add", "."])
 commit_message = f"Build version {vVERSION}"
 subprocess.run(["git", "commit", "-m", commit_message])
 
-# command git push origin master
-subprocess.run(["git", "push", "origin", "master"])
+# # command git push origin master
+# subprocess.run(["git", "push", "origin", "master"])
