@@ -32,5 +32,5 @@ subprocess.run(["git", "add", "."])
 commit_message = f"Build version {vVERSION}"
 subprocess.run(["git", "commit", "-m", commit_message])
 
-# # command git push origin master
-# subprocess.run(["git", "push", "origin", "master"])
+# command git push origin master
+subprocess.run(["git", "push", "origin", "master"])
