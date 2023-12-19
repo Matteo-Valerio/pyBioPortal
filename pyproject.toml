@@ -31,4 +31,3 @@ packages = ["pybioportal"]
 homepage = "https://github.com/Matteo-Valerio/pyBioPortal"
 documentation = "https://pybioportal.readthedocs.io"
 repository = "https://github.com/Matteo-Valerio/pyBioPortal"
-
