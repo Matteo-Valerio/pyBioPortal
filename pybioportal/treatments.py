@@ -1,6 +1,12 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url,get_headers
 from .__aux_funcs import process_response
+=======
+from .__config import base_url
+from .__aux_funcs import process_response
+
+>>>>>>> origin/master
 def fetch_status_display_patient_trts(study_ids, tier="Agent"):
     """
     Check if patient level treatments should be displayed. \n
@@ -18,7 +24,10 @@ def fetch_status_display_patient_trts(study_ids, tier="Agent"):
     endpoint = "/treatments/display-patient"
     params = {"tier": tier}
 
+<<<<<<< HEAD
     headers = get_headers()
+=======
+>>>>>>> origin/master
     response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
     return response.json()
     
@@ -39,8 +48,12 @@ def fetch_status_display_sample_trts(study_ids, tier="Agent"):
     endpoint = "/treatments/display-sample"
     params = {"tier": tier}
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+>>>>>>> origin/master
     return response.json()
     
 def fetch_all_patient_level_treatments(study_view_filter, tier="Agent"):
@@ -62,8 +75,12 @@ def fetch_all_patient_level_treatments(study_view_filter, tier="Agent"):
     endpoint = "/treatments/patient"
     params = {"tier": tier}
     
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to get all patient level treatments.")
     
 def fetch_all_sample_level_treatments(study_view_filter, tier="Agent"):
@@ -85,6 +102,10 @@ def fetch_all_sample_level_treatments(study_view_filter, tier="Agent"):
     endpoint = "/treatments/sample"
     params = {"tier": tier}
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to get all sample level treatments.")

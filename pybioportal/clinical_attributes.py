@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url,get_headers
+=======
+from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -45,8 +49,12 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get clinical attributes.")
     
 def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
@@ -68,8 +76,12 @@ def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     data = study_ids
     params = {"projection": projection}
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", json=data, params=params,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch clinical attributes.")
 
 def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, 
@@ -118,8 +130,12 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get clinical attributes in the specified study.")
     
 def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
@@ -133,7 +149,11 @@ def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
     :rtype: pandas.DataFrame \n
     """
     endpoint = f"/studies/{study_id}/clinical-attributes/{clinical_attribute_id}"
+<<<<<<< HEAD
 
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get the specified clinical attribute in the study.")

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # __aux_funcs.py
+=======
+# Auxiliary functions
+>>>>>>> origin/master
 
 import pandas as pd
 
@@ -40,11 +44,19 @@ def process_response(response, fail_msg, ret_format=None, attribute_ids=None):
         else:
             print("Response is empty. No data available.")
     else:
+<<<<<<< HEAD
         error_message = f"{fail_msg}. Status code: {response.status_code}"
         try:
             error_message += f"\n Error message: {response.json().get('message', 'No error message provided')}"
         except ValueError:
             error_message += "\n Error message: No error message provided"
+=======
+        error_message = f"{fail_msg} Status code: {response.status_code}"
+    
+        if response.text:
+            error_message += f"\n Error messagge: {response.json()['message']}"
+    
+>>>>>>> origin/master
         raise Exception(error_message)
 
 def flatten_dict_columns(df):
@@ -96,4 +108,8 @@ def flatten_dict_list_columns(df):
         new_data.extend(flattened_dicts)
 
     new_df = pd.DataFrame(new_data)
+<<<<<<< HEAD
     return new_df
+=======
+    return new_df
+>>>>>>> origin/master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 
 base_url = "https://www.cbioportal.org/api"
@@ -34,3 +35,12 @@ def get_headers():
     if not api_token:
         raise ValueError("API token not found. Please set the CBIOPORTAL_API_TOKEN environment variable or use set_api_token() function.")
     return {"Authorization": f"Bearer {api_token}", "Content-Type": "application/json"}
+=======
+# Global variable
+base_url = "https://www.cbioportal.org/api"
+
+# Setting base url
+def configure_base_url(new_base_url=base_url):
+    global base_url
+    base_url = new_base_url
+>>>>>>> origin/master

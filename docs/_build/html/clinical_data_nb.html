@@ -1,0 +1,1974 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Examples &#8212; pybioportal  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
+    <link rel="icon" sizes="16x16" type="image/png" href="_static/pbp_light_logo.png?v=2cf01e3c" />
+    <link rel="icon" sizes="32x32" type="image/png" href="_static/pbp_light_logo.png?v=2cf01e3c" />
+    <link color="#000000" rel="apple-touch-icon" sizes="180x180" type="image/png" href="_static/pbp_light_logo.png?v=2cf01e3c" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_template.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'clinical_data_nb';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pbp_light_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/pbp_dark_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">pybioportal</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Modules
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/">
+                    cBioPortal
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/api/swagger-ui/index.html">
+                    cBioPortal API
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Matteo-Valerio/pyBioPortal" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Modules
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/">
+                    cBioPortal
+                  </a>
+                </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://www.cbioportal.org/api/swagger-ui/index.html">
+                    cBioPortal API
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Matteo-Valerio/pyBioPortal" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Examples</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <hr><head>
+    <link rel="stylesheet" href="_static/css/notebook_cell_style.css" type="text/css">
+</head><section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybioportal</span> <span class="kn">import</span> <span class="n">clinical_data</span> <span class="k">as</span> <span class="n">cd</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">fetch_clinical_data</span><span class="p">(</span><span class="n">attribute_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SEX&quot;</span><span class="p">,</span> <span class="s2">&quot;RACE&quot;</span><span class="p">],</span>
+                              <span class="n">entity_study_ids</span><span class="o">=</span><span class="p">[</span>
+                                      <span class="p">{</span><span class="s2">&quot;entity_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;P-0000004&quot;</span><span class="p">,</span> <span class="s2">&quot;P-0000950&quot;</span><span class="p">],</span> <span class="s2">&quot;study&quot;</span><span class="p">:</span> <span class="s2">&quot;msk_met_2021&quot;</span><span class="p">},</span>
+                                      <span class="p">{</span><span class="s2">&quot;entity_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-5T-A9QA&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-A1-A0SB&quot;</span><span class="p">],</span> <span class="s2">&quot;study&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga&quot;</span><span class="p">}</span>
+                              <span class="p">],</span>
+                              <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;PATIENT&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;LONG&quot;</span><span class="p">)</span>
+<span class="n">df1a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniquePatientKey</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>clinicalAttributeId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BMS1BMFNCOmJyY2FfdGNnYQ</td>
+      <td>TCGA-A1-A0SB</td>
+      <td>brca_tcga</td>
+      <td>RACE</td>
+      <td>WHITE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1BMS1BMFNCOmJyY2FfdGNnYQ</td>
+      <td>TCGA-A1-A0SB</td>
+      <td>brca_tcga</td>
+      <td>SEX</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>RACE</td>
+      <td>BLACK OR AFRICAN AMERICAN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>SEX</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>RACE</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>SEX</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>UC0wMDAwOTUwOm1za19tZXRfMjAyMQ</td>
+      <td>P-0000950</td>
+      <td>msk_met_2021</td>
+      <td>RACE</td>
+      <td>Other</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>UC0wMDAwOTUwOm1za19tZXRfMjAyMQ</td>
+      <td>P-0000950</td>
+      <td>msk_met_2021</td>
+      <td>SEX</td>
+      <td>Male</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1b</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">fetch_clinical_data</span><span class="p">(</span><span class="n">attribute_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ORGAN_SYSTEM&quot;</span><span class="p">,</span> <span class="s2">&quot;SUBTYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;CANCER_TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;MUTATION_COUNT&quot;</span><span class="p">],</span>
+                              <span class="n">entity_study_ids</span><span class="o">=</span><span class="p">[</span>
+                                      <span class="p">{</span><span class="s2">&quot;entity_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;P-0000004-T01-IM3&quot;</span><span class="p">,</span> <span class="s2">&quot;P-0000950-T01-IM3&quot;</span><span class="p">],</span> <span class="s2">&quot;study&quot;</span><span class="p">:</span> <span class="s2">&quot;msk_met_2021&quot;</span><span class="p">},</span>
+                                      <span class="p">{</span><span class="s2">&quot;entity_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TCGA-5T-A9QA-01&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-A1-A0SB-01&quot;</span><span class="p">],</span> <span class="s2">&quot;study&quot;</span><span class="p">:</span> <span class="s2">&quot;brca_tcga&quot;</span><span class="p">}</span>
+                              <span class="p">],</span>
+                              <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;SAMPLE&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;WIDE&quot;</span><span class="p">)</span>
+<span class="n">df1b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>clinicalAttributeId</th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>CANCER_TYPE</th>
+      <th>MUTATION_COUNT</th>
+      <th>ORGAN_SYSTEM</th>
+      <th>SUBTYPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>Breast Cancer</td>
+      <td>4</td>
+      <td>Breast</td>
+      <td>Breast Ductal HR+HER2-</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>UC0wMDAwOTUwLVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwOTUwOm1za19tZXRfMjAyMQ</td>
+      <td>P-0000950-T01-IM3</td>
+      <td>P-0000950</td>
+      <td>msk_met_2021</td>
+      <td>Small Bowel Cancer</td>
+      <td>12</td>
+      <td>Core GI</td>
+      <td>Small Bowel cancer</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS01VC1BOVFBLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA-01</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>Breast Cancer</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1BMS1BMFNCLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BMS1BMFNCOmJyY2FfdGNnYQ</td>
+      <td>TCGA-A1-A0SB-01</td>
+      <td>TCGA-A1-A0SB</td>
+      <td>brca_tcga</td>
+      <td>Breast Cancer</td>
+      <td>16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2a</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">get_all_clinical_data_in_study</span><span class="p">(</span><span class="s2">&quot;acc_tcga&quot;</span><span class="p">,</span> <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;PATIENT&quot;</span><span class="p">)</span>
+<span class="n">df2a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniquePatientKey</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>clinicalAttributeId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>AGE</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>AJCC_PATHOLOGIC_TUMOR_STAGE</td>
+      <td>Stage II</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>ATYPICAL_MITOTIC_FIGURES</td>
+      <td>Atypical Mitotic Figures Absent</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>CAPSULAR_INVASION</td>
+      <td>Invasion of Tumor Capsule Absent</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1PUi1BNUoxOmFjY190Y2dh</td>
+      <td>TCGA-OR-A5J1</td>
+      <td>acc_tcga</td>
+      <td>CLIN_M_STAGE</td>
+      <td>M0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4729</th>
+      <td>VENHQS1QSy1BNUhDOmFjY190Y2dh</td>
+      <td>TCGA-PK-A5HC</td>
+      <td>acc_tcga</td>
+      <td>SITE_OF_TUMOR_TISSUE</td>
+      <td>Adrenal</td>
+    </tr>
+    <tr>
+      <th>4730</th>
+      <td>VENHQS1QSy1BNUhDOmFjY190Y2dh</td>
+      <td>TCGA-PK-A5HC</td>
+      <td>acc_tcga</td>
+      <td>TISSUE_SOURCE_SITE</td>
+      <td>PK</td>
+    </tr>
+    <tr>
+      <th>4731</th>
+      <td>VENHQS1QSy1BNUhDOmFjY190Y2dh</td>
+      <td>TCGA-PK-A5HC</td>
+      <td>acc_tcga</td>
+      <td>TREATMENT_OUTCOME_FIRST_COURSE</td>
+      <td>Complete Remission/Response</td>
+    </tr>
+    <tr>
+      <th>4732</th>
+      <td>VENHQS1QSy1BNUhDOmFjY190Y2dh</td>
+      <td>TCGA-PK-A5HC</td>
+      <td>acc_tcga</td>
+      <td>TUMOR_STATUS</td>
+      <td>WITH TUMOR</td>
+    </tr>
+    <tr>
+      <th>4733</th>
+      <td>VENHQS1QSy1BNUhDOmFjY190Y2dh</td>
+      <td>TCGA-PK-A5HC</td>
+      <td>acc_tcga</td>
+      <td>WEISS_VENOUS_INVASION</td>
+      <td>Venous Invasion Present</td>
+    </tr>
+  </tbody>
+</table>
+<p>4734 rows × 5 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2b</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">get_all_clinical_data_in_study</span><span class="p">(</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span> <span class="n">attribute_id</span><span class="o">=</span><span class="s2">&quot;MUTATION_COUNT&quot;</span><span class="p">)</span>
+<span class="n">df2b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>clinicalAttributeId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BUi1BMUFSLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1BUi1BMUFSOmJyY2FfdGNnYQ</td>
+      <td>TCGA-AR-A1AR-01</td>
+      <td>TCGA-AR-A1AR</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1CSC1BMUVPLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVPOmJyY2FfdGNnYQ</td>
+      <td>TCGA-BH-A1EO-01</td>
+      <td>TCGA-BH-A1EO</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS1CSC1BMUVTLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVTOmJyY2FfdGNnYQ</td>
+      <td>TCGA-BH-A1ES-01</td>
+      <td>TCGA-BH-A1ES</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS1CSC1BMUVTLTA2OmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVTOmJyY2FfdGNnYQ</td>
+      <td>TCGA-BH-A1ES-06</td>
+      <td>TCGA-BH-A1ES</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS1CSC1BMUVULTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1CSC1BMUVUOmJyY2FfdGNnYQ</td>
+      <td>TCGA-BH-A1ET-01</td>
+      <td>TCGA-BH-A1ET</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>977</th>
+      <td>VENHQS1FMi1BMUI0LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUI0OmJyY2FfdGNnYQ</td>
+      <td>TCGA-E2-A1B4-01</td>
+      <td>TCGA-E2-A1B4</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>978</th>
+      <td>VENHQS1FMi1BMUI1LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUI1OmJyY2FfdGNnYQ</td>
+      <td>TCGA-E2-A1B5-01</td>
+      <td>TCGA-E2-A1B5</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>979</th>
+      <td>VENHQS1FMi1BMUI2LTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUI2OmJyY2FfdGNnYQ</td>
+      <td>TCGA-E2-A1B6-01</td>
+      <td>TCGA-E2-A1B6</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>980</th>
+      <td>VENHQS1FMi1BMUJDLTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJDOmJyY2FfdGNnYQ</td>
+      <td>TCGA-E2-A1BC-01</td>
+      <td>TCGA-E2-A1BC</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>981</th>
+      <td>VENHQS1FMi1BMUJELTAxOmJyY2FfdGNnYQ</td>
+      <td>VENHQS1FMi1BMUJEOmJyY2FfdGNnYQ</td>
+      <td>TCGA-E2-A1BD-01</td>
+      <td>TCGA-E2-A1BD</td>
+      <td>brca_tcga</td>
+      <td>MUTATION_COUNT</td>
+      <td>23</td>
+    </tr>
+  </tbody>
+</table>
+<p>982 rows × 7 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3a</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">fetch_all_clinical_data_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span>
+                                           <span class="n">attribute_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SEX&quot;</span><span class="p">,</span> <span class="s2">&quot;RACE&quot;</span><span class="p">],</span>
+                                           <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TCGA-5T-A9QA&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-A1-A0SB&quot;</span><span class="p">],</span>
+                                           <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;PATIENT&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;LONG&quot;</span><span class="p">)</span>
+<span class="n">df3a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniquePatientKey</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>clinicalAttributeId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS1BMS1BMFNCOmJyY2FfdGNnYQ</td>
+      <td>TCGA-A1-A0SB</td>
+      <td>brca_tcga</td>
+      <td>RACE</td>
+      <td>WHITE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1BMS1BMFNCOmJyY2FfdGNnYQ</td>
+      <td>TCGA-A1-A0SB</td>
+      <td>brca_tcga</td>
+      <td>SEX</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>RACE</td>
+      <td>BLACK OR AFRICAN AMERICAN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>SEX</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3b</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">fetch_all_clinical_data_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span>
+                                           <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TCGA-5T-A9QA&quot;</span><span class="p">,</span> <span class="s2">&quot;TCGA-A1-A0SB&quot;</span><span class="p">],</span>
+                                           <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;PATIENT&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;WIDE&quot;</span><span class="p">)</span>
+<span class="n">df3b</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>clinicalAttributeId</th>
+      <th>uniquePatientKey</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>AGE</th>
+      <th>AJCC_METASTASIS_PATHOLOGIC_PM</th>
+      <th>AJCC_NODES_PATHOLOGIC_PN</th>
+      <th>AJCC_PATHOLOGIC_TUMOR_STAGE</th>
+      <th>AJCC_STAGING_EDITION</th>
+      <th>AJCC_TUMOR_PATHOLOGIC_PT</th>
+      <th>DAYS_TO_INITIAL_PATHOLOGIC_DIAGNOSIS</th>
+      <th>...</th>
+      <th>PR_STATUS_BY_IHC</th>
+      <th>RACE</th>
+      <th>RETROSPECTIVE_COLLECTION</th>
+      <th>SAMPLE_COUNT</th>
+      <th>SEX</th>
+      <th>SITE_OF_TUMOR_TISSUE</th>
+      <th>STAGING_SYSTEM</th>
+      <th>SURGICAL_PROCEDURE_FIRST</th>
+      <th>TISSUE_SOURCE_SITE</th>
+      <th>TUMOR_STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>52</td>
+      <td>MX</td>
+      <td>NX</td>
+      <td>Stage IIA</td>
+      <td>7th</td>
+      <td>T2</td>
+      <td>0</td>
+      <td>...</td>
+      <td>Negative</td>
+      <td>BLACK OR AFRICAN AMERICAN</td>
+      <td>NO</td>
+      <td>1</td>
+      <td>Female</td>
+      <td>Breast</td>
+      <td>No axillary staging</td>
+      <td>NaN</td>
+      <td>5T</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS1BMS1BMFNCOmJyY2FfdGNnYQ</td>
+      <td>TCGA-A1-A0SB</td>
+      <td>brca_tcga</td>
+      <td>70</td>
+      <td>M0</td>
+      <td>N0</td>
+      <td>Stage I</td>
+      <td>6th</td>
+      <td>T1c</td>
+      <td>0</td>
+      <td>...</td>
+      <td>Negative</td>
+      <td>WHITE</td>
+      <td>YES</td>
+      <td>1</td>
+      <td>Female</td>
+      <td>Breast</td>
+      <td>Sentinel node biopsy alone</td>
+      <td>Lumpectomy</td>
+      <td>A1</td>
+      <td>TUMOR FREE</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 54 columns</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3c</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">fetch_all_clinical_data_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;msk_met_2021&quot;</span><span class="p">,</span>
+                                           <span class="n">attribute_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CANCER_TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;MUTATION_COUNT&quot;</span><span class="p">],</span>
+                                           <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;P-0000004-T01-IM3&quot;</span><span class="p">,</span> <span class="s2">&quot;P-0000950-T01-IM3&quot;</span><span class="p">],</span>
+                                           <span class="n">clinical_data_type</span><span class="o">=</span><span class="s2">&quot;SAMPLE&quot;</span><span class="p">,</span> <span class="n">ret_format</span><span class="o">=</span><span class="s2">&quot;WIDE&quot;</span><span class="p">)</span>
+<span class="n">df3c</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>clinicalAttributeId</th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>CANCER_TYPE</th>
+      <th>MUTATION_COUNT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>Breast Cancer</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>UC0wMDAwOTUwLVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwOTUwOm1za19tZXRfMjAyMQ</td>
+      <td>P-0000950-T01-IM3</td>
+      <td>P-0000950</td>
+      <td>msk_met_2021</td>
+      <td>Small Bowel Cancer</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df4</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">get_all_clinical_data_of_patient_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;brca_tcga&quot;</span><span class="p">,</span> <span class="n">patient_id</span><span class="o">=</span><span class="s2">&quot;TCGA-5T-A9QA&quot;</span><span class="p">)</span>
+<span class="n">df4</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniquePatientKey</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>clinicalAttributeId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>AGE</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>AJCC_METASTASIS_PATHOLOGIC_PM</td>
+      <td>MX</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>AJCC_NODES_PATHOLOGIC_PN</td>
+      <td>NX</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>AJCC_PATHOLOGIC_TUMOR_STAGE</td>
+      <td>Stage IIA</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>AJCC_STAGING_EDITION</td>
+      <td>7th</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>AJCC_TUMOR_PATHOLOGIC_PT</td>
+      <td>T2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>DAYS_TO_INITIAL_PATHOLOGIC_DIAGNOSIS</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>DFS_MONTHS</td>
+      <td>9.95</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>DFS_STATUS</td>
+      <td>0:DiseaseFree</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ER_POSITIVITY_SCALE_USED</td>
+      <td>3 Point Scale</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ER_STATUS_BY_IHC</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ER_STATUS_IHC_PERCENT_POSITIVE</td>
+      <td>70-79%</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ETHNICITY</td>
+      <td>NOT HISPANIC OR LATINO</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>FORM_COMPLETION_DATE</td>
+      <td>12/23/13</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>HER2_FISH_STATUS</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>HER2_IHC_PERCENT_POSITIVE</td>
+      <td>10-19%</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>HER2_IHC_SCORE</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>HISTOLOGICAL_DIAGNOSIS</td>
+      <td>Other, specify</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>HISTORY_NEOADJUVANT_TRTYN</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>HISTORY_OTHER_MALIGNANCY</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ICD_10</td>
+      <td>C50.9</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ICD_O_3_HISTOLOGY</td>
+      <td>8523/3</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>ICD_O_3_SITE</td>
+      <td>C50.9</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>IHC_HER2</td>
+      <td>Equivocal</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>IHC_SCORE</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>INFORMED_CONSENT_VERIFIED</td>
+      <td>YES</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>INITIAL_PATHOLOGIC_DX_YEAR</td>
+      <td>2013</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>LYMPH_NODES_EXAMINED</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>METHOD_OF_INITIAL_SAMPLE_PROCUREMENT</td>
+      <td>Excisional Biopsy</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>MICROMET_DETECTION_BY_IHC</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>NEW_TUMOR_EVENT_AFTER_INITIAL_TREATMENT</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>OS_MONTHS</td>
+      <td>9.95</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>OS_STATUS</td>
+      <td>0:LIVING</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>OTHER_PATIENT_ID</td>
+      <td>2FD36838-5A83-433E-AC80-B1F77448E5AA</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>PRIMARY_SITE_PATIENT</td>
+      <td>Left</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>PROSPECTIVE_COLLECTION</td>
+      <td>YES</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>PR_STATUS_BY_IHC</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>RACE</td>
+      <td>BLACK OR AFRICAN AMERICAN</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>RETROSPECTIVE_COLLECTION</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>SAMPLE_COUNT</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>SEX</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>SITE_OF_TUMOR_TISSUE</td>
+      <td>Breast</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>STAGING_SYSTEM</td>
+      <td>No axillary staging</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>VENHQS01VC1BOVFBOmJyY2FfdGNnYQ</td>
+      <td>TCGA-5T-A9QA</td>
+      <td>brca_tcga</td>
+      <td>TISSUE_SOURCE_SITE</td>
+      <td>5T</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">get_all_clinical_data_of_sample_in_study</span><span class="p">(</span><span class="n">study_id</span><span class="o">=</span><span class="s2">&quot;msk_met_2021&quot;</span><span class="p">,</span> <span class="n">sample_id</span><span class="o">=</span><span class="s2">&quot;P-0000004-T01-IM3&quot;</span><span class="p">)</span>
+<span class="n">df5</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>uniqueSampleKey</th>
+      <th>uniquePatientKey</th>
+      <th>sampleId</th>
+      <th>patientId</th>
+      <th>studyId</th>
+      <th>clinicalAttributeId</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>CANCER_TYPE</td>
+      <td>Breast Cancer</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>CANCER_TYPE_DETAILED</td>
+      <td>Breast Invasive Ductal Carcinoma</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_ADRENAL_GLAND</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_BILIARY_TRACT</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_BLADDER_UT</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_BONE</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_BOWEL</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_BREAST</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_CNS_BRAIN</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_DIST_LN</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_FEMALE_GENITAL</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_HEAD_NECK</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_INTRA_ABDOMINAL</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_KIDNEY</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_LIVER</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_LUNG</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_MALE_GENITAL</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_MEDIASTINUM</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_OVARY</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_PLEURA</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_PNS</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_SKIN</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>DMETS_DX_UNSPECIFIED</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>FGA</td>
+      <td>0.278</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>FRACTION_GENOME_ALTERED</td>
+      <td>0.2782</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>GENE_PANEL</td>
+      <td>IMPACT341</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>IS_DIST_MET_MAPPED</td>
+      <td>TRUE</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>MET_COUNT</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>MET_SITE_COUNT</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>MSI_SCORE</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>MSI_TYPE</td>
+      <td>Stable</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>MUTATION_COUNT</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>ONCOTREE_CODE</td>
+      <td>IDC</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>ORGAN_SYSTEM</td>
+      <td>Breast</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>PRIMARY_SITE</td>
+      <td>Breast</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>SAMPLE_COVERAGE</td>
+      <td>428</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>SAMPLE_TYPE</td>
+      <td>Primary</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>SUBTYPE</td>
+      <td>Breast Ductal HR+HER2-</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>SUBTYPE_ABBREVIATION</td>
+      <td>IDC HR+HER2-</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>TMB_NONSYNONYMOUS</td>
+      <td>4.43662120239</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>UC0wMDAwMDA0LVQwMS1JTTM6bXNrX21ldF8yMDIx</td>
+      <td>UC0wMDAwMDA0Om1za19tZXRfMjAyMQ</td>
+      <td>P-0000004-T01-IM3</td>
+      <td>P-0000004</td>
+      <td>msk_met_2021</td>
+      <td>TUMOR_PURITY</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/clinical_data_nb.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Matteo Valerio.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__center">
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

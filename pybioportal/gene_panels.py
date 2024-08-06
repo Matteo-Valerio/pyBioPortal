@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url,get_headers
+=======
+from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -40,8 +44,12 @@ def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projec
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get gene panels.")
 
 def get_gene_panel(gene_panel_id):
@@ -54,8 +62,12 @@ def get_gene_panel(gene_panel_id):
     """
     endpoint = f"/gene-panels/{gene_panel_id}"
     
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get gene panels.")
     # df = process_response(response, f"Failed to get gene panel {gene_panel_id}.")
     # return flatten_dict_columns(df)
@@ -79,8 +91,12 @@ def fetch_gene_panels(gene_panel_ids, projection="SUMMARY"):
     endpoint = "/gene-panels/fetch"
     params = {"projection": projection}
     
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", json=gene_panel_ids, params=params,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", json=gene_panel_ids, params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get gene panels.")
     # df = check_response(response, "Failed to fetch gene panels.")
     # return flatten_dict_list_columns(df)

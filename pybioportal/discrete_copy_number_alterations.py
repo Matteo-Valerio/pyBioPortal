@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url,get_headers
+=======
+from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def get_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, sample_list_id, discrete_cn_evt_type="HOMDEL_AND_AMP", projection="SUMMARY"):
@@ -36,8 +40,12 @@ def get_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, sample_
         "sampleListId": sample_list_id
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get discrete copy numbers in molecular profile.")
 
 
@@ -85,6 +93,10 @@ def fetch_discrete_copy_numbers_in_molecular_profile(molecular_profile_id, entre
             "sampleListId": sample_list_id
            }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=discreteCopyNumberFilter,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=discreteCopyNumberFilter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch discrete copy numbers in molecular profile.")

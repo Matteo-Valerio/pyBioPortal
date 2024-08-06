@@ -1,0 +1,170 @@
+pybioportal modules
+=================
+
+cancer\_types 
+------------------------------
+
+.. automodule:: pybioportal.cancer_types
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+clinical\_attributes 
+-------------------------------------
+
+.. automodule:: pybioportal.clinical_attributes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+clinical\_data 
+-------------------------------
+
+.. automodule:: pybioportal.clinical_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+config 
+-----------------------
+
+.. automodule:: pybioportal.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+copy\_number\_segment 
+--------------------------------------
+
+.. automodule:: pybioportal.copy_number_segment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+discrete\_copy\_number\_alterations 
+----------------------------------------------------
+
+.. automodule:: pybioportal.discrete_copy_number_alterations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gene\_panel\_data 
+----------------------------------
+
+.. automodule:: pybioportal.gene_panel_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gene\_panels 
+-----------------------------
+
+.. automodule:: pybioportal.gene_panels
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+generic\_assay\_data 
+-------------------------------------
+
+.. automodule:: pybioportal.generic_assay_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+generic\_assays 
+--------------------------------
+
+.. automodule:: pybioportal.generic_assays
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genes 
+----------------------
+
+.. automodule:: pybioportal.genes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+info 
+---------------------
+
+.. automodule:: pybioportal.info
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+molecular\_data 
+--------------------------------
+
+.. automodule:: pybioportal.molecular_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+molecular\_profiles 
+------------------------------------
+
+.. automodule:: pybioportal.molecular_profiles
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+mutations 
+--------------------------
+
+.. automodule:: pybioportal.mutations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+patients 
+-------------------------
+
+.. automodule:: pybioportal.patients
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sample\_lists 
+------------------------------
+
+.. automodule:: pybioportal.sample_lists
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+samples 
+------------------------
+
+.. automodule:: pybioportal.samples
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+server\_running\_status 
+----------------------------------------
+
+.. automodule:: pybioportal.server_running_status
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+studies 
+------------------------
+
+.. automodule:: pybioportal.studies
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+treatments 
+---------------------------
+
+.. automodule:: pybioportal.treatments
+   :members:
+   :undoc-members:
+   :show-inheritance:

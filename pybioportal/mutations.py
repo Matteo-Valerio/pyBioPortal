@@ -1,4 +1,5 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url, get_headers
 from .__aux_funcs import process_response
 
@@ -18,6 +19,11 @@ def get_mutations(molecular_profile_id, sample_list_id):
     response = requests.get(f"{base_url}{endpoint}", params=params, headers=headers)
     return process_response(response, "Failed to get mutations.")
 
+=======
+from .__config import base_url
+from .__aux_funcs import process_response
+
+>>>>>>> origin/master
 def get_muts_in_mol_prof_by_sample_list_id(molecular_profile_id, sample_list_id, entrez_gene_id=None, 
                                            projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
@@ -84,8 +90,12 @@ def get_muts_in_mol_prof_by_sample_list_id(molecular_profile_id, sample_list_id,
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params, headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get mutations in molecular profile.")
 
 def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_ids=None, sample_list_id=None, 
@@ -94,10 +104,17 @@ def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_id
     Fetch mutations in a molecular profile. \n
     :param molecular_profile_id: Molecular Profile ID (e.g., "brca_tcga_mutations"). \n
     :type molecular_profile_id: str \n
+<<<<<<< HEAD
     :param entrez_gene_ids: List of Entrez Gene IDs (e.g., ["1"]). \n
     :type entrez_gene_ids: list of str \n
     :param sample_ids: List of Sample IDs (e.g., ["1005", "1020"]). \n
     :type sample_ids: list of str \n
+=======
+    :param entrez_gene_ids: List ID and Entrez Gene IDs (e.g., ["TCGA-AR-A1AR-01","TCGA-BH-A1EO-01"]). \n
+    :type entrez_gene_ids: List of str \n
+    :param sample_ids: List of Sample IDs (e.g., ["1005", "1020"]). \n
+    :type sample_ids: List of str \n
+>>>>>>> origin/master
     :param sample_list_id: Sample List ID (e.g., "brca_tcga_all"). \n
     :type sample_list_id: str \n
     :param projection: Level of detail of the response. \n
@@ -165,8 +182,12 @@ def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_id
     if sample_list_id:
         mutation_filter['sampleListId'] = sample_list_id
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_filter, headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch mutations in molecular profile.")
 
 def fetch_muts_in_multiple_mol_profs(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, 
@@ -261,7 +282,12 @@ def fetch_muts_in_multiple_mol_profs(entrez_gene_ids=None, molecular_profile_ids
                     "sampleId": sample_id
                 }
                 mutation_multiple_study_filter["sampleMolecularIdentifiers"].append(identifier)
+<<<<<<< HEAD
     
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_multiple_study_filter, headers=headers)
+=======
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_multiple_study_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch mutations in multiple molecular profiles.")

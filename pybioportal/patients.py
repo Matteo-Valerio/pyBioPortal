@@ -1,4 +1,5 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url,get_headers
 from .__aux_funcs import process_response
 
@@ -18,6 +19,11 @@ def get_patient(study_id, patient_id):
     response = requests.get(f"{base_url}{endpoint}", headers=headers)
     return process_response(response, "Failed to get the specified patient in the study.")
 
+=======
+from .__config import base_url
+from .__aux_funcs import process_response
+
+>>>>>>> origin/master
 def get_all_patients(projection="SUMMARY", direction="ASC", keyword=None, pageNumber=0, pageSize=10000000, sortBy=None):
     """
     Get all patients. \n
@@ -57,8 +63,13 @@ def get_all_patients(projection="SUMMARY", direction="ASC", keyword=None, pageNu
         "pageSize": pageSize,
         "sortBy": sortBy
     }
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get all patients.")
 
 def fetch_patients(patient_identifiers=None, unique_patient_keys=None, projection="SUMMARY"):
@@ -109,9 +120,14 @@ def fetch_patients(patient_identifiers=None, unique_patient_keys=None, projectio
 
     if unique_patient_keys:
         patient_filter['uniquePatientKeys'] = unique_patient_keys
+<<<<<<< HEAD
     
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=patient_filter,headers=headers)
+=======
+
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=patient_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch patients.")
 
 def get_all_patients_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -153,8 +169,12 @@ def get_all_patients_in_study(study_id, direction="ASC", pageNumber=0, pageSize=
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get patients in the specified study.")
 
 def get_patient_in_study(study_id, patient_id):
@@ -169,6 +189,10 @@ def get_patient_in_study(study_id, patient_id):
     """
     endpoint = f"/studies/{study_id}/patients/{patient_id}"
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get the specified patient in the study.")

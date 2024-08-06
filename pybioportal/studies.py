@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
 from .__config import base_url,get_headers
+=======
+from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def get_all_studies(keyword=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -51,8 +55,12 @@ def get_all_studies(keyword=None, direction="ASC", pageNumber=0, pageSize=100000
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get all studies.")
 
 def get_study(study_id):
@@ -64,8 +72,12 @@ def get_study(study_id):
     :rtype: pandas.DataFrame \n
     """
     endpoint = f"/studies/{study_id}"
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get the study by ID.")
         
 def get_tags_of_study(study_id):
@@ -78,8 +90,12 @@ def get_tags_of_study(study_id):
     """
     endpoint = f"/studies/{study_id}/tags"
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
+    response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get tags for the study.")
     
 def fetch_studies(study_ids = [], projection="SUMMARY"):
@@ -102,8 +118,12 @@ def fetch_studies(study_ids = [], projection="SUMMARY"):
         "projection": projection
     }
 
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch studies by IDs.")
     
 def fetch_tags_for_studies(study_ids= []):
@@ -116,7 +136,11 @@ def fetch_tags_for_studies(study_ids= []):
     """
     endpoint = "/studies/tags/fetch"
     
+<<<<<<< HEAD
     headers = get_headers()
     response = requests.post(f"{base_url}{endpoint}", json=study_ids,headers=headers)
+=======
+    response = requests.post(f"{base_url}{endpoint}", json=study_ids)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch study tags for multiple studies.")
     
