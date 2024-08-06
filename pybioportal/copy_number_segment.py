@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
+from .__config import base_url,get_headers
+=======
 from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SUMMARY"):
@@ -45,7 +49,12 @@ def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SU
             }
             sample_identifiers.append(identifier)
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_identifiers,headers=headers)
+=======
     response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_identifiers,)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch copy number segments.")
 
 def get_copy_number_segments_in_sample_in_study(study_id, sample_id, chromosome=None, direction="ASC", 
@@ -101,5 +110,10 @@ def get_copy_number_segments_in_sample_in_study(study_id, sample_id, chromosome=
     # if sortBy:
     #     params["sortBy"] = sortBy
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get copy number segments for the sample.")

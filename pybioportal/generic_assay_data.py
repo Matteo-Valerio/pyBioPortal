@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
+from .__config import base_url,get_headers
+=======
 from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_ids=None, 
@@ -38,7 +42,12 @@ def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_
     if sample_list_id:
         generic_assay_data_filter['sampleListId'] = sample_list_id
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=generic_assay_data_filter,headers=headers)
+=======
     response = requests.post(f"{base_url}{endpoint}", params=params, json=generic_assay_data_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch generic assay data.")
 
 def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_ids=None, 
@@ -95,7 +104,12 @@ def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_id
                 generic_assay_data_multiple_study_filter["sampleMolecularIdentifiers"].append(identifier)
 
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=generic_assay_data_multiple_study_filter,headers=headers)
+=======
     response = requests.post(f"{base_url}{endpoint}", params=params, json=generic_assay_data_multiple_study_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch generic assay data.")
 
 def get_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_id, projection="SUMMARY"):
@@ -118,5 +132,10 @@ def get_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_as
     endpoint = f"/generic-assay-data/{molecular_profile_id}/generic-assay/{generic_assay_stable_id}"
     params = {"projection": projection}
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get generic assay data.")

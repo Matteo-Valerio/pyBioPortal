@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
+from .__config import base_url,get_headers
+=======
 from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def get_all_sample_lists(projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
@@ -43,7 +47,12 @@ def get_all_sample_lists(projection="SUMMARY", direction="ASC", pageNumber=0, pa
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get all sample lists.")
 
 def get_sample_list(sample_list_id):
@@ -56,7 +65,12 @@ def get_sample_list(sample_list_id):
     """
     endpoint = f"/sample-lists/{sample_list_id}"
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get sample list.")
 
 def get_all_sample_ids_in_sample_list(sample_list_id):
@@ -69,7 +83,12 @@ def get_all_sample_ids_in_sample_list(sample_list_id):
     """
     endpoint = f"/sample-lists/{sample_list_id}/sample-ids"
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get all sample IDs in sample list.")
     
 def fetch_sample_lists(sample_list_ids, projection="SUMMARY"):
@@ -92,7 +111,12 @@ def fetch_sample_lists(sample_list_ids, projection="SUMMARY"):
         "projection": projection
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_list_ids,headers=headers)
+=======
     response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_list_ids)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch sample lists.")
         
 def get_all_sample_lists_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -138,5 +162,10 @@ def get_all_sample_lists_in_study(study_id, direction="ASC", pageNumber=0, pageS
         "sortBy": sortBy
     }
     
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get sample lists in the study.")

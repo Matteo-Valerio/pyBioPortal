@@ -1,7 +1,29 @@
 import requests
+<<<<<<< HEAD
+from .__config import base_url,get_headers
+from .__aux_funcs import process_response
+
+def get_samples(study_id, projection="SUMMARY"):
+    """
+    Get all samples in a study.
+    :param study_id: Study ID (e.g., "acc_tcga").
+    :type study_id: str
+    :param projection: Level of detail of the response.
+    :type projection: str
+    :returns: A DataFrame containing samples in the specified study.
+    :rtype: pandas.DataFrame
+    """
+    endpoint = f"/studies/{study_id}/samples"
+    params = {"projection": projection}
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params, headers=headers)
+    return process_response(response, "Failed to get samples in the study.")
+
+=======
 from .__config import base_url
 from .__aux_funcs import process_response
 
+>>>>>>> origin/master
 def get_samples_by_keyword(keyword=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
     Get all samples matching a keyword. \n
@@ -42,8 +64,13 @@ def get_samples_by_keyword(keyword=None, direction="ASC", pageNumber=0, pageSize
         "projection": projection,
         "sortBy": sortBy
     }
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
 
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get samples by keyword.")
     
 def fetch_samples(sample_identifiers=None, sample_list_ids=None, unique_sample_keys=None, projection="SUMMARY"):
@@ -101,7 +128,12 @@ def fetch_samples(sample_identifiers=None, sample_list_ids=None, unique_sample_k
     if unique_sample_keys:
         sample_filter['uniqueSampleKeys'] = unique_sample_keys
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_filter,headers=headers)
+=======
     response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch samples by ID.")
 
 def get_all_samples_of_patient_in_study(study_id, patient_id, direction="ASC", 
@@ -147,7 +179,12 @@ def get_all_samples_of_patient_in_study(study_id, patient_id, direction="ASC",
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get samples of the specified patient in the study.")
 
 def get_all_samples_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -190,7 +227,12 @@ def get_all_samples_in_study(study_id, direction="ASC", pageNumber=0, pageSize=1
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get samples in the study.")
     
 def get_sample_in_study(study_id, sample_id):
@@ -205,5 +247,10 @@ def get_sample_in_study(study_id, sample_id):
     """
     endpoint = f"/studies/{study_id}/samples/{sample_id}"
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get sample information.")

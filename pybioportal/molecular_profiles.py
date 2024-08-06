@@ -1,7 +1,26 @@
 import requests
+<<<<<<< HEAD
+from .__config import base_url,get_headers
+from .__aux_funcs import process_response
+
+def get_molecular_profiles(study_id):
+    """
+    Get molecular profiles for a specific study.
+    :param study_id: Study ID (e.g., "acc_tcga").
+    :type study_id: str
+    :returns: A DataFrame containing molecular profiles in the specified study.
+    :rtype: pandas.DataFrame
+    """
+    endpoint = f"/studies/{study_id}/molecular-profiles"
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", headers=headers)
+    return process_response(response, "Failed to get molecular profiles in the study.")
+
+=======
 from .__config import base_url
 from .__aux_funcs import process_response
 
+>>>>>>> origin/master
 def get_all_molecular_profiles(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
     Get all molecular profiles. \n
@@ -44,7 +63,12 @@ def get_all_molecular_profiles(direction="ASC", pageNumber=0, pageSize=10000000,
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get all molecular profiles.")
 
 def get_molecular_profile(molecular_profile_id):
@@ -57,7 +81,12 @@ def get_molecular_profile(molecular_profile_id):
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}"
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}",headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}")
+>>>>>>> origin/master
     return process_response(response, "Failed to get molecular profile.")
     
 def fetch_molecular_profiles(molecular_profile_ids = None, study_ids = None, projection="SUMMARY"):
@@ -88,7 +117,12 @@ def fetch_molecular_profiles(molecular_profile_ids = None, study_ids = None, pro
     if study_ids:
         molecular_profile_filter['studyIds'] = study_ids
     
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=molecular_profile_filter,headers=headers)
+=======
     response = requests.post(f"{base_url}{endpoint}", params=params, json=molecular_profile_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch molecular profiles.")
     
 def get_all_molecular_profiles_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -134,6 +168,12 @@ def get_all_molecular_profiles_in_study(study_id, direction="ASC", pageNumber=0,
         "projection": projection,
         "sortBy": sortBy
     }
+<<<<<<< HEAD
+    
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
 
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get molecular profiles in the specified study.")

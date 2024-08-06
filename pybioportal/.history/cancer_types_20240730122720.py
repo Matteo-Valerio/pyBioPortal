@@ -1,9 +1,5 @@
 import requests
-<<<<<<< HEAD
 from .__config import base_url,get_headers
-=======
-from .__config import base_url
->>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -46,13 +42,8 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
         "projection": projection,
         "sortBy": sortBy
     }
-<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
-=======
-    
-    response = requests.get(f"{base_url}{endpoint}", params=params)
->>>>>>> origin/master
     return process_response(response, "Failed to get cancer types.")
 
 def get_cancer_type(cancer_type_id):
@@ -64,10 +55,6 @@ def get_cancer_type(cancer_type_id):
     :rtype: pandas.DataFrame \n
     """
     endpoint = f"/cancer-types/{cancer_type_id}"
-<<<<<<< HEAD
     headers = get_headers()
     response = requests.get(f"{base_url}{endpoint}",headers=headers)
-=======
-    response = requests.get(f"{base_url}{endpoint}")
->>>>>>> origin/master
     return process_response(response, f"Failed to get cancer type {cancer_type_id}.")

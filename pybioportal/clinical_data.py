@@ -1,5 +1,9 @@
 import requests
+<<<<<<< HEAD
+from .__config import base_url,get_headers
+=======
 from .__config import base_url
+>>>>>>> origin/master
 from .__aux_funcs import process_response
 
 def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"):
@@ -69,8 +73,14 @@ def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAM
                 "studyId": study_id
             }
             clinical_data_filter["identifiers"].append(identifier)
+<<<<<<< HEAD
+            
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=clinical_data_filter,headers=headers)
+=======
 
     response = requests.post(f"{base_url}{endpoint}", params=params, json=clinical_data_filter,)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch clinical data.", ret_format, attribute_ids)
 
 def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_type="SAMPLE", direction="ASC", 
@@ -125,7 +135,12 @@ def get_all_clinical_data_in_study(study_id, attribute_id=None, clinical_data_ty
     if attribute_id:
         params["attributeId"] = attribute_id
     
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get clinical data in the specified study.")    
     
 def fetch_all_clinical_data_in_study(study_id, attribute_ids=[], ids=[], clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"):
@@ -170,8 +185,14 @@ def fetch_all_clinical_data_in_study(study_id, attribute_ids=[], ids=[], clinica
     
     if ids:
         clinical_data_filter["ids"] = ids
+<<<<<<< HEAD
+
+    headers = get_headers()
+    response = requests.post(f"{base_url}{endpoint}", params=params, json=clinical_data_filter,headers=headers)
+=======
     
     response = requests.post(f"{base_url}{endpoint}", params=params, json=clinical_data_filter)
+>>>>>>> origin/master
     return process_response(response, "Failed to fetch clinical data in the specified study.", ret_format, attribute_ids)
     
 def get_all_clinical_data_of_patient_in_study(study_id, patient_id, attributeId=None, direction="ASC", 
@@ -220,7 +241,12 @@ def get_all_clinical_data_of_patient_in_study(study_id, patient_id, attributeId=
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get clinical data of the specified patient in the study.")
 
 def get_all_clinical_data_of_sample_in_study(study_id, sample_id, attribute_id=None, direction="ASC", pageNumber=0, 
@@ -269,5 +295,10 @@ def get_all_clinical_data_of_sample_in_study(study_id, sample_id, attribute_id=N
         "sortBy": sortBy
     }
 
+<<<<<<< HEAD
+    headers = get_headers()
+    response = requests.get(f"{base_url}{endpoint}", params=params,headers=headers)
+=======
     response = requests.get(f"{base_url}{endpoint}", params=params)
+>>>>>>> origin/master
     return process_response(response, "Failed to get clinical data for the sample.")
