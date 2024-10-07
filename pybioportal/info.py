@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_info():
     """
@@ -9,5 +9,5 @@ def get_info():
     :rtype: pandas.DataFrame \n
     """
     endpoint = "/info"
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get information.")

@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
@@ -45,7 +45,7 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, params=params, method="GET")
     return process_response(response, "Failed to get clinical attributes.")
     
 def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
@@ -67,7 +67,7 @@ def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     data = study_ids
     params = {"projection": projection}
 
-    response = requests.post(f"{base_url}{endpoint}", json=data, params=params)
+    response = make_request(endpoint, method="POST", data=data, params=params)
     return process_response(response, "Failed to fetch clinical attributes.")
 
 def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, 
@@ -116,7 +116,7 @@ def get_all_clinical_attributes_in_study(study_id, direction="ASC", pageNumber=0
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, params=params, method="GET")
     return process_response(response, "Failed to get clinical attributes in the specified study.")
     
 def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
@@ -130,5 +130,5 @@ def get_clinical_attribute_in_study(study_id, clinical_attribute_id):
     :rtype: pandas.DataFrame \n
     """
     endpoint = f"/studies/{study_id}/clinical-attributes/{clinical_attribute_id}"
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get the specified clinical attribute in the study.")

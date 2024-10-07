@@ -1,6 +1,7 @@
 import requests
+import pandas as pd
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_patients(projection="SUMMARY", direction="ASC", keyword=None, pageNumber=0, pageSize=10000000, sortBy=None):
     """
@@ -42,7 +43,7 @@ def get_all_patients(projection="SUMMARY", direction="ASC", keyword=None, pageNu
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint=endpoint, method="GET", params=params)
     return process_response(response, "Failed to get all patients.")
 
 def fetch_patients(patient_identifiers=None, unique_patient_keys=None, projection="SUMMARY"):
@@ -94,7 +95,7 @@ def fetch_patients(patient_identifiers=None, unique_patient_keys=None, projectio
     if unique_patient_keys:
         patient_filter['uniquePatientKeys'] = unique_patient_keys
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=patient_filter)
+    response = make_request(endpoint=endpoint, method="POST", params=params, data=patient_filter)
     return process_response(response, "Failed to fetch patients.")
 
 def get_all_patients_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -136,20 +137,31 @@ def get_all_patients_in_study(study_id, direction="ASC", pageNumber=0, pageSize=
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint=endpoint, method="GET", params=params)
     return process_response(response, "Failed to get patients in the specified study.")
 
-def get_patient_in_study(study_id, patient_id):
+def get_patient(study_id, patient_id, projection="SUMMARY"):
     """
-    Get a patient in a study. \n
-    :param study_id: Study ID (e.g., "acc_tcga"). \n
-    :type study_id: str \n
-    :param patient_id: Patient ID (e.g., "TCGA-OR-A5J2"). \n
-    :type patient_id: str \n
-    :returns: A DataFrame containing details of the specified patient in the study. \n
-    :rtype: pandas.DataFrame \n
+    Get information about a specific patient in a study.
+
+    :param study_id: Study ID (e.g., "brca_tcga").
+    :type study_id: str
+    :param patient_id: Patient ID (e.g., "TCGA-OR-A5J2").
+    :type patient_id: str
+    :param projection: Level of detail of the response.
+        Possible values:
+            - "DETAILED": Detailed information.
+            - "ID": Information with only IDs.
+            - "META": Metadata information.
+            - "SUMMARY": Summary information (default).
+    :type projection: str
+    :return: A DataFrame containing information about the specified patient.
+    :rtype: pandas.DataFrame
     """
     endpoint = f"/studies/{study_id}/patients/{patient_id}"
+    params = {
+        "projection": projection
+    }
 
-    response = requests.get(f"{base_url}{endpoint}")
-    return process_response(response, "Failed to get the specified patient in the study.")
+    response = make_request(endpoint=endpoint, method="GET", params=params)
+    return process_response(response, "Failed to get patient information.")

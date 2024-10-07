@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def fetch_molecular_data(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, projection="SUMMARY"):
     """
@@ -53,7 +53,7 @@ def fetch_molecular_data(entrez_gene_ids=None, molecular_profile_ids=None, sampl
                 }
                 molecular_data_filter["sampleMolecularIdentifiers"].append(identifier)
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=molecular_data_filter)
+    response = make_request(endpoint, method="POST", params=params, data=molecular_data_filter)
     return process_response(response, "Failed to fetch molecular data.")
         
 def get_all_molecular_data_in_molecular_profile(molecular_profile_id, sample_list_id, entrez_gene_id, projection="SUMMARY"):
@@ -82,7 +82,7 @@ def get_all_molecular_data_in_molecular_profile(molecular_profile_id, sample_lis
         "sampleListId": sample_list_id
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get molecular data in molecular profile.")
 
 def fetch_all_molecular_data_in_molecular_profile(molecular_profile_id, entrez_gene_ids = None, sample_ids = None, 
@@ -123,5 +123,5 @@ def fetch_all_molecular_data_in_molecular_profile(molecular_profile_id, entrez_g
     if sample_list_id:
         molecular_data_filter['sampleListId'] = sample_list_id
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=molecular_data_filter)
+    response = make_request(endpoint, method="POST", params=params, data=molecular_data_filter)
     return process_response(response, "Failed to fetch molecular data in molecular profile.")

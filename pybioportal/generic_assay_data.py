@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_ids=None, 
                                                   sample_ids=None, sample_list_id=None, projection="SUMMARY"):
@@ -38,7 +38,7 @@ def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_
     if sample_list_id:
         generic_assay_data_filter['sampleListId'] = sample_list_id
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=generic_assay_data_filter)
+    response = make_request(endpoint, method="POST", params=params, data=generic_assay_data_filter)
     return process_response(response, "Failed to fetch generic assay data.")
 
 def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_ids=None, 
@@ -95,7 +95,7 @@ def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_id
                 generic_assay_data_multiple_study_filter["sampleMolecularIdentifiers"].append(identifier)
 
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=generic_assay_data_multiple_study_filter)
+    response = make_request(endpoint, method="POST", params=params, data=generic_assay_data_multiple_study_filter)
     return process_response(response, "Failed to fetch generic assay data.")
 
 def get_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_id, projection="SUMMARY"):
@@ -118,5 +118,5 @@ def get_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_as
     endpoint = f"/generic-assay-data/{molecular_profile_id}/generic-assay/{generic_assay_stable_id}"
     params = {"projection": projection}
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get generic assay data.")

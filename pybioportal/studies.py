@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_studies(keyword=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
@@ -51,7 +51,7 @@ def get_all_studies(keyword=None, direction="ASC", pageNumber=0, pageSize=100000
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, params=params, method='GET')
     return process_response(response, "Failed to get all studies.")
 
 def get_study(study_id):
@@ -63,7 +63,7 @@ def get_study(study_id):
     :rtype: pandas.DataFrame \n
     """
     endpoint = f"/studies/{study_id}"
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method='GET')
     return process_response(response, "Failed to get the study by ID.")
         
 def get_tags_of_study(study_id):
@@ -76,7 +76,7 @@ def get_tags_of_study(study_id):
     """
     endpoint = f"/studies/{study_id}/tags"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method='GET')
     return process_response(response, "Failed to get tags for the study.")
     
 def fetch_studies(study_ids = [], projection="SUMMARY"):
@@ -99,7 +99,7 @@ def fetch_studies(study_ids = [], projection="SUMMARY"):
         "projection": projection
     }
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+    response = make_request(endpoint, params=params, method='POST', data=study_ids)
     return process_response(response, "Failed to fetch studies by IDs.")
     
 def fetch_tags_for_studies(study_ids= []):
@@ -112,6 +112,6 @@ def fetch_tags_for_studies(study_ids= []):
     """
     endpoint = "/studies/tags/fetch"
     
-    response = requests.post(f"{base_url}{endpoint}", json=study_ids)
+    response = make_request(endpoint, method='POST', data=study_ids)
     return process_response(response, "Failed to fetch study tags for multiple studies.")
     

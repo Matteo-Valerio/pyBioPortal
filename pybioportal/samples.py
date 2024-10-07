@@ -1,6 +1,46 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
+
+
+def get_samples(study_id, projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
+    """
+    Get all samples in a study.
+
+    :param study_id: Study ID (e.g., "brca_tcga").
+    :type study_id: str
+    :param projection: Level of detail of the response.
+    :type projection: str
+    :param direction: Direction of the sort.
+        Possible values:
+            - "ASC": Ascending (default).
+            - "DESC": Descending.
+    :type direction: str
+    :param pageNumber: Page number of the result list.
+        - Minimum value is 0.
+    :type pageNumber: int
+    :param pageSize: Page size of the result list.
+        - Minimum value is 1, maximum value is 10000000.
+    :type pageSize: int
+    :param sortBy: Property name to sort by.
+        Possible values:
+            - "sampleId"
+            - "sampleType"
+    :type sortBy: str
+    :return: A DataFrame containing samples in the specified study.
+    :rtype: pandas.DataFrame
+    """
+    endpoint = f"/studies/{study_id}/samples"
+    params = {
+        "projection": projection,
+        "direction": direction,
+        "pageNumber": pageNumber,
+        "pageSize": pageSize,
+        "sortBy": sortBy
+    }
+
+    response = make_request(endpoint=endpoint, method="GET", params=params)
+    return process_response(response, "Failed to get samples.")
 
 def get_samples_by_keyword(keyword=None, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
@@ -43,7 +83,7 @@ def get_samples_by_keyword(keyword=None, direction="ASC", pageNumber=0, pageSize
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get samples by keyword.")
     
 def fetch_samples(sample_identifiers=None, sample_list_ids=None, unique_sample_keys=None, projection="SUMMARY"):
@@ -101,7 +141,7 @@ def fetch_samples(sample_identifiers=None, sample_list_ids=None, unique_sample_k
     if unique_sample_keys:
         sample_filter['uniqueSampleKeys'] = unique_sample_keys
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_filter)
+    response = make_request(endpoint, method="POST", params=params, data=sample_filter)
     return process_response(response, "Failed to fetch samples by ID.")
 
 def get_all_samples_of_patient_in_study(study_id, patient_id, direction="ASC", 
@@ -147,7 +187,7 @@ def get_all_samples_of_patient_in_study(study_id, patient_id, direction="ASC",
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get samples of the specified patient in the study.")
 
 def get_all_samples_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -190,7 +230,7 @@ def get_all_samples_in_study(study_id, direction="ASC", pageNumber=0, pageSize=1
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get samples in the study.")
     
 def get_sample_in_study(study_id, sample_id):
@@ -205,5 +245,5 @@ def get_sample_in_study(study_id, sample_id):
     """
     endpoint = f"/studies/{study_id}/samples/{sample_id}"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get sample information.")

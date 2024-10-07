@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def fetch_status_display_patient_trts(study_ids, tier="Agent"):
     """
@@ -19,7 +19,7 @@ def fetch_status_display_patient_trts(study_ids, tier="Agent"):
     endpoint = "/treatments/display-patient"
     params = {"tier": tier}
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+    response = make_request(endpoint, params=params, method='POST', data=study_ids)
     return response.json()
     
 def fetch_status_display_sample_trts(study_ids, tier="Agent"):
@@ -39,7 +39,7 @@ def fetch_status_display_sample_trts(study_ids, tier="Agent"):
     endpoint = "/treatments/display-sample"
     params = {"tier": tier}
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_ids)
+    response = make_request(endpoint, params=params, method='POST', data=study_ids) 
     return response.json()
     
 def fetch_all_patient_level_treatments(study_view_filter, tier="Agent"):
@@ -61,7 +61,7 @@ def fetch_all_patient_level_treatments(study_view_filter, tier="Agent"):
     endpoint = "/treatments/patient"
     params = {"tier": tier}
     
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter)
+    response = make_request(endpoint, params=params, method='POST', data=study_view_filter)
     return process_response(response, "Failed to get all patient level treatments.")
     
 def fetch_all_sample_level_treatments(study_view_filter, tier="Agent"):
@@ -83,5 +83,5 @@ def fetch_all_sample_level_treatments(study_view_filter, tier="Agent"):
     endpoint = "/treatments/sample"
     params = {"tier": tier}
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=study_view_filter)
+    response = make_request(endpoint, params=params, method='POST', data=study_view_filter) 
     return process_response(response, "Failed to get all sample level treatments.")

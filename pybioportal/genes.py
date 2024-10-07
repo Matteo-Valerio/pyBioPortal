@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_genes(alias=None, direction="ASC", keyword=None, pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy="hugoGeneSymbol"):
     """
@@ -49,7 +49,7 @@ def get_all_genes(alias=None, direction="ASC", keyword=None, pageNumber=0, pageS
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get genes.")
 
 def get_gene(gene_id):
@@ -62,7 +62,7 @@ def get_gene(gene_id):
     """
     endpoint = f"/genes/{gene_id}"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get gene information.")
 
 def get_aliases_of_gene(gene_id):
@@ -75,7 +75,7 @@ def get_aliases_of_gene(gene_id):
     """
     endpoint = f"/genes/{gene_id}/aliases"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get aliases of the gene.")
 
 def fetch_genes(gene_ids, gene_id_type="ENTREZ_GENE_ID", projection="SUMMARY"):
@@ -101,5 +101,5 @@ def fetch_genes(gene_ids, gene_id_type="ENTREZ_GENE_ID", projection="SUMMARY"):
     endpoint = "/genes/fetch"
     params = {"geneIdType": gene_id_type, "projection": projection}
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=gene_ids)
+    response = make_request(endpoint, method="POST", params=params, data=gene_ids)
     return process_response(response, "Failed to fetch genes.")    

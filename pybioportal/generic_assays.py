@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_ids=None, projection="SUMMARY"):
     """
@@ -29,7 +29,7 @@ def fetch_generic_assay_meta(generic_assay_stable_ids=None, molecular_profile_id
     if molecular_profile_ids:
         generic_assay_meta_filter["molecularProfileIds"] = molecular_profile_ids
 
-    response = requests.post(f"{base_url}/generic_assay_meta/fetch", params=params, json=generic_assay_meta_filter)
+    response = make_request(f"/generic_assay_meta/fetch", method="POST", params=params, data=generic_assay_meta_filter)
     return process_response(response, "Failed to fetch meta data for generic assays.")
 
 def get_generic_assay_meta_by_id(generic_assay_stable_id, projection="SUMMARY"):
@@ -49,7 +49,7 @@ def get_generic_assay_meta_by_id(generic_assay_stable_id, projection="SUMMARY"):
     """
     params = {"projection": projection}
 
-    response = requests.get(f"{base_url}/generic-assay-meta/generic-assay/{generic_assay_stable_id}", params=params)
+    response = make_request(f"/generic-assay-meta/generic-assay/{generic_assay_stable_id}", method="GET", params=params)
     return process_response(response, "Failed to fetch meta data for the generic assay.")
 
 def get_generic_assay_meta_by_molecular_profile_id(molecular_profile_id, projection="SUMMARY"):
@@ -69,5 +69,5 @@ def get_generic_assay_meta_by_molecular_profile_id(molecular_profile_id, project
     """
     params = {"projection": projection}
 
-    response = requests.get(f"{base_url}/generic-assay-meta/{molecular_profile_id}", params=params)
+    response = make_request(f"/generic-assay-meta/{molecular_profile_id}", method="GET", params=params)
     return process_response(response, "Failed to fetch meta data for the generic assay.")

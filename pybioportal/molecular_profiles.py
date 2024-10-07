@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_molecular_profiles(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
@@ -44,7 +44,7 @@ def get_all_molecular_profiles(direction="ASC", pageNumber=0, pageSize=10000000,
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get all molecular profiles.")
 
 def get_molecular_profile(molecular_profile_id):
@@ -57,7 +57,7 @@ def get_molecular_profile(molecular_profile_id):
     """
     endpoint = f"/molecular-profiles/{molecular_profile_id}"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get molecular profile.")
     
 def fetch_molecular_profiles(molecular_profile_ids = None, study_ids = None, projection="SUMMARY"):
@@ -88,7 +88,7 @@ def fetch_molecular_profiles(molecular_profile_ids = None, study_ids = None, pro
     if study_ids:
         molecular_profile_filter['studyIds'] = study_ids
     
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=molecular_profile_filter)
+    response = make_request(endpoint, method="POST", params=params, data=molecular_profile_filter)
     return process_response(response, "Failed to fetch molecular profiles.")
     
 def get_all_molecular_profiles_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -135,5 +135,5 @@ def get_all_molecular_profiles_in_study(study_id, direction="ASC", pageNumber=0,
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get molecular profiles in the specified study.")
