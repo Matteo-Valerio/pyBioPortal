@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
@@ -40,7 +40,7 @@ def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projec
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get gene panels.")
 
 def get_gene_panel(gene_panel_id):
@@ -53,7 +53,7 @@ def get_gene_panel(gene_panel_id):
     """
     endpoint = f"/gene-panels/{gene_panel_id}"
     
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get gene panels.")
     # df = process_response(response, f"Failed to get gene panel {gene_panel_id}.")
     # return flatten_dict_columns(df)
@@ -75,9 +75,11 @@ def fetch_gene_panels(gene_panel_ids, projection="SUMMARY"):
     :rtype: pandas.DataFrame \n
     """
     endpoint = "/gene-panels/fetch"
-    params = {"projection": projection}
-    
-    response = requests.post(f"{base_url}{endpoint}", json=gene_panel_ids, params=params)
+    data = {
+        "genePanelIds": gene_panel_ids,
+        "projection": projection
+    }
+    response = make_request(endpoint, method="POST", data=data)
     return process_response(response, "Failed to get gene panels.")
     # df = check_response(response, "Failed to fetch gene panels.")
     # return flatten_dict_list_columns(df)

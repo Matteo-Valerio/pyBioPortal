@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_muts_in_mol_prof_by_sample_list_id(molecular_profile_id, sample_list_id, entrez_gene_id=None, 
                                            projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
@@ -68,7 +68,7 @@ def get_muts_in_mol_prof_by_sample_list_id(molecular_profile_id, sample_list_id,
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get mutations in molecular profile.")
 
 def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_ids=None, sample_list_id=None, 
@@ -148,7 +148,7 @@ def fetch_muts_in_mol_prof(molecular_profile_id, entrez_gene_ids=None, sample_id
     if sample_list_id:
         mutation_filter['sampleListId'] = sample_list_id
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_filter)
+    response = make_request(endpoint, method="POST", params=params, data=mutation_filter)
     return process_response(response, "Failed to fetch mutations in molecular profile.")
 
 def fetch_muts_in_multiple_mol_profs(entrez_gene_ids=None, molecular_profile_ids=None, sample_molecular_identifiers=None, 
@@ -244,5 +244,5 @@ def fetch_muts_in_multiple_mol_profs(entrez_gene_ids=None, molecular_profile_ids
                 }
                 mutation_multiple_study_filter["sampleMolecularIdentifiers"].append(identifier)
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=mutation_multiple_study_filter)
+    response = make_request(endpoint, method="POST", params=params, data=mutation_multiple_study_filter)
     return process_response(response, "Failed to fetch mutations in multiple molecular profiles.")

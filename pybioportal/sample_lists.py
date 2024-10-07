@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def get_all_sample_lists(projection="SUMMARY", direction="ASC", pageNumber=0, pageSize=10000000, sortBy=None):
     """
@@ -43,7 +43,7 @@ def get_all_sample_lists(projection="SUMMARY", direction="ASC", pageNumber=0, pa
         "sortBy": sortBy
     }
 
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get all sample lists.")
 
 def get_sample_list(sample_list_id):
@@ -56,7 +56,7 @@ def get_sample_list(sample_list_id):
     """
     endpoint = f"/sample-lists/{sample_list_id}"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get sample list.")
 
 def get_all_sample_ids_in_sample_list(sample_list_id):
@@ -69,7 +69,7 @@ def get_all_sample_ids_in_sample_list(sample_list_id):
     """
     endpoint = f"/sample-lists/{sample_list_id}/sample-ids"
 
-    response = requests.get(f"{base_url}{endpoint}")
+    response = make_request(endpoint, method="GET")
     return process_response(response, "Failed to get all sample IDs in sample list.")
     
 def fetch_sample_lists(sample_list_ids, projection="SUMMARY"):
@@ -92,7 +92,7 @@ def fetch_sample_lists(sample_list_ids, projection="SUMMARY"):
         "projection": projection
     }
 
-    response = requests.post(f"{base_url}{endpoint}", params=params, json=sample_list_ids)
+    response = make_request(endpoint, method="POST", params=params, data=sample_list_ids)
     return process_response(response, "Failed to fetch sample lists.")
         
 def get_all_sample_lists_in_study(study_id, direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
@@ -138,5 +138,5 @@ def get_all_sample_lists_in_study(study_id, direction="ASC", pageNumber=0, pageS
         "sortBy": sortBy
     }
     
-    response = requests.get(f"{base_url}{endpoint}", params=params)
+    response = make_request(endpoint, method="GET", params=params)
     return process_response(response, "Failed to get sample lists in the study.")

@@ -1,6 +1,6 @@
 import requests
 from .__config import base_url
-from .__aux_funcs import process_response
+from .__aux_funcs import make_request, process_response
 
 def fetch_gene_panel_data(molecular_profile_ids=None, molecular_prof_sample_ids=None):
     """
@@ -42,7 +42,7 @@ def fetch_gene_panel_data(molecular_profile_ids=None, molecular_prof_sample_ids=
                 }
                 gene_panel_data_filter["sampleMolecularIdentifiers"].append(identifier)
 
-    response = requests.post(f"{base_url}{endpoint}", json=gene_panel_data_filter)
+    response = make_request(endpoint, method="POST", data=gene_panel_data_filter)
     return process_response(response, "Failed to fetch gene panel data.")
 
 def fetch_gene_panel_data_in_molecular_profile(molecular_profile_id, sample_ids=None, sample_list_id=None):
@@ -64,5 +64,5 @@ def fetch_gene_panel_data_in_molecular_profile(molecular_profile_id, sample_ids=
             "sampleListId": sample_list_id
            }
 
-    response = requests.post(f"{base_url}{endpoint}", json=gene_panel_data_filter)
+    response = make_request(endpoint, method="POST", data=gene_panel_data_filter)
     return process_response(response, "Failed to fetch gene panel data.")
