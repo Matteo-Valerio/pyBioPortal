@@ -4,7 +4,7 @@ from .__aux_funcs import process_response
 
 def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
-    Get all cancer types from BioPortal. \n
+    Get all cancer types from cBioPortal. \n
     :param direction: Direction of the sort. \n
         Possible values: \n
             - "ASC": Ascending (default).
@@ -48,7 +48,7 @@ def get_all_cancer_types(direction="ASC", pageNumber=0, pageSize=10000000, proje
 
 def get_cancer_type(cancer_type_id):
     """
-    Get a specific cancer type from BioPortal. \n
+    Get a specific cancer type from cBioPortal. \n
     :param cancer_type_id: Cancer Type ID (e.g., "acc"). \n
     :type cancer_type_id: str \n
     :returns: A DataFrame containing information about the specific cancer type. \n
