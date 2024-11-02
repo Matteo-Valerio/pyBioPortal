@@ -1,4 +1,4 @@
-Cancer Types
+Cancer Types 
 ============
 
 The module ``cancer_types`` provides functions related to *Cancer Types* section of 
