@@ -4,7 +4,7 @@ from .__aux_funcs import process_response
 
 def fetch_gene_panel_data(molecular_profile_ids=None, molecular_prof_sample_ids=None):
     """
-    Fetch gene panel data from BioPortal. \n
+    Fetch gene panel data from cBioPortal. \n
     :param molecular_profile_ids: List of Molecular Profile IDs (e.g., ["brca_tcga_gistic", "brca_tcga_mutations", "acc_tcga_gistic"]). \n
     :type molecular_profile_ids: list of str \n
     :param molecular_prof_sample_ids: List of Molecular Profile ID and Sample IDs pairs. \n

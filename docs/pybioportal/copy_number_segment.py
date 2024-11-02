@@ -4,7 +4,7 @@ from .__aux_funcs import process_response
 
 def fetch_copy_number_segments(sample_study_ids, chromosome=None, projection="SUMMARY"):
     """
-    Fetch copy number segments from BioPortal by sample ID. \n
+    Fetch copy number segments from cBioPortal by sample ID. \n
     :param sample_study_ids: List of sample identifiers. \n
         Each list should have the following format: \n
             sample_study_ids = [

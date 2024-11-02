@@ -4,7 +4,7 @@ from .__aux_funcs import process_response
 
 def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
-    Get all gene panels from BioPortal. \n
+    Get all gene panels from cBioPortal. \n
     :param direction: Direction of the sort. \n
         Possible values: \n
             - "ASC": Ascending (default).
@@ -45,7 +45,7 @@ def get_all_gene_panels(direction="ASC", pageNumber=0, pageSize=10000000, projec
 
 def get_gene_panel(gene_panel_id):
     """
-    Get a specific gene panel from BioPortal. \n
+    Get a specific gene panel from cBioPortal. \n
     :param gene_panel_id: Gene Panel ID (e.g., "NSCLC_UNITO_2016_PANEL"). \n
     :type gene_panel_id: str \n
     :returns: A DataFrame containing information about the specific gene panel. \n
@@ -61,7 +61,7 @@ def get_gene_panel(gene_panel_id):
 
 def fetch_gene_panels(gene_panel_ids, projection="SUMMARY"):
     """
-    Fetch gene panels from BioPortal by Gene Panel IDs. \n
+    Fetch gene panels from cBioPortal by Gene Panel IDs. \n
     :param gene_panel_ids: List of Gene Panel IDs. \n
     :type gene_panel_ids: list of str \n
     :param projection: Level of detail of the response. \n

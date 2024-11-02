@@ -5,7 +5,7 @@ from .__aux_funcs import process_response
 def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_ids=None, 
                                                   sample_ids=None, sample_list_id=None, projection="SUMMARY"):
     """
-    Fetch generic assay data in a specific molecular profile from BioPortal. \n
+    Fetch generic assay data in a specific molecular profile from cBioPortal. \n
     :param molecular_profile_id: Molecular Profile ID (e.g., "brca_tcga_phosphoprotein_quantification"). \n
     :type molecular_profile_id: str \n
     :param generic_assay_stable_ids: List of Generic Assays IDs (e.g., ["TULP4_pS563", "TEP1_pS397"]). \n
@@ -44,7 +44,7 @@ def fetch_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_
 def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_ids=None, 
                              sample_molecular_identifiers=None, projection="SUMMARY"):
     """
-    Fetch generic assay data from multiple molecular profiles in BioPortal providing  \n
+    Fetch generic assay data from multiple molecular profiles in cBioPortal providing  \n
     List of Molecular Profile ID and Sample ID pairs or List of Molecular Profile IDs and Generic Assay IDs. \n
     :param generic_assay_stable_ids: List of Generic Assay IDs, e.g. ["TULP4_pS563", "TEP1_pS397"] \n
     :type generic_assay_stable_ids: list of str \n
@@ -100,7 +100,7 @@ def fetch_generic_assay_data(generic_assay_stable_ids=None, molecular_profile_id
 
 def get_generic_assay_data_in_molecular_profile(molecular_profile_id, generic_assay_stable_id, projection="SUMMARY"):
     """
-    Get generic assay data in a molecular profile from BioPortal. \n
+    Get generic assay data in a molecular profile from cBioPortal. \n
     :param molecular_profile_id: Molecular Profile ID. \n
     :type molecular_profile_id: str \n
     :param generic_assay_stable_id: Generic Assay stable ID. \n

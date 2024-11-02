@@ -4,7 +4,7 @@ from .__aux_funcs import process_response
 
 def fetch_clinical_data(attribute_ids, entity_study_ids, clinical_data_type="SAMPLE", projection="SUMMARY", ret_format="WIDE"):
     """
-    Fetch clinical data by patient IDs or sample IDs (all studies) from BioPortal. \n
+    Fetch clinical data by patient IDs or sample IDs (all studies) from cBioPortal. \n
     :param attribute_ids: List of attribute IDs. \n
             - e.g. for PATIENT data type: \n
                     ["SEX", "RACE"] \n

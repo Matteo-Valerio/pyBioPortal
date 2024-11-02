@@ -4,7 +4,7 @@ from .__aux_funcs import process_response
 
 def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000, projection="SUMMARY", sortBy=None):
     """
-    Get all clinical attributes from BioPortal. \n
+    Get all clinical attributes from cBioPortal. \n
     :param direction: Direction of the sort. \n
         Possible values: \n
             - "ASC": Ascending (default).
@@ -50,7 +50,7 @@ def get_all_clinical_attributes(direction="ASC", pageNumber=0, pageSize=10000000
     
 def fetch_clinical_attributes(study_ids, projection="SUMMARY"):
     """
-    Fetch clinical attributes from BioPortal for a list of study IDs. \n
+    Fetch clinical attributes from cBioPortal for a list of study IDs. \n
     :param study_ids: List of Study IDs. \n
     :type study_ids: list of str \n
     :param projection: Level of detail of the response. \n
